@@ -1,0 +1,59 @@
+<!-- The "type" means contianer type -->
+<Context name="Root" type="Single">
+	<Context name="Logo" />
+	<Context name="Cg" />
+	<Context name="StartPage" />
+	<Context name="TabInfo" type="Single">
+		<Context name="Home" type="Solo">
+			<Context name="Cd" />
+			<Context name="InfoFlow" type="Multi">
+			</Context>
+		</Context>
+		<Context name="Music" type="Multi">
+			<Context name="ItemPlayMusic" />
+			<Context name="ItemGoldLockedMusic" />
+			<Context name="ItemLevelLockedMusic" />
+			<Context name="ItemDiamondLockedMusic" />
+		</Context>
+		<Context name="Hall" type="Solo">
+			<Context name="HallItemContainer" type="Multi">
+				<Context name="ItemHallStart" />
+				<Context name="ItemHallLocked" />
+				<Context name="ItemHallEmpty" />
+			</Context>
+			<Context name="ItemHallPlayVideo" />
+		</Context>
+		<Context name="Setting" type="Solo" />
+	</Context>
+</Context>
+
+
+
+<Container type="Single">
+	<Context name="Root">
+		<Container type="Single">
+			<Context name="Logo" />
+			<Context name="Cg" />
+			<Context name="StartPage" />
+			<Context name="StateBar">
+				<Container type="Single">
+					<Context name="Home">
+						<Container type="Solo">
+							<Context name="Cd" />
+							<Container type="Single">
+								<Context name="InfoFlow">
+								</Context>
+							</Container>
+						</Container>
+					</Context>
+					<Context name="Music">
+					</Context>
+					<Context name="Hall">
+					</Context>
+					<Context name="Setting">
+					</Context>
+				</Container>
+			</Context>
+		</Container>
+	</Context>
+</Container>

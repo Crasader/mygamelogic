@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mvc">
+      <UniqueIdentifier>{d177ed1a-748f-43c0-80a0-d72a82e19fe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{8038dd8f-ef01-4f76-b4db-fe1905d5529d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gamebase">
+      <UniqueIdentifier>{b0dba2ac-4d3b-46f1-be4a-4356cfdf1229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game">
+      <UniqueIdentifier>{0e82db5a-35b1-4cd6-9b2e-05539db659b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\application">
+      <UniqueIdentifier>{09e6dfb8-1396-4fcf-9ac8-2e370ba0572b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\cg">
+      <UniqueIdentifier>{ab8b256b-729c-4bc6-9a49-0f424f0a50d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2NameGenerator.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2Object.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2Prerequisites.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2SimpleObjectManager.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2TypedObjectManager.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2PoolingObjectManager.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Command.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Controller.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Facade.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Mediator.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Model.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Notification.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Notifier.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Observer.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Proxy.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2View.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2ViewComponent.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\gamebase\U2CocosViewComponent.cpp">
+      <Filter>src\gamebase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2SimpleCommand.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\application\ApplicationPrerequisites.cpp">
+      <Filter>src\game\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\application\ApplicationFacade.cpp">
+      <Filter>src\game\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\application\ApplicationCommands.cpp">
+      <Filter>src\game\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\application\ApplicationMediators.cpp">
+      <Filter>src\game\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\application\ApplicationViewComponents.cpp">
+      <Filter>src\game\application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2FactoryManager.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\cg\CgViewComponents.cpp">
+      <Filter>src\game\cg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\cg\CgMediators.cpp">
+      <Filter>src\game\cg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\cg\CgCommands.cpp">
+      <Filter>src\game\cg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\cg\CgFacade.cpp">
+      <Filter>src\game\cg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\cg\CgPrerequisites.cpp">
+      <Filter>src\game\cg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2Context.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2TransStep.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\gamebase\U2CocosMediator.cpp">
+      <Filter>src\gamebase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\Trans2Command.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\game\GameContexts.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2FactoryObj.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2NameGenerator.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2Object.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2Prerequisites.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2Singleton.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2IteratorWrapper.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2SimpleObjectManager.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2TypedObjectManager.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2PoolingObjectManager.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Command.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Controller.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Facade.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Mediator.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Model.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Notification.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Notifier.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Observer.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Proxy.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2View.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2ViewComponent.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gamebase\U2CocosViewComponent.h">
+      <Filter>src\gamebase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2SimpleCommand.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\application\ApplicationPrerequisites.h">
+      <Filter>src\game\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\application\ApplicationFacade.h">
+      <Filter>src\game\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\application\ApplicationCommands.h">
+      <Filter>src\game\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\application\ApplicationMediators.h">
+      <Filter>src\game\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\application\ApplicationViewComponents.h">
+      <Filter>src\game\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2FactoryManager.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\cg\CgViewComponents.h">
+      <Filter>src\game\cg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\cg\CgMediators.h">
+      <Filter>src\game\cg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\cg\CgCommands.h">
+      <Filter>src\game\cg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\cg\CgFacade.h">
+      <Filter>src\game\cg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\cg\CgPrerequisites.h">
+      <Filter>src\game\cg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Context.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2TransStep.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gamebase\U2CocosMediator.h">
+      <Filter>src\gamebase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\Trans2Command.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game\GameContexts.h">
+      <Filter>src\game</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\1.csv">
+      <Filter>resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\CloseNormal.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\CloseSelected.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\HelloWorld.png">
+      <Filter>resource</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
