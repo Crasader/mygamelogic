@@ -144,6 +144,12 @@
     <ClCompile Include="..\Classes\game\GameContexts.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2ContextQueue.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2ContextProxy.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -268,6 +274,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\game\GameContexts.h">
       <Filter>src\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2ContextQueue.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2ContextProxy.h">
+      <Filter>src\mvc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

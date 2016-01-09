@@ -74,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes\pt;..\Classes\mvc;..\Classes\core;..\Classes\gamebase;..\Classes\game;..\Classes;..;..\Dependencies\include\boost;..\Dependencies\include;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes\mvc;..\Classes\core;..\Classes\gamebase;..\Classes\game;..\Classes;..;..\Dependencies\include\boost;..\Dependencies\include;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -163,6 +163,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Command.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Context.cpp" />
+    <ClCompile Include="..\Classes\mvc\U2ContextProxy.cpp" />
+    <ClCompile Include="..\Classes\mvc\U2ContextQueue.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Controller.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Facade.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Mediator.cpp" />
@@ -206,6 +208,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\mvc\U2Command.h" />
     <ClInclude Include="..\Classes\mvc\U2Context.h" />
+    <ClInclude Include="..\Classes\mvc\U2ContextProxy.h" />
+    <ClInclude Include="..\Classes\mvc\U2ContextQueue.h" />
     <ClInclude Include="..\Classes\mvc\U2Controller.h" />
     <ClInclude Include="..\Classes\mvc\U2Facade.h" />
     <ClInclude Include="..\Classes\mvc\U2Mediator.h" />
