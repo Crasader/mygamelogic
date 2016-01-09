@@ -33,11 +33,11 @@ public:
 };
 
 
-class ShadowContext : public Context
+class TabContext : public Context
 {
 public:
-    ShadowContext(const String& type, const String& name);
-    virtual ~ShadowContext();
+    TabContext(const String& type, const String& name);
+    virtual ~TabContext();
 };
 
 

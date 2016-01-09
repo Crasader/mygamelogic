@@ -31,12 +31,12 @@ SceneContext::~SceneContext()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-ShadowContext::ShadowContext(const String& type, const String& name)
+TabContext::TabContext(const String& type, const String& name)
     : Context(type, name)
 {
 }
 //-----------------------------------------------------------------------
-ShadowContext::~ShadowContext()
+TabContext::~TabContext()
 {
 }
 //-----------------------------------------------------------------------

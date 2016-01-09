@@ -10,7 +10,6 @@
 
 
 #include "cocos2d.h"
-#include "pt.h"
 
 
 
