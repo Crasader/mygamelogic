@@ -101,11 +101,11 @@ ContextQueueManager::~ContextQueueManager()
 {
 }
 //-----------------------------------------------------------------------
-ContextQueue* ContextQueueManager::createContextQueue(const String& type
+ContextQueue* ContextQueueManager::createContextQueue(const String& type, const String& name
     , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
     , ContextQueue::ePriority priority)
 {
-    ContextQueue* pContext = createObject(type, type);
+    ContextQueue* pContext = createObject(type, name);
     pContext->initialize(defaultTransType, capacity, priority);
     return pContext;
 }

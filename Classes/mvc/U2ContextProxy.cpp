@@ -23,45 +23,45 @@ ContextProxy::ContextProxy(const String& type, const String& name)
 ContextProxy::~ContextProxy(void)
 { }
 //-----------------------------------------------------------------------
-void ContextProxy::pushBack(const String& type, u2::Context* context, ContextQueue::eTransType transType)
+void ContextProxy::pushBack(const String& name, u2::Context* context, ContextQueue::eTransType transType)
 {
-    ContextQueue* pQueue = _retrieveContextQueue(type);
+    ContextQueue* pQueue = _retrieveContextQueue(name);
     if (pQueue)
     {
         pQueue->pushBack(context, transType);
     }
 }
 //-----------------------------------------------------------------------
-void ContextProxy::pushFront(const String& type, u2::Context* context, ContextQueue::eTransType transType)
+void ContextProxy::pushFront(const String& name, u2::Context* context, ContextQueue::eTransType transType)
 {
-    ContextQueue* pQueue = _retrieveContextQueue(type);
+    ContextQueue* pQueue = _retrieveContextQueue(name);
     if (pQueue)
     {
         pQueue->pushFront(context, transType);
     }
 }
 //-----------------------------------------------------------------------
-void ContextProxy::pop(const String& type, ContextQueue::eTransType transType)
+void ContextProxy::pop(const String& name, ContextQueue::eTransType transType)
 {
-    ContextQueue* pQueue = _retrieveContextQueue(type);
+    ContextQueue* pQueue = _retrieveContextQueue(name);
     if (pQueue)
     {
         pQueue->pop(transType);
     }
 }
 //-----------------------------------------------------------------------
-void ContextProxy::replace(const String& type, u2::Context* from, u2::Context* to, ContextQueue::eTransType transType)
+void ContextProxy::replace(const String& name, u2::Context* from, u2::Context* to, ContextQueue::eTransType transType)
 {
-    ContextQueue* pQueue = _retrieveContextQueue(type);
+    ContextQueue* pQueue = _retrieveContextQueue(name);
     if (pQueue)
     {
         pQueue->replace(from, to, transType);
     }
 }
 //-----------------------------------------------------------------------
-ContextQueue* ContextProxy::_retrieveContextQueue(const String& type)
+ContextQueue* ContextProxy::_retrieveContextQueue(const String& name)
 {
-    ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(type);
+    ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(name);
     if (pQueue == nullptr)
     {
         assert(0);
@@ -69,14 +69,14 @@ ContextQueue* ContextProxy::_retrieveContextQueue(const String& type)
     return pQueue;
 }
 //-----------------------------------------------------------------------
-ContextQueue* ContextProxy::createContextQueue(const String& type
+ContextQueue* ContextProxy::createContextQueue(const String& type, const String& name
     , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
     , ContextQueue::ePriority priority)
 {
-    ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(type);
+    ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(name);
     if (pQueue == nullptr)
     {
-        pQueue = ContextQueueManager::getSingleton().createContextQueue(type, defaultTransType, capacity, priority);
+        pQueue = ContextQueueManager::getSingleton().createContextQueue(type, name, defaultTransType, capacity, priority);
         for (PriorityQueueList::iterator it = m_priorityQueues.begin();
             it != m_priorityQueues.end(); 
             it++)

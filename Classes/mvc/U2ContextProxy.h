@@ -27,17 +27,17 @@ public:
     ContextProxy(const String& type, const String& name);
     virtual ~ContextProxy(void);
 
-    ContextQueue* createContextQueue(const String& type
+    ContextQueue* createContextQueue(const String& type, const String& name
         , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
         , ContextQueue::ePriority priority);
 
-    void pushBack(const String& type, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
-    void pushFront(const String& type, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
-    void pop(const String& type, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
-    void replace(const String& type, u2::Context* from, u2::Context* to, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
+    void pushBack(const String& name, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
+    void pushFront(const String& name, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
+    void pop(const String& name, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
+    void replace(const String& name, u2::Context* from, u2::Context* to, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
 
 protected:
-    ContextQueue* _retrieveContextQueue(const String& type);
+    ContextQueue* _retrieveContextQueue(const String& name);
 
 protected:
     typedef std::list<ContextQueue*>        PriorityQueueList;

@@ -107,7 +107,7 @@ public:
     */
     virtual ~ContextQueueManager();
 
-    ContextQueue* createContextQueue(const String& type
+    ContextQueue* createContextQueue(const String& type, const String& name
         , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
         , ContextQueue::ePriority priority);
 
