@@ -11,8 +11,10 @@
 #include "ApplicationCommands.h"
 #include "ApplicationMediators.h"
 #include "ApplicationViewComponents.h"
+#include "U2ContextProxy.h"
 
 const char* OT_ApplicationFacade = GET_OBJECT_TYPE(ApplicationFacade);
+const char* OT_ContextProxy = GET_OBJECT_TYPE(ContextProxy);
 const char* OT_StartupCommand = GET_OBJECT_TYPE(StartupCommand);
 const char* OT_DestroyContextCommand = GET_OBJECT_TYPE(DestroyContextCommand);
 const char* OT_Trans2LogoCommand = GET_OBJECT_TYPE(Trans2LogoCommand);

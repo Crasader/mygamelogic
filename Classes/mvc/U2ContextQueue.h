@@ -77,12 +77,13 @@ public:
     virtual ~ContextQueue();
 
     inline ContextQueue::ePriority getPriority() const { return m_ePriority; };
+    u2::Context* top();
 
-    void initialize(eTransType defaultTransType, eCapacity capacity, ePriority priority);
-    void pushBack(u2::Context* context, eTransType transType = eTransType::TT_None);
-    void pushFront(u2::Context* context, eTransType transType = eTransType::TT_None);
-    void pop(eTransType transType = eTransType::TT_None);
-    void replace(u2::Context* from, u2::Context* to, eTransType transType = eTransType::TT_None);
+    virtual void initialize(eTransType defaultTransType, ePriority priority) = 0;
+    virtual void pushBack(u2::Context* context, eTransType transType = eTransType::TT_None) = 0;
+    virtual void pushFront(u2::Context* context, eTransType transType = eTransType::TT_None) = 0;
+    virtual void pop(eTransType transType = eTransType::TT_None) = 0;
+    virtual void replace(u2::Context* from, u2::Context* to, eTransType transType = eTransType::TT_None) = 0;
 
 protected:
     void _switch(u2::Context* from, eTransType transType, u2::Context* to);
@@ -92,6 +93,36 @@ protected:
     eCapacity   m_eCapacity;
     ePriority   m_ePriority;
     Queue       m_queue;
+};
+
+
+class SingleContextQueue : public ContextQueue
+{
+public:
+    SingleContextQueue(const String& type, const String& name);
+    virtual ~SingleContextQueue();
+
+    virtual void initialize(eTransType defaultTransType, ePriority priority) override;
+    virtual void pushBack(u2::Context* context, eTransType transType = eTransType::TT_None) override;
+    virtual void pushFront(u2::Context* context, eTransType transType = eTransType::TT_None) override;
+    virtual void pop(eTransType transType = eTransType::TT_None) override;
+    virtual void replace(u2::Context* from, u2::Context* to, eTransType transType = eTransType::TT_None) override;
+
+};
+
+
+class InfiniteContextQueue : public ContextQueue
+{
+public:
+    InfiniteContextQueue(const String& type, const String& name);
+    virtual ~InfiniteContextQueue();
+
+    virtual void initialize(eTransType defaultTransType, ePriority priority) override;
+    virtual void pushBack(u2::Context* context, eTransType transType = eTransType::TT_None) override;
+    virtual void pushFront(u2::Context* context, eTransType transType = eTransType::TT_None) override;
+    virtual void pop(eTransType transType = eTransType::TT_None) override;
+    virtual void replace(u2::Context* from, u2::Context* to, eTransType transType = eTransType::TT_None) override;
+
 };
 
 
@@ -108,8 +139,7 @@ public:
     virtual ~ContextQueueManager();
 
     ContextQueue* createContextQueue(const String& type, const String& name
-        , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
-        , ContextQueue::ePriority priority);
+        , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority);
 
 protected:
     virtual ContextQueue* createObject(const String& type, const String& name);

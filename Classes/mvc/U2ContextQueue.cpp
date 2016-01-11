@@ -24,34 +24,54 @@ ContextQueue::~ContextQueue()
 {
 }
 //-----------------------------------------------------------------------
-void ContextQueue::initialize(eTransType defaultTransType, eCapacity capacity, ePriority priority)
+u2::Context* ContextQueue::top()
+{
+    Queue::iterator it = m_queue.begin();
+    return (it == m_queue.end()) ? nullptr : *it;
+}
+//-----------------------------------------------------------------------
+void ContextQueue::_switch(u2::Context* from, eTransType transType, u2::Context* to)
+{
+
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+SingleContextQueue::SingleContextQueue(const String& type, const String& name)
+    : ContextQueue(type, name)
+{
+
+}
+//-----------------------------------------------------------------------
+SingleContextQueue::~SingleContextQueue()
+{
+}
+//-----------------------------------------------------------------------
+void SingleContextQueue::initialize(eTransType defaultTransType, ePriority priority)
 {
     m_eDefaultTransType = defaultTransType;
-    m_eCapacity = capacity;
+    m_eCapacity = eCapacity::Cap_1;
     m_ePriority = priority;
 }
 //-----------------------------------------------------------------------
-void ContextQueue::pushBack(u2::Context* context, eTransType transType)
+void SingleContextQueue::pushBack(u2::Context* context, eTransType transType)
 {
     m_queue.push_back(context);
-    if (m_eCapacity != eCapacity::Cap_Infinite)
+    if (m_queue.size() > (size_t)m_eCapacity)
     {
-        if (m_queue.size() > (size_t)m_eCapacity)
-        {
-            pop(transType);
-        }
+        pop(transType);
     }
 }
 //-----------------------------------------------------------------------
-void ContextQueue::pushFront(u2::Context* context, eTransType transType)
+void SingleContextQueue::pushFront(u2::Context* context, eTransType transType)
 {
     u2::Context* pFrom = m_queue.front();
+    m_queue.pop_front();
     m_queue.push_front(context);
     u2::Context* pTo = m_queue.front();
     _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
-void ContextQueue::pop(eTransType transType = eTransType::TT_None)
+void SingleContextQueue::pop(eTransType transType)
 {
     u2::Context* pFrom = m_queue.front();
     m_queue.pop_front();
@@ -59,7 +79,7 @@ void ContextQueue::pop(eTransType transType = eTransType::TT_None)
     _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
-void ContextQueue::replace(u2::Context* from, u2::Context* to, eTransType transType)
+void SingleContextQueue::replace(u2::Context* from, u2::Context* to, eTransType transType)
 {
     for (Queue::iterator it = m_queue.begin(); it != m_queue.end(); it++)
     {
@@ -72,9 +92,56 @@ void ContextQueue::replace(u2::Context* from, u2::Context* to, eTransType transT
     }
 }
 //-----------------------------------------------------------------------
-void ContextQueue::_switch(u2::Context* from, eTransType transType, u2::Context* to)
+//-----------------------------------------------------------------------
+InfiniteContextQueue::InfiniteContextQueue(const String& type, const String& name)
+    : ContextQueue(type, name)
 {
 
+}
+//-----------------------------------------------------------------------
+InfiniteContextQueue::~InfiniteContextQueue()
+{
+}
+//-----------------------------------------------------------------------
+void InfiniteContextQueue::initialize(eTransType defaultTransType, ePriority priority)
+{
+    m_eDefaultTransType = defaultTransType;
+    m_eCapacity = eCapacity::Cap_Infinite;
+    m_ePriority = priority;
+}
+//-----------------------------------------------------------------------
+void InfiniteContextQueue::pushBack(u2::Context* context, eTransType transType)
+{
+    m_queue.push_back(context);
+}
+//-----------------------------------------------------------------------
+void InfiniteContextQueue::pushFront(u2::Context* context, eTransType transType)
+{
+    u2::Context* pFrom = m_queue.front();
+    m_queue.push_front(context);
+    u2::Context* pTo = m_queue.front();
+    _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
+}
+//-----------------------------------------------------------------------
+void InfiniteContextQueue::pop(eTransType transType)
+{
+    u2::Context* pFrom = m_queue.front();
+    m_queue.pop_front();
+    u2::Context* pTo = m_queue.front();
+    _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
+}
+//-----------------------------------------------------------------------
+void InfiniteContextQueue::replace(u2::Context* from, u2::Context* to, eTransType transType)
+{
+    for (Queue::iterator it = m_queue.begin(); it != m_queue.end(); it++)
+    {
+        if (*it == from)
+        {
+            *it = to;
+            _switch(from, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, to);
+            break;
+        }
+    }
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -94,7 +161,8 @@ ContextQueueManager& ContextQueueManager::getSingleton(void)
 //-----------------------------------------------------------------------
 ContextQueueManager::ContextQueueManager()
 {
-    CREATE_FACTORY(ContextQueue);
+    CREATE_FACTORY(SingleContextQueue);
+    CREATE_FACTORY(InfiniteContextQueue);
 }
 //-----------------------------------------------------------------------
 ContextQueueManager::~ContextQueueManager()
@@ -102,11 +170,10 @@ ContextQueueManager::~ContextQueueManager()
 }
 //-----------------------------------------------------------------------
 ContextQueue* ContextQueueManager::createContextQueue(const String& type, const String& name
-    , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
-    , ContextQueue::ePriority priority)
+    , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority)
 {
     ContextQueue* pContext = createObject(type, name);
-    pContext->initialize(defaultTransType, capacity, priority);
+    pContext->initialize(defaultTransType, priority);
     return pContext;
 }
 //-----------------------------------------------------------------------

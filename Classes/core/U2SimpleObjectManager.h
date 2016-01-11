@@ -38,11 +38,17 @@ public:
 	void destoryObject(T* obj);
 
     typedef MapIterator<ObjectMap>          ObjectMapIterator;
+    typedef ConstMapIterator<ObjectMap>     ConstObjectMapIterator;
 
     /** Get an iterator over the Archives in this Manager. */
     ObjectMapIterator getObjectIterator()
     {
         return ObjectMapIterator(mObjects.begin(), mObjects.end());
+    }
+
+    ConstObjectMapIterator getConstObjectIterator()
+    {
+        return ConstObjectMapIterator(mObjects.begin(), mObjects.end());
     }
 
 protected:

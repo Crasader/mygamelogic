@@ -11,6 +11,7 @@
 #include "ApplicationCommands.h"
 #include "ApplicationMediators.h"
 #include "ApplicationViewComponents.h"
+#include "U2ContextProxy.h"
 
 
 //-----------------------------------------------------------------------
@@ -40,6 +41,9 @@ ApplicationFacade& ApplicationFacade::getSingleton(void)
 ApplicationFacade::ApplicationFacade(const String& type, const String& name)
     : Facade(type, name)
 {
+    // proxy factory
+    CREATE_FACTORY(ContextProxy);
+
     // command factory
     CREATE_FACTORY(StartupCommand);
     CREATE_FACTORY(DestroyContextCommand);
@@ -72,6 +76,8 @@ void ApplicationFacade::initializeController(void)
 void ApplicationFacade::initializeModel(void)
 {
 	Facade::initializeModel();
+
+    registerProxy(ProxyManager::getSingleton().createObject(OT_ContextProxy, "ContextProxy"));
 }
 //-----------------------------------------------------------------------
 void ApplicationFacade::initializeView(void)

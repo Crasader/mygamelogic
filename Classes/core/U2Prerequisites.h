@@ -46,4 +46,6 @@ extern const char* OT_Context;
 // static const String ObjectTypeObserver          = "Observer";
 // static const String ObjectTypeController        = "Controller";
 
+const String NTF_Application_DestroyContext = "NTF_Application_DestroyContext";
+
 #endif /* defined(__U2Prerequisites__) */

@@ -108,6 +108,8 @@ public:
     virtual void onRemove(void);
 
     virtual void onUpdate(float dt);
+
+    virtual bool preEnd(bool backKey) { return true; };
     
 protected:
     virtual void onViewCompStateChanged(ViewComponent* viewComp, ViewComponent::ViewCompState newState) override;

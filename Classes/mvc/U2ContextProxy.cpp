@@ -70,13 +70,12 @@ ContextQueue* ContextProxy::_retrieveContextQueue(const String& name)
 }
 //-----------------------------------------------------------------------
 ContextQueue* ContextProxy::createContextQueue(const String& type, const String& name
-    , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
-    , ContextQueue::ePriority priority)
+    , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority)
 {
     ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(name);
     if (pQueue == nullptr)
     {
-        pQueue = ContextQueueManager::getSingleton().createContextQueue(type, name, defaultTransType, capacity, priority);
+        pQueue = ContextQueueManager::getSingleton().createContextQueue(type, name, defaultTransType, priority);
         for (PriorityQueueList::iterator it = m_priorityQueues.begin();
             it != m_priorityQueues.end(); 
             it++)

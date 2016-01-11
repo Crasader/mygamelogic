@@ -28,19 +28,25 @@ public:
     virtual ~ContextProxy(void);
 
     ContextQueue* createContextQueue(const String& type, const String& name
-        , ContextQueue::eTransType defaultTransType, ContextQueue::eCapacity capacity
-        , ContextQueue::ePriority priority);
+        , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority);
 
     void pushBack(const String& name, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
     void pushFront(const String& name, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
     void pop(const String& name, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
     void replace(const String& name, u2::Context* from, u2::Context* to, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
 
+    typedef VectorIterator<ContextQueue>          ContextQueueVectorIterator;
+
+    ContextQueueVectorIterator getContextQueueIterator()
+    {
+        return ContextQueueVectorIterator(m_priorityQueues.begin(), m_priorityQueues.end());
+    }
+
 protected:
     ContextQueue* _retrieveContextQueue(const String& name);
 
 protected:
-    typedef std::list<ContextQueue*>        PriorityQueueList;
+    typedef std::vector<ContextQueue*>  PriorityQueueList;
     PriorityQueueList           m_priorityQueues;
 };
 
