@@ -89,6 +89,7 @@ void TransCommand::_createMediator(const u2::Context* from, TransMediator::Trans
     if (pTransMediator)
     {
         getFacade().registerMediator(pTransMediator);
+        pTransMediator->startup(from, type, to);
     }
     
     // children
