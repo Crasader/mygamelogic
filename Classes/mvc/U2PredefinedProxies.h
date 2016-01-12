@@ -5,8 +5,8 @@
 //  Created by jiang on 13-7-23.
 //
 //
-#ifndef __U2ContextProxy__
-#define __U2ContextProxy__
+#ifndef __U2PredefinedProxies__
+#define __U2PredefinedProxies__
 
 
 #include "cocos2d.h"
@@ -53,4 +53,4 @@ protected:
 
 U2EG_NAMESPACE_END
 
-#endif /* defined(__U2ContextProxy__) */
+#endif /* defined(__U2PredefinedProxies__) */

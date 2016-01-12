@@ -21,44 +21,24 @@ Mediator::Mediator(const String& type, const String& name)
     : Object(type, name)
     , m_pViewComp(nullptr)
 	, m_bCreator(false)
-    , m_pFrom(nullptr)
-    , m_pTo(nullptr)
-    , m_pParent(nullptr)
-    , m_pFromContext(nullptr)
 {
-    CREATE_FACTORY(VoidStep);
-    CREATE_FACTORY(ParamStep);
+    
 }
 //-----------------------------------------------------------------------
 Mediator::~Mediator(void)
 {
 }
 //-----------------------------------------------------------------------
-void Mediator::startup(const u2::Context* from, Mediator::TransType type, const u2::Context* to)
+void Mediator::startup(const u2::Context* context)
 {
-    m_pFromContext = (u2::Context*)from;
-
 	m_bCreator = false;
-    m_pViewComp = ViewComponentManager::getSingleton().retrieveObject(to->getViewCompClass(), to->getViewCompName());
+    m_pViewComp = ViewComponentManager::getSingleton().retrieveObject(context->getViewCompClass(), context->getViewCompName());
 	if (m_pViewComp == nullptr)
 	{
-        m_pViewComp = ViewComponentManager::getSingleton().createObject(to->getViewCompClass(), to->getViewCompName());
+        m_pViewComp = ViewComponentManager::getSingleton().createObject(context->getViewCompClass(), context->getViewCompName());
 		m_bCreator = true;
 	}
     m_pViewComp->addListener(this);
-
-    _registerFrameListener();
-
-    if (m_bCreator)
-    {
-        ViewComponent* pFromViewComp = nullptr;
-        if (from != nullptr)
-        {
-            pFromViewComp = ViewComponentManager::getSingleton().retrieveObject(from->getViewCompClass(), from->getViewCompName());
-            pFromViewComp->addListener(this);
-        }
-        _trans(pFromViewComp, type, m_pViewComp);
-    }
 }
 //-----------------------------------------------------------------------
 void Mediator::end()
@@ -76,8 +56,6 @@ void Mediator::end()
             m_pViewComp = nullptr;
         }
     }
-
-    _unregisterFrameListener();
 }
 //-----------------------------------------------------------------------
 inline void Mediator::setViewComponent(ViewComponent* view_component)
@@ -105,195 +83,6 @@ inline void Mediator::onRegister(void)
 //-----------------------------------------------------------------------
 inline void Mediator::onRemove(void)
 { }
-//-----------------------------------------------------------------------
-void Mediator::_trans(ViewComponent* from, TransType type, ViewComponent* to)
-{
-    m_pTo = to;
-    m_pFrom = from;
-    m_transType = type;
-
-    if (to == nullptr)
-    {
-        assert(0);
-    }
-
-    if (from == nullptr)
-    {
-//         m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Loaded), std::bind(&ViewComponent::attach, m_pTo)));
-//         m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&ViewComponent::enter, m_pTo)));
-        m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&Mediator::_onTransOver, this)));
-
-        m_pTo->loadUi();
-    }
-    else
-    {
-        switch (type)
-        {
-        case TransType::TT_Overlay:
-        {
-            m_pParent = m_pFrom->getParent();
-
-            m_steps.push_back(_createParamStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Loaded), std::bind(&ViewComponent::attach, m_pTo, std::placeholders::_1)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&ViewComponent::enter, m_pTo)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&Mediator::_onTransOver, this)));
-
-            m_pTo->loadUi();
-            break;
-        }
-        case TransType::TT_OneByOne:
-        {
-            m_pParent = m_pFrom->getParent();
-
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Exited), std::bind(&Mediator::_onOneByOneFromExited, this)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&ViewComponent::enter, m_pTo)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&Mediator::_onTransOver, this)));
-
-            m_pFrom->exit();
-            break;
-        }
-        case TransType::TT_Cross:
-        {
-            m_pParent = m_pFrom->getParent();
-
-            m_steps.push_back(_createParamStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Loaded), std::bind(&ViewComponent::attach, m_pTo, std::placeholders::_1)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&Mediator::_onCrossToAttached, this)));
-            m_steps.push_back(_createParamStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&ViewComponent::detach, m_pFrom, std::placeholders::_1)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Detached), std::bind(&ViewComponent::unloadUi, m_pFrom)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Unloaded), std::bind(&Mediator::_onTransOver, this)));
-
-            m_pTo->loadUi();
-            break;
-        }
-        default:
-            assert(0);
-            break;
-        }
-    }
-}
-//-----------------------------------------------------------------------
-void Mediator::_onOneByOneFromExited()
-{
-    m_pFrom->detach(m_pParent);
-    m_pFrom->unloadUi();
-    m_pTo->loadUi();
-    m_pTo->attach(m_pParent);
-}
-//-----------------------------------------------------------------------
-void Mediator::_onCrossToAttached()
-{
-    m_pFrom->exit();
-    m_pTo->enter();
-}
-//-----------------------------------------------------------------------
-void Mediator::_destroyContext(u2::Context* context)
-{
-    if (context == nullptr)
-    {
-        return;
-    }
-
-    u2::Context::ContextListIterator it = context->getContextIterator();
-    while (it.hasMoreElements())
-    {
-        _destroyContext(it.getNext());
-    }
-
-    Mediator* pMediator = MediatorManager::getSingleton().retrieveObject(context->getMediatorName());
-    if (pMediator != nullptr)
-    {
-        pMediator->end();
-        MediatorManager::getSingleton().destoryObject(pMediator);
-    }
-    ContextManager::getSingleton().destoryObject(context);
-}
-//-----------------------------------------------------------------------
-void Mediator::_onTransOver()
-{
-    
-}
-//-----------------------------------------------------------------------
-VoidStep* Mediator::_createVoidStep(const TransStep::Key& key, VoidStep::CallbackFun func)
-{
-    VoidStep* pVoidStep = dynamic_cast<VoidStep*>(FactoryManager::getSingleton().createObject(GET_OBJECT_TYPE(VoidStep), BLANK));
-    if (pVoidStep != nullptr)
-    {
-        pVoidStep->initialize(key, func);
-    }
-    return pVoidStep;
-}
-//-----------------------------------------------------------------------
-ParamStep* Mediator::_createParamStep(const TransStep::Key& key, ParamStep::CallbackFun func)
-{
-    ParamStep* pParamStep = dynamic_cast<ParamStep*>(FactoryManager::getSingleton().createObject(GET_OBJECT_TYPE(ParamStep), BLANK));
-    if (pParamStep != nullptr)
-    {
-        pParamStep->initialize(key, func);
-    }
-    return pParamStep;
-}
-//-----------------------------------------------------------------------
-void Mediator::_destroyTransStep(TransStep* step)
-{
-    FactoryManager::getSingleton().destroyObject(step);
-}
-//-----------------------------------------------------------------------
-void Mediator::onUpdate(float dt)
-{
-    if (m_pTo == nullptr)
-    {
-        return;
-    }
-
-    std::vector<TransStep*>::const_iterator it = m_steps.begin();
-    if (it != m_steps.end())
-    {
-        TransStep* pStep = *it;
-        if (pStep->isThisStep(m_curKey))
-        {
-            u2::String szType = pStep->getType();
-            if (szType == GET_OBJECT_TYPE(VoidStep))
-            {
-                VoidStep* pVoidStep = (VoidStep*)pStep;
-                pVoidStep->call();
-                m_steps.erase(it);
-                _destroyTransStep(pVoidStep);
-            }
-            else if (szType == GET_OBJECT_TYPE(ParamStep))
-            {
-                ParamStep* pParamStep = (ParamStep*)pStep;
-                pParamStep->call(m_pParent);
-                m_steps.erase(it);
-                _destroyTransStep(pParamStep);
-            }
-            else
-            {
-                assert(0);
-            }
-        }
-    }
-
-    if (m_steps.empty())
-    {
-        m_pFrom = nullptr;
-        m_pTo = nullptr;
-        m_pParent = nullptr;
-        m_curKey = TransStep::Key(nullptr, ViewComponent::ViewCompState::VCS_Unloaded);
-        if (m_pFromContext != nullptr)
-        {
-            if (m_transType == Mediator::TransType::TT_OneByOne 
-                || m_transType == Mediator::TransType::TT_Cross)
-            {
-                _destroyContext(m_pFromContext);
-            }
-            m_pFromContext = nullptr;
-        }
-    }
-}
-//-----------------------------------------------------------------------
-void Mediator::onViewCompStateChanged(ViewComponent* viewComp, ViewComponent::ViewCompState newState)
-{
-    m_curKey = TransStep::Key(viewComp, newState);
-}
 
 
 //-----------------------------------------------------------------------

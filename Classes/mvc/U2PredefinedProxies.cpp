@@ -6,7 +6,7 @@
 //
 //
 
-#include "U2ContextProxy.h"
+#include "U2PredefinedProxies.h"
 
 #include "U2Context.h"
 

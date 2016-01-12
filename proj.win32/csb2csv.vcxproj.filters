@@ -147,7 +147,16 @@
     <ClCompile Include="..\Classes\mvc\U2ContextQueue.cpp">
       <Filter>src\mvc</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\mvc\U2ContextProxy.cpp">
+    <ClCompile Include="..\Classes\mvc\U2PredefinedCommands.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2PredefinedMediators.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2PredefinedPrerequisites.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2PredefinedProxies.cpp">
       <Filter>src\mvc</Filter>
     </ClCompile>
   </ItemGroup>
@@ -278,7 +287,16 @@
     <ClInclude Include="..\Classes\mvc\U2ContextQueue.h">
       <Filter>src\mvc</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\mvc\U2ContextProxy.h">
+    <ClInclude Include="..\Classes\mvc\U2PredefinedCommands.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2PredefinedMediators.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2PredefinedPrerequisites.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2PredefinedProxies.h">
       <Filter>src\mvc</Filter>
     </ClInclude>
   </ItemGroup>

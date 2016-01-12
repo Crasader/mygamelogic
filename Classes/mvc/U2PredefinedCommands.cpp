@@ -6,12 +6,15 @@
 //
 //
 
-#include "U2PredefinedCommand.h"
+#include "U2PredefinedCommands.h"
 
 #include "U2Context.h"
-#include "U2ContextProxy.h"
 #include "U2Mediator.h"
 #include "U2Facade.h"
+#include "U2PredefinedProxies.h"
+#include "U2PredefinedPrerequisites.h"
+#include "U2PredefinedMediators.h"
+#include "U2NameGenerator.h"
 
 
 
@@ -52,6 +55,48 @@ void DestoryContextCommand::_destroyContext(u2::Context* context)
         MediatorManager::getSingleton().destoryObject(pMediator);
     }
     ContextManager::getSingleton().destoryObject(context);
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+TransCommand::TransCommand(const String& type, const String& name)
+    : SimpleCommand(type, name)
+{
+}
+//-----------------------------------------------------------------------
+TransCommand::~TransCommand()
+{
+}
+//-----------------------------------------------------------------------
+void TransCommand::go(const Notification& notification)
+{
+    _createMediator(_retrieveFromContext(), _retrieveTransType(), _createToContext());
+}
+//-----------------------------------------------------------------------
+void TransCommand::_createMediator(const u2::Context* from, TransMediator::TransType type, const u2::Context* to)
+{
+    // to mediator
+    Mediator* pMediator = MediatorManager::getSingleton().createObject(to->getMediatorClass(), to->getMediatorName());
+    if (pMediator)
+    {
+        getFacade().registerMediator(pMediator);
+    }
+    
+    // trans mediator name
+    NameGeneratorManager::getSingleton().registerNameGenerator("TransMediator");
+    u2::String szTransName = NameGeneratorManager::getSingleton().generator("TransMediator");
+    TransMediator* pTransMediator = dynamic_cast<TransMediator*>(
+        MediatorManager::getSingleton().createObject(OT_TransMediator, szTransName));
+    if (pTransMediator)
+    {
+        getFacade().registerMediator(pTransMediator);
+    }
+    
+    // children
+    u2::Context::ConstContextListIterator it = to->getConstContextIterator();
+    while (it.hasMoreElements())
+    {
+        _createMediator(to, TransMediator::TransType::TT_Overlay, it.getNext());
+    }
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -109,7 +154,7 @@ bool BackKeyCommand::_dispatchBack(u2::Context* context)
     bool bCanEnd = pMediator->preEnd(true);
     if (bCanEnd)
     {
-        getFacade().sendNotification(NTF_Application_DestroyContext);
+        getFacade().sendNotification(NTF_Application_DestroyContext, context);
     }
     else
     {

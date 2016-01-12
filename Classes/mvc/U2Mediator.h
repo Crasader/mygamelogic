@@ -35,16 +35,6 @@ class Mediator : public Object, public Notifier, public ViewComponent::Listener
 public:
     typedef std::list<std::string>		NotificationNames;
 
-    enum class TransType
-    {
-        TT_Overlay,
-        TT_OneByOne,
-        TT_Cross
-    };
-
-    /// <from name, trans type, to type>
-    typedef std::tuple<u2::Context*, Mediator::TransType, u2::Context*>   TransData;
-
 public:
     /**
     * Constructor.
@@ -56,7 +46,7 @@ public:
     */
     virtual ~Mediator(void);
 
-    virtual void startup(const u2::Context* from, Mediator::TransType type, const u2::Context* to);
+    virtual void startup(const u2::Context* context);
 
     virtual void end();
 
@@ -112,35 +102,17 @@ public:
     virtual bool preEnd(bool backKey) { return true; };
     
 protected:
-    virtual void onViewCompStateChanged(ViewComponent* viewComp, ViewComponent::ViewCompState newState) override;
+    virtual void onViewCompStateChanged(ViewComponent* viewComp, ViewComponent::ViewCompState newState) override {};
     virtual void onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg) override {};
 
     virtual void _registerFrameListener() {};
     virtual void _unregisterFrameListener() {};
-
-    virtual void _destroyContext(u2::Context* context);
-    virtual void _onTransOver();
-
-    void _trans(ViewComponent* from, TransType type, ViewComponent* to);
-    VoidStep* _createVoidStep(const TransStep::Key& key, VoidStep::CallbackFun func = nullptr);
-    ParamStep* _createParamStep(const TransStep::Key& key, ParamStep::CallbackFun func = nullptr);
-    void _destroyTransStep(TransStep* step);
-    void _onCrossToAttached();
-    void _onOneByOneFromExited();
     
 
 protected:
     // The view component
 	ViewComponent* m_pViewComp;
 	bool m_bCreator;
-
-    ViewComponent*      m_pFrom;
-    ViewComponent*      m_pTo;
-    void*               m_pParent;
-    std::vector<TransStep*>      m_steps;
-    TransStep::Key      m_curKey;
-    u2::Context*        m_pFromContext;
-    TransType           m_transType;
 };
 
 
