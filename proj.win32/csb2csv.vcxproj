@@ -159,7 +159,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\game\cg\CgPrerequisites.cpp" />
     <ClCompile Include="..\Classes\game\cg\CgViewComponents.cpp" />
     <ClCompile Include="..\Classes\game\GameContexts.cpp" />
-    <ClCompile Include="..\Classes\game\Trans2Command.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Command.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Context.cpp" />
@@ -172,6 +171,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\mvc\U2Notifier.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Observer.cpp" />
     <ClCompile Include="..\Classes\mvc\U2PredefinedCommands.cpp" />
+    <ClCompile Include="..\Classes\mvc\U2PredefinedFacade.cpp" />
     <ClCompile Include="..\Classes\mvc\U2PredefinedMediators.cpp" />
     <ClCompile Include="..\Classes\mvc\U2PredefinedPrerequisites.cpp" />
     <ClCompile Include="..\Classes\mvc\U2PredefinedProxies.cpp" />
@@ -207,7 +207,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\game\cg\CgPrerequisites.h" />
     <ClInclude Include="..\Classes\game\cg\CgViewComponents.h" />
     <ClInclude Include="..\Classes\game\GameContexts.h" />
-    <ClInclude Include="..\Classes\game\Trans2Command.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\mvc\U2Command.h" />
     <ClInclude Include="..\Classes\mvc\U2Context.h" />
@@ -220,6 +219,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\mvc\U2Notifier.h" />
     <ClInclude Include="..\Classes\mvc\U2Observer.h" />
     <ClInclude Include="..\Classes\mvc\U2PredefinedCommands.h" />
+    <ClInclude Include="..\Classes\mvc\U2PredefinedFacade.h" />
     <ClInclude Include="..\Classes\mvc\U2PredefinedMediators.h" />
     <ClInclude Include="..\Classes\mvc\U2PredefinedPrerequisites.h" />
     <ClInclude Include="..\Classes\mvc\U2PredefinedProxies.h" />

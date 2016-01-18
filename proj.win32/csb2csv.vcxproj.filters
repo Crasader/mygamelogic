@@ -138,9 +138,6 @@
     <ClCompile Include="..\Classes\gamebase\U2CocosMediator.cpp">
       <Filter>src\gamebase</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\game\Trans2Command.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\game\GameContexts.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
@@ -157,6 +154,9 @@
       <Filter>src\mvc</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\mvc\U2PredefinedProxies.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mvc\U2PredefinedFacade.cpp">
       <Filter>src\mvc</Filter>
     </ClCompile>
   </ItemGroup>
@@ -278,9 +278,6 @@
     <ClInclude Include="..\Classes\gamebase\U2CocosMediator.h">
       <Filter>src\gamebase</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\game\Trans2Command.h">
-      <Filter>src\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\game\GameContexts.h">
       <Filter>src\game</Filter>
     </ClInclude>
@@ -297,6 +294,9 @@
       <Filter>src\mvc</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\mvc\U2PredefinedProxies.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2PredefinedFacade.h">
       <Filter>src\mvc</Filter>
     </ClInclude>
   </ItemGroup>
