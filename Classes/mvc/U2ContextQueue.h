@@ -9,7 +9,6 @@
 #define __U2ContextQueue__
 
 
-#include "cocos2d.h"
 #include "U2Prerequisites.h"
 #include "U2Object.h"
 #include "U2SimpleObjectManager.h"

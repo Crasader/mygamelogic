@@ -11,7 +11,7 @@
 #include "ApplicationCommands.h"
 #include "ApplicationMediators.h"
 #include "ApplicationViewComponents.h"
-#include "U2ContextProxy.h"
+#include "U2PredefinedProxies.h"
 
 
 //-----------------------------------------------------------------------
@@ -42,13 +42,10 @@ ApplicationFacade::ApplicationFacade(const String& type, const String& name)
     : Facade(type, name)
 {
     // proxy factory
-    CREATE_FACTORY(ContextProxy);
 
     // command factory
     CREATE_FACTORY(StartupCommand);
-    CREATE_FACTORY(DestroyContextCommand);
     CREATE_FACTORY(Trans2LogoCommand);
-    CREATE_FACTORY(SceneTransCommand);
 
     // mediator factory
     CREATE_FACTORY(ShadeMediator);
@@ -57,6 +54,9 @@ ApplicationFacade::ApplicationFacade(const String& type, const String& name)
     // viewcomponent factory
     CREATE_FACTORY(ShadeViewComponent);
     CREATE_FACTORY(LogoViewComponent);
+
+    // context
+    initializeContextQueue();
 }
 //-----------------------------------------------------------------------
 ApplicationFacade::~ApplicationFacade(void)
@@ -68,21 +68,31 @@ void ApplicationFacade::initializeController(void)
     Facade::initializeController();
 
 	registerCommand(NTF_Application_Startup, CommandManager::getSingleton().createObject(OT_StartupCommand, BLANK));
-    registerCommand(NTF_Application_DestroyContext, CommandManager::getSingleton().createObject(OT_DestroyContextCommand, BLANK));
     registerCommand(NTF_Application_Trans2Logo, CommandManager::getSingleton().createObject(OT_Trans2LogoCommand, BLANK));
-    registerCommand(NTF_Application_SceneTrans, CommandManager::getSingleton().createObject(OT_SceneTransCommand, BLANK));
 }
 //-----------------------------------------------------------------------
 void ApplicationFacade::initializeModel(void)
 {
 	Facade::initializeModel();
-
-    registerProxy(ProxyManager::getSingleton().createObject(OT_ContextProxy, "ContextProxy"));
 }
 //-----------------------------------------------------------------------
 void ApplicationFacade::initializeView(void)
 {
 	Facade::initializeView();
+}
+//-----------------------------------------------------------------------
+void ApplicationFacade::initializeContextQueue(void)
+{
+    ContextQueueManager::getSingleton().createContextQueue(OT_ShadeContext, CQN_Shade
+        , ContextQueue::eTransType::TT_Overlay, ContextQueue::ePriority::Pri_0_Shade);
+    ContextQueueManager::getSingleton().createContextQueue(OT_SceneContext, CQN_Scene
+        , ContextQueue::eTransType::TT_OneByOne, ContextQueue::ePriority::Pri_10);
+    ContextQueueManager::getSingleton().createContextQueue(OT_TabContext, CQN_Tab
+        , ContextQueue::eTransType::TT_OneByOne, ContextQueue::ePriority::Pri_20);
+    ContextQueueManager::getSingleton().createContextQueue(OT_CommonContext, CQN_Common
+        , ContextQueue::eTransType::TT_Overlay, ContextQueue::ePriority::Pri_50);
+    ContextQueueManager::getSingleton().createContextQueue(OT_DialogContext, CQN_Dialog
+        , ContextQueue::eTransType::TT_Cross, ContextQueue::ePriority::Pri_100_Dialog);
 }
 //-----------------------------------------------------------------------
 void ApplicationFacade::startup()

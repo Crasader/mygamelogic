@@ -5,36 +5,30 @@
 //  Created by jiang on 13-7-23.
 //
 //
-#ifndef __ApplicationFacade__
-#define __ApplicationFacade__
+#ifndef __U2PredefinedFacade__
+#define __U2PredefinedFacade__
 
 
-#include "cocos2d.h"
 #include "U2Prerequisites.h"
 #include "U2Facade.h"
-#include "ApplicationPrerequisites.h"
 
 
 U2EG_NAMESPACE_USING
 
 
-class ApplicationFacade : public Facade, public Singleton < ApplicationFacade >
+class PredefinedFacade : public Facade, public Singleton < PredefinedFacade >
 {
 public:
-    ApplicationFacade(const String& type, const String& name);
+    PredefinedFacade(const String& type, const String& name);
 
-    virtual ~ApplicationFacade(void);
+    virtual ~PredefinedFacade(void);
 
     virtual void initializeController(void) override;
 
 	virtual void initializeModel(void) override;
 
 	virtual void initializeView(void) override;
-
-    void initializeContextQueue(void);
 	
-    void startup();
-
 public:
 	/** Override standard Singleton retrieval.
 	@remarks
@@ -51,7 +45,7 @@ public:
 	but the implementation stays in this single compilation unit,
 	preventing link errors.
 	*/
-	static ApplicationFacade& getSingleton(void);
+    static PredefinedFacade& getSingleton(void);
 
 	/** Override standard Singleton retrieval.
 	@remarks
@@ -68,8 +62,8 @@ public:
 	but the implementation stays in this single compilation unit,
 	preventing link errors.
 	*/
-	static ApplicationFacade* getSingletonPtr(void);
+    static PredefinedFacade* getSingletonPtr(void);
 };
 
 
-#endif /* defined(__ApplicationFacade__) */
+#endif /* defined(__U2PredefinedFacade__) */

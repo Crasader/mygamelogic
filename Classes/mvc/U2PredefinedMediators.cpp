@@ -11,6 +11,7 @@
 #include "U2ViewComponent.h"
 #include "U2Facade.h"
 #include "U2Context.h"
+#include "U2PredefinedPrerequisites.h"
 
 
 //-----------------------------------------------------------------------
@@ -76,7 +77,7 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
     {
         //         m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Loaded), std::bind(&ViewComponent::attach, m_pTo)));
         //         m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&ViewComponent::enter, m_pTo)));
-        m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&Mediator::_onTransOver, this)));
+        m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&TransMediator::_onTransOver, this)));
 
         m_pTo->loadUi();
     }
@@ -90,7 +91,7 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
 
             m_steps.push_back(_createParamStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Loaded), std::bind(&ViewComponent::attach, m_pTo, std::placeholders::_1)));
             m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&ViewComponent::enter, m_pTo)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&Mediator::_onTransOver, this)));
+            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&TransMediator::_onTransOver, this)));
 
             m_pTo->loadUi();
             break;
@@ -99,9 +100,9 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
         {
             m_pParent = m_pFrom->getParent();
 
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Exited), std::bind(&Mediator::_onOneByOneFromExited, this)));
+            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Exited), std::bind(&TransMediator::_onOneByOneFromExited, this)));
             m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&ViewComponent::enter, m_pTo)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&Mediator::_onTransOver, this)));
+            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&TransMediator::_onTransOver, this)));
 
             m_pFrom->exit();
             break;
@@ -111,10 +112,10 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
             m_pParent = m_pFrom->getParent();
 
             m_steps.push_back(_createParamStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Loaded), std::bind(&ViewComponent::attach, m_pTo, std::placeholders::_1)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&Mediator::_onCrossToAttached, this)));
+            m_steps.push_back(_createVoidStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Attached), std::bind(&TransMediator::_onCrossToAttached, this)));
             m_steps.push_back(_createParamStep(TransStep::Key(m_pTo, ViewComponent::ViewCompState::VCS_Entered), std::bind(&ViewComponent::detach, m_pFrom, std::placeholders::_1)));
             m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Detached), std::bind(&ViewComponent::unloadUi, m_pFrom)));
-            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Unloaded), std::bind(&Mediator::_onTransOver, this)));
+            m_steps.push_back(_createVoidStep(TransStep::Key(m_pFrom, ViewComponent::ViewCompState::VCS_Unloaded), std::bind(&TransMediator::_onTransOver, this)));
 
             m_pTo->loadUi();
             break;
@@ -164,10 +165,10 @@ void TransMediator::_destroyFromContext()
 {
     if (m_pFromContext != nullptr)
     {
-        if (m_transType == Mediator::TransType::TT_OneByOne
-            || m_transType == Mediator::TransType::TT_Cross)
+        if (m_transType == TransMediator::TransType::TT_OneByOne
+            || m_transType == TransMediator::TransType::TT_Cross)
         {
-            getFacade().sendNotification(NTF_Application_DestroyContext, m_pFromContext);
+            getFacade().sendNotification(NTF_Predefined_DestroyContext, m_pFromContext);
         }
     }
 }
@@ -188,7 +189,7 @@ void TransMediator::_startupToContext(u2::Context* context)
     u2::Context::ContextListIterator it = context->getContextIterator();
     while (it.hasMoreElements())
     {
-        _destroyContext(it.getNext());
+        _startupToContext(it.getNext());
     }
 }
 //-----------------------------------------------------------------------

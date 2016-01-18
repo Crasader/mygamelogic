@@ -29,8 +29,11 @@ public:
 
     virtual void handleNotification(const Notification& notification) override;
 
+    virtual void startup(const u2::Context* context) override;
+
+    virtual void end() override;
+
 protected:
-    virtual void _onTransOver() override;
     virtual void onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg) override;
 };
 
@@ -46,8 +49,10 @@ public:
 
     virtual void handleNotification(const Notification& notification) override;
 
-protected:
-    virtual void _onTransOver() override;
+    virtual void startup(const u2::Context* context) override;
+
+    virtual void end() override;
+
 };
 
 

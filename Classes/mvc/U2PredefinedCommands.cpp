@@ -84,6 +84,8 @@ void TransCommand::_createMediator(const u2::Context* from, TransMediator::Trans
     // trans mediator name
     NameGeneratorManager::getSingleton().registerNameGenerator("TransMediator");
     u2::String szTransName = NameGeneratorManager::getSingleton().generator("TransMediator");
+
+    // trans mediator
     TransMediator* pTransMediator = dynamic_cast<TransMediator*>(
         MediatorManager::getSingleton().createObject(OT_TransMediator, szTransName));
     if (pTransMediator)

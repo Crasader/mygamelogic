@@ -14,16 +14,17 @@
 #include "CgMediators.h"
 
 
-
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 StartCgCommand::StartCgCommand(const String& type, const String& name)
     : SimpleCommand(type, name)
 {
 }
-
+//-----------------------------------------------------------------------
 StartCgCommand::~StartCgCommand()
 {
 }
-
+//-----------------------------------------------------------------------
 void StartCgCommand::go(const Notification& notification)
 {
     const u2::String& szNtfName = notification.getName();
@@ -36,7 +37,7 @@ void StartCgCommand::go(const Notification& notification)
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 Trans2CgCommand::Trans2CgCommand(const String& type, const String& name)
-    : Trans2Command(type, name)
+    : TransCommand(type, name)
 {
 }
 //-----------------------------------------------------------------------
@@ -57,7 +58,7 @@ u2::Context* Trans2CgCommand::_retrieveFromContext()
     return ContextManager::getSingleton().retrieveObject("LogoContext");
 }
 //-----------------------------------------------------------------------
-Mediator::TransType Trans2CgCommand::_retrieveTransType()
+TransMediator::TransType Trans2CgCommand::_retrieveTransType()
 {
-    return Mediator::TransType::TT_OneByOne;
+    return TransMediator::TransType::TT_OneByOne;
 }

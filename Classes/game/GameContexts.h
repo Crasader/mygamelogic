@@ -41,19 +41,19 @@ public:
 };
 
 
+class CommonContext : public Context
+{
+public:
+    CommonContext(const String& type, const String& name);
+    virtual ~CommonContext();
+};
+
+
 class DialogContext : public Context
 {
 public:
     DialogContext(const String& type, const String& name);
     virtual ~DialogContext();
-};
-
-
-class ChildContext : public Context
-{
-public:
-    ChildContext(const String& type, const String& name);
-    virtual ~ChildContext();
 };
 
 

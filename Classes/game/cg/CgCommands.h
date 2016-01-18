@@ -12,7 +12,8 @@
 #include "cocos2d.h"
 #include "U2Prerequisites.h"
 #include "U2SimpleCommand.h"
-#include "Trans2Command.h"
+#include "U2PredefinedCommands.h"
+#include "U2PredefinedMediators.h"
 
 
 U2EG_NAMESPACE_USING
@@ -28,7 +29,7 @@ public:
 };
 
 
-class Trans2CgCommand : public Trans2Command
+class Trans2CgCommand : public TransCommand
 {
 public:
     Trans2CgCommand(const String& type, const String& name);
@@ -37,7 +38,7 @@ public:
 protected:
     virtual u2::Context* _createToContext() override;
     virtual u2::Context* _retrieveFromContext() override;
-    virtual Mediator::TransType _retrieveTransType() override;
+    virtual TransMediator::TransType _retrieveTransType() override;
 };
 
 

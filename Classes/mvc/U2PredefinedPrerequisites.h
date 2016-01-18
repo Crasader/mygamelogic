@@ -16,6 +16,7 @@ U2EG_NAMESPACE_USING
 
 
 // facade
+extern const char* OT_PredefinedFacade;
 
 // proxy
 extern const char* OT_ContextProxy;
@@ -24,8 +25,15 @@ extern const char* OT_ContextProxy;
 extern const char* OT_DestoryContextCommand;
 extern const char* OT_BackKeyCommand;
 
-// view
+// mediator
 extern const char* OT_TransMediator;
+
+// view
+
+
+
+const String NTF_Predefined_DestroyContext = "NTF_Predefined_DestroyContext";
+const String NTF_Predefined_BackKey = "NTF_Predefined_BackKey";
 
 
 

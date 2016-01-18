@@ -48,13 +48,12 @@ public:
 
     virtual void handleNotification(const Notification& notification) override;
 
-    virtual void startup(const u2::Context* from, Mediator::TransType type, const u2::Context* to) override;
+    virtual void startup(const u2::Context* context) override;
 
 	virtual void end() override;
 
 protected:
     virtual void onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg) override;
-    virtual void _onTransOver() override;
 };
 
 

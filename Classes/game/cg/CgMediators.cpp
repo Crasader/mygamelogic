@@ -52,15 +52,17 @@ void CgMediator::onCommonStateChanged(ViewComponent* viewComp, const String& obj
             // trans
             u2::Context* pFrom = ContextManager::getSingleton().retrieveObject("CgContext");
             u2::Context* pTo = ContextManager::getSingleton().createObject(OT_Context, "StartPageContext", OT_StartPageMediator, "StartPageMediator", OT_StartPageViewComponent, "StartPageViewComponent");
-            Mediator::TransData data = std::make_tuple(pFrom, Mediator::TransType::TT_OneByOne, pTo);
+            TransMediator::TransData data = std::make_tuple(pFrom, Mediator::TransType::TT_OneByOne, pTo);
             Notification ntf(NTF_Application_SceneTrans, &data);
             getFacade().broadcastNotification(ntf);
         }
     }
 }
 //-----------------------------------------------------------------------
-void CgMediator::_onTransOver()
+void CgMediator::startup(const u2::Context* context)
 {
+    Mediator::startup(context);
+
     CgViewComponent* pCgViewComponent = dynamic_cast<CgViewComponent*>(m_pViewComp);
     if (pCgViewComponent == nullptr)
     {
@@ -68,6 +70,11 @@ void CgMediator::_onTransOver()
     }
 
     pCgViewComponent->runCgAction();
+}
+//-----------------------------------------------------------------------
+void CgMediator::end()
+{
+    Mediator::end();
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -95,8 +102,10 @@ void StartPageMediator::handleNotification(const Notification& notification)
 
 }
 //-----------------------------------------------------------------------
-void StartPageMediator::_onTransOver()
+void StartPageMediator::startup(const u2::Context* context)
 {
+    Mediator::startup(context);
+
     StartPageViewComponent* pStartPageViewComponent = dynamic_cast<StartPageViewComponent*>(m_pViewComp);
     if (pStartPageViewComponent == nullptr)
     {
@@ -108,4 +117,9 @@ void StartPageMediator::_onTransOver()
 //     {
 //         pStartButton->addClickEventListener();
 //     }
+}
+//-----------------------------------------------------------------------
+void StartPageMediator::end()
+{
+    Mediator::end();
 }

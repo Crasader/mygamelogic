@@ -29,9 +29,7 @@ StartupCommand::~StartupCommand()
 //-----------------------------------------------------------------------
 void StartupCommand::go(const Notification& notification)
 {
-    u2::Context* pTo = ContextManager::getSingleton().createObject(OT_Context, "RootContext", OT_ShadeMediator, "ShadeMediator", OT_ShadeViewComponent, "ShadeViewComponent");
-    Mediator::TransData data = std::make_tuple(nullptr, Mediator::TransType::TT_Overlay, pTo);
-    Notification ntf(NTF_Application_SceneTrans, &data);
+    Notification ntf(NTF_Application_Trans2Shade);
     getFacade().broadcastNotification(ntf);
 
     Notification ntfLogo(NTF_Application_Trans2Logo);
@@ -39,77 +37,40 @@ void StartupCommand::go(const Notification& notification)
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-SceneTransCommand::SceneTransCommand(const String& type, const String& name)
-    : SimpleCommand(type, name)
+Trans2ShadeCommand::Trans2ShadeCommand(const String& type, const String& name)
+    : TransCommand(type, name)
 {
 }
 //-----------------------------------------------------------------------
-SceneTransCommand::~SceneTransCommand()
+Trans2ShadeCommand::~Trans2ShadeCommand()
 {
 }
 //-----------------------------------------------------------------------
-void SceneTransCommand::go(const Notification& notification)
+u2::Context* Trans2ShadeCommand::_createToContext()
 {
-    const u2::String& szNtfName = notification.getName();
-    const void* pData = notification.getData();
-    const Mediator::TransData data = *((const Mediator::TransData*)pData);
+    // create context tree
+    u2::Context* pTo = ContextManager::getSingleton().createObject(
+        OT_Context, "RootContext"
+        , OT_ShadeMediator, "ShadeMediator"
+        , OT_ShadeViewComponent, "ShadeViewComponent"
+        );
 
-    u2::Context* pFromContext = std::get<0>(data);
-    Mediator::TransType eTransType = std::get<1>(data);
-    u2::Context* pToContext = std::get<2>(data);
-
-    _createMediator(pFromContext, eTransType, pToContext);
+    return pTo;
 }
 //-----------------------------------------------------------------------
-void SceneTransCommand::_createMediator(const u2::Context* from, Mediator::TransType type, const u2::Context* to)
+u2::Context* Trans2ShadeCommand::_retrieveFromContext()
 {
-    Mediator* pMediator = MediatorManager::getSingleton().createObject(to->getMediatorClass(), to->getMediatorName());
-    getFacade().registerMediator(pMediator);
-    pMediator->startup(from, type, to);
-
-    u2::Context::ConstContextListIterator it = to->getConstContextIterator();
-    while (it.hasMoreElements())
-    {
-        _createMediator(to, Mediator::TransType::TT_Overlay, it.getNext());
-    }
+    return nullptr;
 }
 //-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-DestroyContextCommand::DestroyContextCommand(const String& type, const String& name)
-    : SimpleCommand(type, name)
+TransMediator::TransType Trans2ShadeCommand::_retrieveTransType()
 {
-}
-//-----------------------------------------------------------------------
-DestroyContextCommand::~DestroyContextCommand()
-{
-}
-//-----------------------------------------------------------------------
-void DestroyContextCommand::go(const Notification& notification)
-{
-    const u2::String& szNtfName = notification.getName();
-    const void* pData = notification.getData();
-
-    u2::Context* pContext = (u2::Context*)pData;
-    if (pContext != nullptr)
-    {
-        _destroyContext(pContext);
-    }
-}
-//-----------------------------------------------------------------------
-void DestroyContextCommand::_destroyContext(u2::Context* context)
-{
-    u2::Context::ContextListIterator it = context->getContextIterator();
-    while (it.hasMoreElements())
-    {
-        _destroyContext(it.getNext());
-    }
-
-    ContextManager::getSingleton().destoryObject(context);
+    return TransMediator::TransType::TT_Overlay;
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 Trans2LogoCommand::Trans2LogoCommand(const String& type, const String& name)
-    : Trans2Command(type, name)
+    : TransCommand(type, name)
 {
 }
 //-----------------------------------------------------------------------
@@ -120,7 +81,11 @@ Trans2LogoCommand::~Trans2LogoCommand()
 u2::Context* Trans2LogoCommand::_createToContext()
 {
     // create context tree
-    u2::Context* pLogo = ContextManager::getSingleton().createObject(OT_Context, "LogoContext", OT_LogoMediator, "LogoMediator", OT_LogoViewComponent, "LogoViewComponent");
+    u2::Context* pLogo = ContextManager::getSingleton().createObject(
+        OT_Context, "LogoContext"
+        , OT_LogoMediator, "LogoMediator"
+        , OT_LogoViewComponent, "LogoViewComponent"
+        );
 
     return pLogo;
 }
@@ -130,7 +95,7 @@ u2::Context* Trans2LogoCommand::_retrieveFromContext()
     return ContextManager::getSingleton().retrieveObject("RootContext");
 }
 //-----------------------------------------------------------------------
-Mediator::TransType Trans2LogoCommand::_retrieveTransType()
+TransMediator::TransType Trans2LogoCommand::_retrieveTransType()
 {
-    return Mediator::TransType::TT_Overlay;
+    return TransMediator::TransType::TT_Overlay;
 }

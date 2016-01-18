@@ -7,10 +7,14 @@
 //
 #include "U2PredefinedPrerequisites.h"
 
+#include "U2PredefinedFacade.h"
 #include "U2PredefinedCommands.h"
 #include "U2PredefinedMediators.h"
 #include "U2PredefinedProxies.h"
 
+
+// facade
+const char* OT_PredefinedFacade = GET_OBJECT_TYPE(PredefinedFacade);
 
 // proxy
 const char* OT_ContextProxy = GET_OBJECT_TYPE(ContextProxy);

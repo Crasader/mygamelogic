@@ -9,11 +9,11 @@
 #define __ApplicationCommands__
 
 
-#include "cocos2d.h"
 #include "U2Prerequisites.h"
 #include "U2SimpleCommand.h"
 #include "U2Mediator.h"
-#include "Trans2Command.h"
+#include "U2PredefinedCommands.h"
+#include "U2PredefinedMediators.h"
 
 
 U2EG_NAMESPACE_USING
@@ -32,33 +32,20 @@ public:
 };
 
 
-class SceneTransCommand : public SimpleCommand
+class Trans2ShadeCommand : public TransCommand
 {
 public:
-    SceneTransCommand(const String& type, const String& name);
-    virtual ~SceneTransCommand();
-
-    virtual void go(const Notification& notification) override;
+    Trans2ShadeCommand(const String& type, const String& name);
+    virtual ~Trans2ShadeCommand();
 
 protected:
-    void _createMediator(const u2::Context* context, Mediator::TransType type, const u2::Context* to);
+    virtual u2::Context* _createToContext() override;
+    virtual u2::Context* _retrieveFromContext() override;
+    virtual TransMediator::TransType _retrieveTransType() override;
 };
 
 
-class DestroyContextCommand : public SimpleCommand
-{
-public:
-    DestroyContextCommand(const String& type, const String& name);
-    virtual ~DestroyContextCommand();
-
-    virtual void go(const Notification& notification) override;
-
-protected:
-    void _destroyContext(u2::Context* context);
-};
-
-
-class Trans2LogoCommand : public Trans2Command
+class Trans2LogoCommand : public TransCommand
 {
 public:
     Trans2LogoCommand(const String& type, const String& name);
@@ -67,7 +54,7 @@ public:
 protected:
     virtual u2::Context* _createToContext() override;
     virtual u2::Context* _retrieveFromContext() override;
-    virtual Mediator::TransType _retrieveTransType() override;
+    virtual TransMediator::TransType _retrieveTransType() override;
 };
 
 

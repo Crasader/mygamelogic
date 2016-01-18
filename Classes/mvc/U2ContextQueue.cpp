@@ -32,7 +32,7 @@ u2::Context* ContextQueue::top()
 //-----------------------------------------------------------------------
 void ContextQueue::_switch(u2::Context* from, eTransType transType, u2::Context* to)
 {
-
+    PredefinedFacade::getSingleton().sendNotification()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------

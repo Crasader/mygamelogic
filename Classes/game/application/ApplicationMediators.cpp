@@ -86,18 +86,10 @@ void LogoMediator::onCommonStateChanged(ViewComponent* viewComp, const String& o
     }
 }
 //-----------------------------------------------------------------------
-void LogoMediator::startup(const u2::Context* from, Mediator::TransType type, const u2::Context* to)
+void LogoMediator::startup(const u2::Context* context)
 {
-	Mediator::startup(from, type, to);
-}
-//-----------------------------------------------------------------------
-void LogoMediator::end()
-{
-	Mediator::end();
-}
-//-----------------------------------------------------------------------
-void LogoMediator::_onTransOver()
-{
+	Mediator::startup(context);
+
     LogoViewComponent* pLogoViewComponent = dynamic_cast<LogoViewComponent*>(m_pViewComp);
     if (pLogoViewComponent == nullptr)
     {
@@ -105,4 +97,9 @@ void LogoMediator::_onTransOver()
     }
 
     pLogoViewComponent->runLogoAction();
+}
+//-----------------------------------------------------------------------
+void LogoMediator::end()
+{
+	Mediator::end();
 }
