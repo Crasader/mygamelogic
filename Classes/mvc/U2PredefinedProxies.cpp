@@ -9,6 +9,8 @@
 #include "U2PredefinedProxies.h"
 
 #include "U2Context.h"
+#include "U2PredefinedFacade.h"
+#include "U2PredefinedPrerequisites.h"
 
 
 U2EG_NAMESPACE_USING
@@ -61,7 +63,7 @@ void ContextProxy::replace(const String& name, u2::Context* from, u2::Context* t
 //-----------------------------------------------------------------------
 ContextQueue* ContextProxy::_retrieveContextQueue(const String& name)
 {
-    ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(name);
+    ContextQueue* pQueue = retrieveObject(name);
     if (pQueue == nullptr)
     {
         assert(0);
@@ -69,13 +71,20 @@ ContextQueue* ContextProxy::_retrieveContextQueue(const String& name)
     return pQueue;
 }
 //-----------------------------------------------------------------------
-ContextQueue* ContextProxy::createContextQueue(const String& type, const String& name
-    , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority)
+void ContextProxy::_switch(u2::Context* from, ContextQueue::eTransType transType, u2::Context* to)
 {
-    ContextQueue* pQueue = ContextQueueManager::getSingleton().retrieveObject(name);
+    getFacade().sendNotification(NTF_Predefined_SceneTrans
+        , &std::make_tuple(from, transType, to));
+}
+//-----------------------------------------------------------------------
+ContextQueue* ContextProxy::createContextQueue(const String& type, const String& name
+    , ContextQueue::eTransType defaultTransType, ContextQueue::eBackKeyPriority priority)
+{
+    ContextQueue* pQueue = retrieveObject(name);
     if (pQueue == nullptr)
     {
-        pQueue = ContextQueueManager::getSingleton().createContextQueue(type, name, defaultTransType, priority);
+        pQueue = createObject(type, name);
+        pQueue->initialize(defaultTransType, priority, this);
         for (PriorityQueueList::iterator it = m_priorityQueues.begin();
             it != m_priorityQueues.end(); 
             it++)
@@ -96,4 +105,9 @@ ContextQueue* ContextProxy::createContextQueue(const String& type, const String&
         assert(0);
     }
     return pQueue;
+}
+//-----------------------------------------------------------------------
+ContextQueue* ContextProxy::createObject(const String& type, const String& name)
+{
+    return SimpleObjectManager<ContextQueue>::createObject(type, name);
 }

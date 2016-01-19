@@ -9,15 +9,11 @@
 #define __U2Facade__
 
 
-#include "cocos2d.h"
-#include "U2Object.h"
+#include "U2Core.h"
 #include "U2Notifier.h"
 #include "U2Mediator.h"
 #include "U2Command.h"
 #include "U2Proxy.h"
-#include "U2SimpleObjectManager.h"
-#include "U2Singleton.h"
-#include "U2FactoryManager.h"
 
 
 U2EG_NAMESPACE_BEGIN

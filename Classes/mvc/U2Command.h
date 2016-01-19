@@ -9,14 +9,9 @@
 #define __U2Command__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2Object.h"
+#include "U2Core.h"
 #include "U2Notifier.h"
 #include "U2Notification.h"
-#include "U2FactoryObj.h"
-#include "U2TypedObjectManager.h"
-#include "U2Singleton.h"
 
 
 U2EG_NAMESPACE_BEGIN

@@ -9,11 +9,8 @@
 #define __U2Controller__
 
 
-#include "cocos2d.h"
-#include "U2Object.h"
+#include "U2Core.h"
 #include "U2Notification.h"
-#include "U2SimpleObjectManager.h"
-#include "U2Singleton.h"
 
 
 U2EG_NAMESPACE_BEGIN

@@ -9,7 +9,7 @@
 #define __U2PredefinedFacade__
 
 
-#include "U2Prerequisites.h"
+#include "U2Core.h"
 #include "U2Facade.h"
 
 

@@ -9,12 +9,9 @@
 #define __U2Mediator__
 
 
-#include "cocos2d.h"
-#include "U2Object.h"
+#include "U2Core.h"
 #include "U2Notifier.h"
 #include "U2Notification.h"
-#include "U2SimpleObjectManager.h"
-#include "U2Singleton.h"
 #include "U2ViewComponent.h"
 #include "U2TransStep.h"
 

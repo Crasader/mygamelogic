@@ -67,6 +67,8 @@ void PredefinedFacade::initializeController(void)
 void PredefinedFacade::initializeModel(void)
 {
 	Facade::initializeModel();
+
+    registerProxy(ProxyManager::getSingleton().createObject(OT_ContextProxy, ON_Proxy_Context));
 }
 //-----------------------------------------------------------------------
 void PredefinedFacade::initializeView(void)

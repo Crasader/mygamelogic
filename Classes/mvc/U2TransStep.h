@@ -9,8 +9,7 @@
 #define __U2TransStep__
 
 
-#include "cocos2d.h"
-#include "U2Object.h"
+#include "U2Core.h"
 #include "U2ViewComponent.h"
 
 

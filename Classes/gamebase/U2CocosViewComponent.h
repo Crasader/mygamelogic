@@ -9,11 +9,11 @@
 #define __U2CocosViewComponent__
 
 
+#include "U2Core.h"
+#include "U2Mvc.h"
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
-#include "U2Object.h"
-#include "U2ViewComponent.h"
 
 
 U2EG_NAMESPACE_USING

@@ -9,11 +9,9 @@
 #define __U2PredefinedProxies__
 
 
-#include "cocos2d.h"
-#include "U2Object.h"
+#include "U2Core.h"
 #include "U2Proxy.h"
 #include "U2ContextQueue.h"
-#include "U2IteratorWrapper.h"
 
 
 U2EG_NAMESPACE_BEGIN
@@ -22,7 +20,7 @@ U2EG_NAMESPACE_BEGIN
 class Context;
 
 
-class ContextProxy : public Proxy
+class ContextProxy : public Proxy , public SimpleObjectManager<ContextQueue>
 {
 protected:
     typedef std::vector<ContextQueue*>  PriorityQueueList;
@@ -32,7 +30,7 @@ public:
     virtual ~ContextProxy(void);
 
     ContextQueue* createContextQueue(const String& type, const String& name
-        , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority);
+        , ContextQueue::eTransType defaultTransType, ContextQueue::eBackKeyPriority priority);
 
     void pushBack(const String& name, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
     void pushFront(const String& name, u2::Context* context, ContextQueue::eTransType transType = ContextQueue::eTransType::TT_None);
@@ -46,7 +44,11 @@ public:
         return ContextQueueVectorIterator(m_priorityQueues.begin(), m_priorityQueues.end());
     }
 
+    void _switch(u2::Context* from, ContextQueue::eTransType transType, u2::Context* to);
+
 protected:
+    virtual ContextQueue* createObject(const String& type, const String& name);
+
     ContextQueue* _retrieveContextQueue(const String& name);
 
 protected:

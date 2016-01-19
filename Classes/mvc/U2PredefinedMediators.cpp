@@ -33,12 +33,12 @@ TransMediator::~TransMediator(void)
 
 }
 //-----------------------------------------------------------------------
-void Mediator::startup(const u2::Context* context)
+void TransMediator::startup(const u2::Context* context)
 {
     assert(0);
 }
 //-----------------------------------------------------------------------
-void TransMediator::startup(const u2::Context* from, TransMediator::TransType type, const u2::Context* to)
+void TransMediator::startup(const u2::Context* from, ContextQueue::eTransType type, const u2::Context* to)
 {
     ViewComponent* pFromViewComp = nullptr;
     if (from != nullptr)
@@ -62,7 +62,7 @@ void TransMediator::end()
 	Mediator::end();
 }
 //-----------------------------------------------------------------------
-void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* to)
+void TransMediator::_trans(ViewComponent* from, ContextQueue::eTransType type, ViewComponent* to)
 {
     m_pTo = to;
     m_pFrom = from;
@@ -85,7 +85,7 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
     {
         switch (type)
         {
-        case TransType::TT_Overlay:
+        case ContextQueue::eTransType::TT_Overlay:
         {
             m_pParent = m_pFrom->getParent();
 
@@ -96,7 +96,7 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
             m_pTo->loadUi();
             break;
         }
-        case TransType::TT_OneByOne:
+        case ContextQueue::eTransType::TT_OneByOne:
         {
             m_pParent = m_pFrom->getParent();
 
@@ -107,7 +107,7 @@ void TransMediator::_trans(ViewComponent* from, TransType type, ViewComponent* t
             m_pFrom->exit();
             break;
         }
-        case TransType::TT_Cross:
+        case ContextQueue::eTransType::TT_Cross:
         {
             m_pParent = m_pFrom->getParent();
 
@@ -165,8 +165,8 @@ void TransMediator::_destroyFromContext()
 {
     if (m_pFromContext != nullptr)
     {
-        if (m_transType == TransMediator::TransType::TT_OneByOne
-            || m_transType == TransMediator::TransType::TT_Cross)
+        if (m_transType == ContextQueue::eTransType::TT_OneByOne
+            || m_transType == ContextQueue::eTransType::TT_Cross)
         {
             getFacade().sendNotification(NTF_Predefined_DestroyContext, m_pFromContext);
         }

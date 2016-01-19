@@ -8,6 +8,11 @@
 
 #include "U2ContextQueue.h"
 
+#include "U2PredefinedPrerequisites.h"
+#include "U2PredefinedFacade.h"
+#include "U2PredefinedMediators.h"
+#include "U2PredefinedProxies.h"
+
 
 U2EG_NAMESPACE_USING
 
@@ -16,6 +21,7 @@ U2EG_NAMESPACE_USING
 //-----------------------------------------------------------------------
 ContextQueue::ContextQueue(const String& type, const String& name)
     : Object(type, name)
+    , m_pContextProxy(nullptr)
 {
 
 }
@@ -32,7 +38,10 @@ u2::Context* ContextQueue::top()
 //-----------------------------------------------------------------------
 void ContextQueue::_switch(u2::Context* from, eTransType transType, u2::Context* to)
 {
-    PredefinedFacade::getSingleton().sendNotification()
+    if (m_pContextProxy != nullptr)
+    {
+        m_pContextProxy->_switch(from, transType, to);
+    }
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -46,11 +55,12 @@ SingleContextQueue::~SingleContextQueue()
 {
 }
 //-----------------------------------------------------------------------
-void SingleContextQueue::initialize(eTransType defaultTransType, ePriority priority)
+void SingleContextQueue::initialize(eTransType defaultTransType, eBackKeyPriority priority, ContextProxy* contextProxy)
 {
     m_eDefaultTransType = defaultTransType;
     m_eCapacity = eCapacity::Cap_1;
     m_ePriority = priority;
+    m_pContextProxy = contextProxy;
 }
 //-----------------------------------------------------------------------
 void SingleContextQueue::pushBack(u2::Context* context, eTransType transType)
@@ -103,11 +113,12 @@ InfiniteContextQueue::~InfiniteContextQueue()
 {
 }
 //-----------------------------------------------------------------------
-void InfiniteContextQueue::initialize(eTransType defaultTransType, ePriority priority)
+void InfiniteContextQueue::initialize(eTransType defaultTransType, eBackKeyPriority priority, ContextProxy* contextProxy)
 {
     m_eDefaultTransType = defaultTransType;
     m_eCapacity = eCapacity::Cap_Infinite;
     m_ePriority = priority;
+    m_pContextProxy = contextProxy;
 }
 //-----------------------------------------------------------------------
 void InfiniteContextQueue::pushBack(u2::Context* context, eTransType transType)
@@ -142,42 +153,4 @@ void InfiniteContextQueue::replace(u2::Context* from, u2::Context* to, eTransTyp
             break;
         }
     }
-}
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-template<> ContextQueueManager* Singleton<ContextQueueManager>::msSingleton = 0;
-ContextQueueManager* ContextQueueManager::getSingletonPtr(void)
-{
-    if (msSingleton == nullptr)
-    {
-        msSingleton = new ContextQueueManager;
-    }
-    return msSingleton;
-}
-ContextQueueManager& ContextQueueManager::getSingleton(void)
-{
-    return (*getSingletonPtr());
-}
-//-----------------------------------------------------------------------
-ContextQueueManager::ContextQueueManager()
-{
-    CREATE_FACTORY(SingleContextQueue);
-    CREATE_FACTORY(InfiniteContextQueue);
-}
-//-----------------------------------------------------------------------
-ContextQueueManager::~ContextQueueManager()
-{
-}
-//-----------------------------------------------------------------------
-ContextQueue* ContextQueueManager::createContextQueue(const String& type, const String& name
-    , ContextQueue::eTransType defaultTransType, ContextQueue::ePriority priority)
-{
-    ContextQueue* pContext = createObject(type, name);
-    pContext->initialize(defaultTransType, priority);
-    return pContext;
-}
-//-----------------------------------------------------------------------
-ContextQueue* ContextQueueManager::createObject(const String& type, const String& name)
-{
-    return SimpleObjectManager<ContextQueue>::createObject(type, name);
 }

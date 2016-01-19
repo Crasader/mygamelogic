@@ -9,8 +9,7 @@
 #define __U2SimpleCommand__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
+#include "U2Core.h"
 #include "U2Command.h"
 
 

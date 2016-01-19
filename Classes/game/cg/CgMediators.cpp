@@ -8,9 +8,6 @@
 
 #include "CgMediators.h"
 
-#include "U2ViewComponent.h"
-#include "U2Facade.h"
-#include "U2Context.h"
 #include "CgViewComponents.h"
 #include "../application/ApplicationPrerequisites.h"
 
@@ -31,7 +28,6 @@ CgMediator::~CgMediator(void)
 Mediator::NotificationNames CgMediator::listNotificationInterests(void) const
 {
     std::list<std::string> ntfs;
-    ntfs.push_back(NTF_Cg_SceneTrans_2_Cg);
     
     return ntfs;
 }
@@ -50,10 +46,7 @@ void CgMediator::onCommonStateChanged(ViewComponent* viewComp, const String& obj
         if (msg == "ActionEnd")
         {
             // trans
-            u2::Context* pFrom = ContextManager::getSingleton().retrieveObject("CgContext");
-            u2::Context* pTo = ContextManager::getSingleton().createObject(OT_Context, "StartPageContext", OT_StartPageMediator, "StartPageMediator", OT_StartPageViewComponent, "StartPageViewComponent");
-            TransMediator::TransData data = std::make_tuple(pFrom, Mediator::TransType::TT_OneByOne, pTo);
-            Notification ntf(NTF_Application_SceneTrans, &data);
+            Notification ntf(NTF_Cg_Trans2StartPage);
             getFacade().broadcastNotification(ntf);
         }
     }

@@ -9,7 +9,7 @@
 #define __ApplicationPrerequisites__
 
 
-#include "U2Prerequisites.h"
+#include "U2GameBase.h"
 
 
 U2EG_NAMESPACE_USING
@@ -44,10 +44,10 @@ extern const char* OT_DialogContext;
 extern const char* OT_CommonContext;
 
 // context queue name
-const String CQN_Shade          = "CQN_Shade";
-const String CQN_Scene          = "CQN_Scene";
-const String CQN_Tab            = "CQN_Tab";
-const String CQN_Dialog         = "CQN_Dialog";
-const String CQN_Common         = "CQN_Common";
+const String ON_ContextQueue_Shade              = "ON_ContextQueue_Shade";
+const String ON_ContextQueue_Scene              = "ON_ContextQueue_Scene";
+const String ON_ContextQueue_Tab                = "ON_ContextQueue_Tab";
+const String ON_ContextQueue_Dialog             = "ON_ContextQueue_Dialog";
+const String ON_ContextQueue_Common             = "ON_ContextQueue_Common";
 
 #endif /* defined(__ApplicationPrerequisites__) */

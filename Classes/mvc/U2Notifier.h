@@ -9,8 +9,7 @@
 #define __U2Notifier__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
+#include "U2Core.h"
 
 
 U2EG_NAMESPACE_BEGIN

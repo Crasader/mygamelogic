@@ -9,9 +9,9 @@
 #define __U2PredefinedMediators__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
+#include "U2Core.h"
 #include "U2Mediator.h"
+#include "U2ContextQueue.h"
 
 
 U2EG_NAMESPACE_USING
@@ -20,22 +20,11 @@ U2EG_NAMESPACE_USING
 class TransMediator : public Mediator
 {
 public:
-    enum class TransType
-    {
-        TT_Overlay,
-        TT_OneByOne,
-        TT_Cross
-    };
-
-    /// <from name, trans type, to type>
-    typedef std::tuple<u2::Context*, TransMediator::TransType, u2::Context*>   TransData;
-
-public:
     TransMediator(const String& type, const String& name);
 
     virtual ~TransMediator(void);
 
-    virtual void startup(const u2::Context* from, TransMediator::TransType type, const u2::Context* to);
+    virtual void startup(const u2::Context* from, ContextQueue::eTransType type, const u2::Context* to);
 
 	virtual void end() override;
 
@@ -48,7 +37,7 @@ private:
 protected:
     virtual void onViewCompStateChanged(ViewComponent* viewComp, ViewComponent::ViewCompState newState) override;
 
-    void _trans(ViewComponent* from, TransType type, ViewComponent* to);
+    void _trans(ViewComponent* from, ContextQueue::eTransType type, ViewComponent* to);
     void _onCrossToAttached();
     void _onOneByOneFromExited();
     void _onTransOver();
@@ -66,7 +55,7 @@ protected:
     ViewComponent*      m_pTo;
     u2::Context*        m_pFromContext;
     u2::Context*        m_pToContext;
-    TransType           m_transType;
+    ContextQueue::eTransType           m_transType;
     void*               m_pParent;
     std::vector<TransStep*>      m_steps;
     TransStep::Key      m_curKey;

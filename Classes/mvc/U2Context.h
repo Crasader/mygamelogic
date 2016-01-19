@@ -9,11 +9,7 @@
 #define __U2Context__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2Object.h"
-#include "U2SimpleObjectManager.h"
-#include "U2Singleton.h"
+#include "U2Core.h"
 
 
 U2EG_NAMESPACE_BEGIN

@@ -9,9 +9,7 @@
 #define __CgFacade__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2Facade.h"
+#include "U2GameBase.h"
 #include "CgPrerequisites.h"
 
 

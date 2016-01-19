@@ -9,15 +9,13 @@
 #define __GameContexts__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2Context.h"
+#include "U2GameBase.h"
 
 
 U2EG_NAMESPACE_USING
 
 
-class ShadeContext : public Context
+class ShadeContext : public u2::Context
 {
 public:
     ShadeContext(const String& type, const String& name);
@@ -25,7 +23,7 @@ public:
 };
 
 
-class SceneContext : public Context
+class SceneContext : public u2::Context
 {
 public:
     SceneContext(const String& type, const String& name);
@@ -33,7 +31,7 @@ public:
 };
 
 
-class TabContext : public Context
+class TabContext : public u2::Context
 {
 public:
     TabContext(const String& type, const String& name);
@@ -41,7 +39,7 @@ public:
 };
 
 
-class CommonContext : public Context
+class CommonContext : public u2::Context
 {
 public:
     CommonContext(const String& type, const String& name);
@@ -49,7 +47,7 @@ public:
 };
 
 
-class DialogContext : public Context
+class DialogContext : public u2::Context
 {
 public:
     DialogContext(const String& type, const String& name);

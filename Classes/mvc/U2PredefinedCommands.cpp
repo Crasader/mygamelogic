@@ -14,7 +14,6 @@
 #include "U2PredefinedProxies.h"
 #include "U2PredefinedPrerequisites.h"
 #include "U2PredefinedMediators.h"
-#include "U2NameGenerator.h"
 
 
 
@@ -69,10 +68,19 @@ TransCommand::~TransCommand()
 //-----------------------------------------------------------------------
 void TransCommand::go(const Notification& notification)
 {
-    _createMediator(_retrieveFromContext(), _retrieveTransType(), _createToContext());
+    if (NTF_Predefined_SceneTrans != notification.getName())
+    {
+        return;
+    }
+    typedef std::tuple<u2::Context*, ContextQueue::eTransType, u2::Context*>   TransCommandData;
+    const TransCommandData* pData = static_cast<const TransCommandData*>(notification.getData());
+    u2::Context* pFrom              = std::get<0>(*pData);
+    ContextQueue::eTransType eType  = std::get<1>(*pData);
+    u2::Context* pTo                = std::get<2>(*pData);
+    _createMediator(pFrom, eType, pTo);
 }
 //-----------------------------------------------------------------------
-void TransCommand::_createMediator(const u2::Context* from, TransMediator::TransType type, const u2::Context* to)
+void TransCommand::_createMediator(const u2::Context* from, ContextQueue::eTransType type, const u2::Context* to)
 {
     // to mediator
     Mediator* pMediator = MediatorManager::getSingleton().createObject(to->getMediatorClass(), to->getMediatorName());
@@ -98,7 +106,7 @@ void TransCommand::_createMediator(const u2::Context* from, TransMediator::Trans
     u2::Context::ConstContextListIterator it = to->getConstContextIterator();
     while (it.hasMoreElements())
     {
-        _createMediator(to, TransMediator::TransType::TT_Overlay, it.getNext());
+        _createMediator(to, ContextQueue::eTransType::TT_Overlay, it.getNext());
     }
 }
 //-----------------------------------------------------------------------
@@ -157,7 +165,7 @@ bool BackKeyCommand::_dispatchBack(u2::Context* context)
     bool bCanEnd = pMediator->preEnd(true);
     if (bCanEnd)
     {
-        getFacade().sendNotification(NTF_Application_DestroyContext, context);
+        getFacade().sendNotification(NTF_Predefined_DestroyContext, context);
     }
     else
     {
@@ -167,4 +175,5 @@ bool BackKeyCommand::_dispatchBack(u2::Context* context)
             return _dispatchBack(it.getNext());
         }
     }
+    return bCanEnd;
 }

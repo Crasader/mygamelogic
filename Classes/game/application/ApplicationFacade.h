@@ -9,10 +9,7 @@
 #define __ApplicationFacade__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2Facade.h"
-#include "ApplicationPrerequisites.h"
+#include "U2GameBase.h"
 
 
 U2EG_NAMESPACE_USING
@@ -21,7 +18,7 @@ U2EG_NAMESPACE_USING
 class ApplicationFacade : public Facade, public Singleton < ApplicationFacade >
 {
 public:
-    ApplicationFacade(const String& type, const String& name);
+    ApplicationFacade(const u2::String& type, const u2::String& name);
 
     virtual ~ApplicationFacade(void);
 

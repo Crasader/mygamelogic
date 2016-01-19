@@ -11,7 +11,6 @@
 #include "ApplicationCommands.h"
 #include "ApplicationMediators.h"
 #include "ApplicationViewComponents.h"
-#include "U2PredefinedProxies.h"
 
 
 //-----------------------------------------------------------------------
@@ -68,6 +67,7 @@ void ApplicationFacade::initializeController(void)
     Facade::initializeController();
 
 	registerCommand(NTF_Application_Startup, CommandManager::getSingleton().createObject(OT_StartupCommand, BLANK));
+    registerCommand(NTF_Application_Trans2Shade, CommandManager::getSingleton().createObject(OT_Trans2ShadeCommand, BLANK));
     registerCommand(NTF_Application_Trans2Logo, CommandManager::getSingleton().createObject(OT_Trans2LogoCommand, BLANK));
 }
 //-----------------------------------------------------------------------
@@ -83,16 +83,17 @@ void ApplicationFacade::initializeView(void)
 //-----------------------------------------------------------------------
 void ApplicationFacade::initializeContextQueue(void)
 {
-    ContextQueueManager::getSingleton().createContextQueue(OT_ShadeContext, CQN_Shade
-        , ContextQueue::eTransType::TT_Overlay, ContextQueue::ePriority::Pri_0_Shade);
-    ContextQueueManager::getSingleton().createContextQueue(OT_SceneContext, CQN_Scene
-        , ContextQueue::eTransType::TT_OneByOne, ContextQueue::ePriority::Pri_10);
-    ContextQueueManager::getSingleton().createContextQueue(OT_TabContext, CQN_Tab
-        , ContextQueue::eTransType::TT_OneByOne, ContextQueue::ePriority::Pri_20);
-    ContextQueueManager::getSingleton().createContextQueue(OT_CommonContext, CQN_Common
-        , ContextQueue::eTransType::TT_Overlay, ContextQueue::ePriority::Pri_50);
-    ContextQueueManager::getSingleton().createContextQueue(OT_DialogContext, CQN_Dialog
-        , ContextQueue::eTransType::TT_Cross, ContextQueue::ePriority::Pri_100_Dialog);
+    ContextProxy& contextProxy = (ContextProxy&)retrieveProxy(ON_Proxy_Context);
+    contextProxy.createContextQueue(OT_SingleContextQueue, ON_ContextQueue_Shade
+        , ContextQueue::eTransType::TT_Overlay, ContextQueue::eBackKeyPriority::Pri_0_Shade);
+    contextProxy.createContextQueue(OT_SingleContextQueue, ON_ContextQueue_Scene
+        , ContextQueue::eTransType::TT_OneByOne, ContextQueue::eBackKeyPriority::Pri_10);
+    contextProxy.createContextQueue(OT_SingleContextQueue, ON_ContextQueue_Tab
+        , ContextQueue::eTransType::TT_OneByOne, ContextQueue::eBackKeyPriority::Pri_20);
+    contextProxy.createContextQueue(OT_InfiniteContextQueue, ON_ContextQueue_Common
+        , ContextQueue::eTransType::TT_Overlay, ContextQueue::eBackKeyPriority::Pri_50);
+    contextProxy.createContextQueue(OT_InfiniteContextQueue, ON_ContextQueue_Dialog
+        , ContextQueue::eTransType::TT_Cross, ContextQueue::eBackKeyPriority::Pri_100_Dialog);
 }
 //-----------------------------------------------------------------------
 void ApplicationFacade::startup()

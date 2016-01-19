@@ -9,10 +9,7 @@
 #define __U2ViewComponent__
 
 
-#include "cocos2d.h"
-#include "U2Object.h"
-#include "U2TypedObjectManager.h"
-#include "U2Singleton.h"
+#include "U2Core.h"
 
 
 U2EG_NAMESPACE_BEGIN

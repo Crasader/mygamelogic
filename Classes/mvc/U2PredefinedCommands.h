@@ -9,8 +9,7 @@
 #define __U2PredefinedCommands__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
+#include "U2Core.h"
 #include "U2SimpleCommand.h"
 #include "U2PredefinedMediators.h"
 
@@ -47,10 +46,7 @@ public:
     virtual void go(const Notification& notification) override;
 
 protected:
-    void _createMediator(const u2::Context* context, TransMediator::TransType type, const u2::Context* to);
-    virtual u2::Context* _createToContext() = 0;
-    virtual u2::Context* _retrieveFromContext() = 0;
-    virtual TransMediator::TransType _retrieveTransType() = 0;
+    void _createMediator(const u2::Context* context, ContextQueue::eTransType type, const u2::Context* to);
 };
 
 

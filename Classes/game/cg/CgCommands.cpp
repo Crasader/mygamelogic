@@ -8,36 +8,15 @@
 
 #include "CgCommands.h"
 
-#include "U2Facade.h"
-#include "U2Context.h"
 #include "CgPrerequisites.h"
 #include "CgMediators.h"
+#include "../application/ApplicationPrerequisites.h"
 
 
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-StartCgCommand::StartCgCommand(const String& type, const String& name)
-    : SimpleCommand(type, name)
-{
-}
-//-----------------------------------------------------------------------
-StartCgCommand::~StartCgCommand()
-{
-}
-//-----------------------------------------------------------------------
-void StartCgCommand::go(const Notification& notification)
-{
-    const u2::String& szNtfName = notification.getName();
-    const void* pData = notification.getData();
-
-    Mediator* pCgMediator = MediatorManager::getSingleton().createObject(OT_CgMediator, "CgMediator");
-    getFacade().registerMediator(pCgMediator);
-    //pCgMediator->startup(OT_CgViewComponent, "CgViewComp");
-}
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 Trans2CgCommand::Trans2CgCommand(const String& type, const String& name)
-    : TransCommand(type, name)
+    : SimpleCommand(type, name)
 {
 }
 //-----------------------------------------------------------------------
@@ -45,20 +24,34 @@ Trans2CgCommand::~Trans2CgCommand()
 {
 }
 //-----------------------------------------------------------------------
-u2::Context* Trans2CgCommand::_createToContext()
+void Trans2CgCommand::go(const Notification& notification)
 {
     // create context tree
-    u2::Context* pCg = ContextManager::getSingleton().createObject(OT_Context, "CgContext", OT_CgMediator, "CgMediator", OT_CgViewComponent, "CgViewComponent");
-
-    return pCg;
+    u2::Context* pCg = ContextManager::getSingleton().createObject(
+        OT_Context, "CgContext"
+        , OT_CgMediator, "CgMediator"
+        , OT_CgViewComponent, "CgViewComponent");
+    ContextProxy& contextProxy = (ContextProxy&)PredefinedFacade::getSingleton().retrieveProxy(ON_Proxy_Context);
+    contextProxy.pushBack(ON_ContextQueue_Scene, pCg, ContextQueue::eTransType::TT_OneByOne);
 }
 //-----------------------------------------------------------------------
-u2::Context* Trans2CgCommand::_retrieveFromContext()
+//-----------------------------------------------------------------------
+Trans2StartPageCommand::Trans2StartPageCommand(const String& type, const String& name)
+    : SimpleCommand(type, name)
 {
-    return ContextManager::getSingleton().retrieveObject("LogoContext");
 }
 //-----------------------------------------------------------------------
-TransMediator::TransType Trans2CgCommand::_retrieveTransType()
+Trans2StartPageCommand::~Trans2StartPageCommand()
 {
-    return TransMediator::TransType::TT_OneByOne;
+}
+//-----------------------------------------------------------------------
+void Trans2StartPageCommand::go(const Notification& notification)
+{
+    // create context tree
+    u2::Context* pCg = ContextManager::getSingleton().createObject(
+        OT_Context, "StartPageContext"
+        , OT_StartPageMediator, "StartPageMediator"
+        , OT_StartPageViewComponent, "StartPageViewComponent");
+    ContextProxy& contextProxy = (ContextProxy&)PredefinedFacade::getSingleton().retrieveProxy(ON_Proxy_Context);
+    contextProxy.pushBack(ON_ContextQueue_Scene, pCg, ContextQueue::eTransType::TT_OneByOne);
 }

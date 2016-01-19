@@ -10,7 +10,7 @@
 
 #include "U2Mediator.h"
 #include "U2Observer.h"
-#include "U2IteratorWrapper.h"
+#include "U2PredefinedPrerequisites.h"
 
 
 U2EG_NAMESPACE_USING

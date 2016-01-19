@@ -9,10 +9,7 @@
 #define __ApplicationMediators__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2CocosMediator.h"
-#include "ApplicationPrerequisites.h"
+#include "U2GameBase.h"
 
 
 U2EG_NAMESPACE_USING

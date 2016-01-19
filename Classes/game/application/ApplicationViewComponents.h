@@ -9,8 +9,7 @@
 #define __ApplicationViewComponents__
 
 
-#include "U2Prerequisites.h"
-#include "U2CocosViewComponent.h"
+#include "U2GameBase.h"
 #include "ApplicationPrerequisites.h"
 
 

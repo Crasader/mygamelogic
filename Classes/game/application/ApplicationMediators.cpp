@@ -8,9 +8,6 @@
 
 #include "ApplicationMediators.h"
 
-#include "U2ViewComponent.h"
-#include "U2Facade.h"
-#include "U2Context.h"
 #include "ApplicationViewComponents.h"
 #include "../cg/CgPrerequisites.h"
 

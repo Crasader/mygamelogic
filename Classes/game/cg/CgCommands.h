@@ -9,36 +9,29 @@
 #define __CgCommands__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2SimpleCommand.h"
-#include "U2PredefinedCommands.h"
-#include "U2PredefinedMediators.h"
+#include "U2GameBase.h"
 
 
 U2EG_NAMESPACE_USING
 
 
-class StartCgCommand : public SimpleCommand
-{
-public:
-    StartCgCommand(const String& type, const String& name);
-    virtual ~StartCgCommand();
-
-    virtual void go(const Notification& notification) override;
-};
-
-
-class Trans2CgCommand : public TransCommand
+class Trans2CgCommand : public SimpleCommand
 {
 public:
     Trans2CgCommand(const String& type, const String& name);
     virtual ~Trans2CgCommand();
 
-protected:
-    virtual u2::Context* _createToContext() override;
-    virtual u2::Context* _retrieveFromContext() override;
-    virtual TransMediator::TransType _retrieveTransType() override;
+    virtual void go(const Notification& notification) override;
+};
+
+
+class Trans2StartPageCommand : public SimpleCommand
+{
+public:
+    Trans2StartPageCommand(const String& type, const String& name);
+    virtual ~Trans2StartPageCommand();
+
+    virtual void go(const Notification& notification) override;
 };
 
 

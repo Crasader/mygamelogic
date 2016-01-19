@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 
+#include "U2PredefinedFacade.h"
 #include "application/ApplicationFacade.h"
 #include "cg/CgFacade.h"
 
@@ -47,7 +48,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     cocos2d::FileUtils::getInstance()->addSearchPath("res/ui/application");
     cocos2d::FileUtils::getInstance()->addSearchPath("res/ui/cg");
 
-
+    PredefinedFacade::getSingleton();
     CgFacade::getSingleton();
 	ApplicationFacade::getSingleton().startup();
 

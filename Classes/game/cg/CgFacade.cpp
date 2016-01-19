@@ -41,8 +41,8 @@ CgFacade::CgFacade(const String& type, const String& name)
     : Facade(type, name)
 {
     // command factory
-    CREATE_FACTORY(StartCgCommand);
     CREATE_FACTORY(Trans2CgCommand);
+    CREATE_FACTORY(Trans2StartPageCommand);
 
     // mediator factory
     CREATE_FACTORY(CgMediator);
@@ -61,8 +61,8 @@ void CgFacade::initializeController(void)
 {
     Facade::initializeController();
 
-	registerCommand(NTF_Cg_StartCg, CommandManager::getSingleton().createObject(OT_StartCgCommand, BLANK));
     registerCommand(NTF_Cg_Trans2Cg, CommandManager::getSingleton().createObject(OT_Trans2CgCommand, BLANK));
+    registerCommand(NTF_Cg_Trans2StartPage, CommandManager::getSingleton().createObject(OT_Trans2StartPageCommand, BLANK));
 }
 //-----------------------------------------------------------------------
 void CgFacade::initializeModel(void)

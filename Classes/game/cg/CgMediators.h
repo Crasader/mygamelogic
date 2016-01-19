@@ -9,9 +9,7 @@
 #define __CgMediators__
 
 
-#include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2CocosMediator.h"
+#include "U2GameBase.h"
 #include "CgPrerequisites.h"
 
 

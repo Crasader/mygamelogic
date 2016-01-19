@@ -9,9 +9,9 @@
 #define __U2CocosMediator__
 
 
+#include "U2Core.h"
+#include "U2Mvc.h"
 #include "cocos2d.h"
-#include "U2Prerequisites.h"
-#include "U2Mediator.h"
 
 
 U2EG_NAMESPACE_USING

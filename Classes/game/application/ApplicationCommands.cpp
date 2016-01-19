@@ -8,9 +8,6 @@
 
 #include "ApplicationCommands.h"
 
-#include "U2Facade.h"
-#include "U2Context.h"
-#include "U2SceneTransMediator.h"
 #include "ApplicationPrerequisites.h"
 #include "ApplicationMediators.h"
 
@@ -38,7 +35,7 @@ void StartupCommand::go(const Notification& notification)
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 Trans2ShadeCommand::Trans2ShadeCommand(const String& type, const String& name)
-    : TransCommand(type, name)
+    : SimpleCommand(type, name)
 {
 }
 //-----------------------------------------------------------------------
@@ -46,26 +43,16 @@ Trans2ShadeCommand::~Trans2ShadeCommand()
 {
 }
 //-----------------------------------------------------------------------
-u2::Context* Trans2ShadeCommand::_createToContext()
+void Trans2ShadeCommand::go(const Notification& notification)
 {
     // create context tree
     u2::Context* pTo = ContextManager::getSingleton().createObject(
-        OT_Context, "RootContext"
+        OT_Context, "ShadeContext"
         , OT_ShadeMediator, "ShadeMediator"
         , OT_ShadeViewComponent, "ShadeViewComponent"
         );
-
-    return pTo;
-}
-//-----------------------------------------------------------------------
-u2::Context* Trans2ShadeCommand::_retrieveFromContext()
-{
-    return nullptr;
-}
-//-----------------------------------------------------------------------
-TransMediator::TransType Trans2ShadeCommand::_retrieveTransType()
-{
-    return TransMediator::TransType::TT_Overlay;
+    ContextProxy& contextProxy = (ContextProxy&)PredefinedFacade::getSingleton().retrieveProxy(ON_Proxy_Context);
+    contextProxy.pushBack(ON_ContextQueue_Shade, pTo, ContextQueue::eTransType::TT_Overlay);
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -78,7 +65,7 @@ Trans2LogoCommand::~Trans2LogoCommand()
 {
 }
 //-----------------------------------------------------------------------
-u2::Context* Trans2LogoCommand::_createToContext()
+void Trans2LogoCommand::go(const Notification& notification)
 {
     // create context tree
     u2::Context* pLogo = ContextManager::getSingleton().createObject(
@@ -86,16 +73,6 @@ u2::Context* Trans2LogoCommand::_createToContext()
         , OT_LogoMediator, "LogoMediator"
         , OT_LogoViewComponent, "LogoViewComponent"
         );
-
-    return pLogo;
-}
-//-----------------------------------------------------------------------
-u2::Context* Trans2LogoCommand::_retrieveFromContext()
-{
-    return ContextManager::getSingleton().retrieveObject("RootContext");
-}
-//-----------------------------------------------------------------------
-TransMediator::TransType Trans2LogoCommand::_retrieveTransType()
-{
-    return TransMediator::TransType::TT_Overlay;
+    ContextProxy& contextProxy = (ContextProxy&)PredefinedFacade::getSingleton().retrieveProxy(ON_Proxy_Context);
+    contextProxy.pushBack(ON_ContextQueue_Scene, pLogo, ContextQueue::eTransType::TT_Overlay);
 }
