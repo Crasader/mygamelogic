@@ -299,6 +299,15 @@
     <ClInclude Include="..\Classes\mvc\U2PredefinedFacade.h">
       <Filter>src\mvc</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\core\U2Core.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mvc\U2Mvc.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gamebase\U2GameBase.h">
+      <Filter>src\gamebase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

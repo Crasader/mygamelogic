@@ -184,6 +184,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\core\U2Core.h" />
     <ClInclude Include="..\Classes\core\U2FactoryManager.h" />
     <ClInclude Include="..\Classes\core\U2FactoryObj.h" />
     <ClInclude Include="..\Classes\core\U2IteratorWrapper.h" />
@@ -196,6 +197,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\core\U2TypedObjectManager.h" />
     <ClInclude Include="..\Classes\gamebase\U2CocosMediator.h" />
     <ClInclude Include="..\Classes\gamebase\U2CocosViewComponent.h" />
+    <ClInclude Include="..\Classes\gamebase\U2GameBase.h" />
     <ClInclude Include="..\Classes\game\application\ApplicationCommands.h" />
     <ClInclude Include="..\Classes\game\application\ApplicationFacade.h" />
     <ClInclude Include="..\Classes\game\application\ApplicationMediators.h" />
@@ -215,6 +217,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\mvc\U2Facade.h" />
     <ClInclude Include="..\Classes\mvc\U2Mediator.h" />
     <ClInclude Include="..\Classes\mvc\U2Model.h" />
+    <ClInclude Include="..\Classes\mvc\U2Mvc.h" />
     <ClInclude Include="..\Classes\mvc\U2Notification.h" />
     <ClInclude Include="..\Classes\mvc\U2Notifier.h" />
     <ClInclude Include="..\Classes\mvc\U2Observer.h" />
