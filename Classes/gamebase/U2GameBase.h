@@ -6,6 +6,7 @@
 #include "U2Mvc.h"
 #include "cocos2d.h"
 #include "U2CocosMediator.h"
+#include "U2CocosTransMediator.h"
 #include "U2CocosViewComponent.h"
 
 

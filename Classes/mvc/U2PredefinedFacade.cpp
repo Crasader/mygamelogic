@@ -11,6 +11,7 @@
 #include "U2PredefinedCommands.h"
 #include "U2PredefinedProxies.h"
 #include "U2PredefinedPrerequisites.h"
+#include "U2CocosTransMediator.h"
 
 
 //-----------------------------------------------------------------------
@@ -49,7 +50,8 @@ PredefinedFacade::PredefinedFacade(const String& type, const String& name)
     CREATE_FACTORY(ContextProxy);
 
     // mediator factory
-    CREATE_FACTORY(TransMediator);
+    //CREATE_FACTORY(TransMediator);
+    CREATE_FACTORY(CocosTransMediator);
 
     // viewcomponent factory
 }

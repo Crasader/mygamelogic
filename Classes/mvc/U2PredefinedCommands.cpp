@@ -106,7 +106,7 @@ void TransCommand::_createMediator(const u2::Context* from, ContextQueue::eTrans
 
     // trans mediator
     TransMediator* pTransMediator = dynamic_cast<TransMediator*>(
-        MediatorManager::getSingleton().createObject(OT_TransMediator, szTransName));
+        MediatorManager::getSingleton().createObject(OT_CocosTransMediator, szTransName));
     if (pTransMediator)
     {
         getFacade().registerMediator(pTransMediator);

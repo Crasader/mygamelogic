@@ -19,6 +19,7 @@
 #include "U2PredefinedMediators.h"
 #include "U2PredefinedProxies.h"
 #include "U2ContextQueue.h"
+#include "U2CocosTransMediator.h"
 
 
 U2EG_NAMESPACE_USING
@@ -44,7 +45,8 @@ const char* OT_BackKeyCommand = GET_OBJECT_TYPE(BackKeyCommand);
 const char* OT_TransCommand = GET_OBJECT_TYPE(TransCommand);
 
 // mediator
-const char* OT_TransMediator = GET_OBJECT_TYPE(TransMediator);
+//const char* OT_TransMediator = GET_OBJECT_TYPE(TransMediator);
+const char* OT_CocosTransMediator = GET_OBJECT_TYPE(CocosTransMediator);
 
 // context queue
 const char* OT_SingleContextQueue = GET_OBJECT_TYPE(SingleContextQueue);

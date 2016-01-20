@@ -85,6 +85,8 @@ void TransMediator::startup(const u2::Context* from, ContextQueue::eTransType ty
         }
         pToViewComp->addListener(this);
     }
+
+    _registerFrameListener();
     
     _trans(pFromViewComp, type, pToViewComp);
 }
@@ -92,6 +94,7 @@ void TransMediator::startup(const u2::Context* from, ContextQueue::eTransType ty
 void TransMediator::end()
 {
 	Mediator::end();
+    _unregisterFrameListener();
 }
 //-----------------------------------------------------------------------
 void TransMediator::_trans(ViewComponent* from, ContextQueue::eTransType type, ViewComponent* to)
