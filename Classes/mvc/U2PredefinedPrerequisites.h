@@ -32,6 +32,7 @@ extern const char* OT_ContextProxy;
 // command
 extern const char* OT_DestoryContextCommand;
 extern const char* OT_BackKeyCommand;
+extern const char* OT_TransCommand;
 
 // mediator
 extern const char* OT_TransMediator;
@@ -46,7 +47,10 @@ extern const char* OT_InfiniteContextQueue;
 // notification
 const String NTF_Predefined_DestroyContext = "NTF_Predefined_DestroyContext";
 const String NTF_Predefined_BackKey = "NTF_Predefined_BackKey";
-const String NTF_Predefined_SceneTrans = "NTF_Predefined_SceneTrans";
+const String NTF_Predefined_Trans = "NTF_Predefined_Trans";
+
+// facade name
+const String ON_Facade_Predefined = "ON_Facade_Predefined";
 
 // proxy name
 const String ON_Proxy_Context = "ON_Proxy_Context";

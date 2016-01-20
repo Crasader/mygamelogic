@@ -22,6 +22,8 @@ public:
 
     virtual ~ApplicationFacade(void);
 
+    virtual void initializeFacade(void) override;
+
     virtual void initializeController(void) override;
 
 	virtual void initializeModel(void) override;

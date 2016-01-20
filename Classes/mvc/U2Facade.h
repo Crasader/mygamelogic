@@ -208,6 +208,12 @@ public:
 	*/
 	virtual Proxy& retrieveProxy(const String& proxy_name);
 
+    template <typename T>
+    const T& retrieveProxy(const String& proxy_name) const;
+
+    template <typename T>
+    T& retrieveProxy(const String& proxy_name);
+
 	/**
 	* Remove an <code>Proxy</code> from the <code>Model</code> by name.
 	*
@@ -379,6 +385,18 @@ Facade* Facade::createFacade(const String& name)
     Facade* pFacade = FacadeManager::getSingleton().createObject(GET_OBJECT_TYPE(T), name);
 	pFacade->initializeFacade();
 	return pFacade;
+}
+//-----------------------------------------------------------------------
+template <typename T>
+const T& Facade::retrieveProxy(const String& proxy_name) const
+{
+    return dynamic_cast<const T&>(retrieveProxy(proxy_name));
+}
+//-----------------------------------------------------------------------
+template <typename T>
+T& Facade::retrieveProxy(const String& proxy_name)
+{
+    return dynamic_cast<T&>(retrieveProxy(proxy_name));
 }
 
 

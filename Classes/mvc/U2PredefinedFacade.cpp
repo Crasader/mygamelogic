@@ -21,10 +21,10 @@ PredefinedFacade* PredefinedFacade::getSingletonPtr(void)
 {
 	if (msSingleton == nullptr)
 	{
-		Facade* pFacade = FacadeManager::getSingleton().retrieveObject("PredefinedFacade");
+        Facade* pFacade = FacadeManager::getSingleton().retrieveObject(ON_Facade_Predefined);
 		if (pFacade == nullptr)
 		{
-			pFacade = Facade::createFacade<PredefinedFacade>("PredefinedFacade");
+            pFacade = Facade::createFacade<PredefinedFacade>(ON_Facade_Predefined);
 		}
 		msSingleton = dynamic_cast<PredefinedFacade*>(pFacade);
 	}
@@ -43,11 +43,13 @@ PredefinedFacade::PredefinedFacade(const String& type, const String& name)
     // command factory
     CREATE_FACTORY(DestoryContextCommand);
     CREATE_FACTORY(BackKeyCommand);
+    CREATE_FACTORY(TransCommand);
 
     // proxy factory
     CREATE_FACTORY(ContextProxy);
 
     // mediator factory
+    CREATE_FACTORY(TransMediator);
 
     // viewcomponent factory
 }
@@ -62,6 +64,7 @@ void PredefinedFacade::initializeController(void)
 
     registerCommand(NTF_Predefined_DestroyContext, CommandManager::getSingleton().createObject(OT_DestoryContextCommand, BLANK));
     registerCommand(NTF_Predefined_BackKey, CommandManager::getSingleton().createObject(OT_BackKeyCommand, BLANK));
+    registerCommand(NTF_Predefined_Trans, CommandManager::getSingleton().createObject(OT_TransCommand, BLANK));
 }
 //-----------------------------------------------------------------------
 void PredefinedFacade::initializeModel(void)

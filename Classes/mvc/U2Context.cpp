@@ -24,9 +24,13 @@ Context::~Context()
 {
 }
 //-----------------------------------------------------------------------
-void Context::initialize(const u2::String& mediatorClass, const u2::String& mediatorName
+void Context::initialize(const u2::String& facadeName
+    , const u2::String& parentContextName
+    , const u2::String& mediatorClass, const u2::String& mediatorName
     , const u2::String& viewCompClass, const u2::String& viewCompName)
 {
+    m_szFacadeName = facadeName;
+    m_szParentContextName = parentContextName;
     m_szMediatorClass = mediatorClass;
     m_szMediatorName = mediatorName;
     m_szViewCompClass = viewCompClass;
@@ -96,11 +100,14 @@ ContextManager::~ContextManager()
 }
 //-----------------------------------------------------------------------
 Context* ContextManager::createObject(const String& type, const String& name
+    , const u2::String& facadeName
+    , const u2::String& parentContextName
     , const u2::String& mediatorClass, const u2::String& mediatorName
     , const u2::String& viewCompClass, const u2::String& viewCompName)
 {
     Context* pContext = createObject(type, name);
-    pContext->initialize(mediatorClass, mediatorName, viewCompClass, viewCompName);
+    pContext->initialize(facadeName, parentContextName
+        , mediatorClass, mediatorName, viewCompClass, viewCompName);
     return pContext;
 }
 //-----------------------------------------------------------------------

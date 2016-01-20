@@ -82,6 +82,11 @@ public:
     virtual void pop(eTransType transType = eTransType::TT_None) = 0;
     virtual void replace(u2::Context* from, u2::Context* to, eTransType transType = eTransType::TT_None) = 0;
 
+    bool hasContext(const u2::String& name);
+    bool hasContext(const u2::Context* context);
+    void erase(const u2::String& name);
+    void erase(const u2::Context* context);
+
 protected:
     void _switch(u2::Context* from, eTransType transType, u2::Context* to);
 

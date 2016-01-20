@@ -21,10 +21,10 @@ CgFacade* CgFacade::getSingletonPtr(void)
 {
 	if (msSingleton == nullptr)
 	{
-		Facade* pFacade = FacadeManager::getSingleton().retrieveObject("CgFacade");
+        Facade* pFacade = FacadeManager::getSingleton().retrieveObject(ON_Facade_Cg);
 		if (pFacade == nullptr)
 		{
-			pFacade = Facade::createFacade<CgFacade>("CgFacade");
+            pFacade = Facade::createFacade<CgFacade>(ON_Facade_Cg);
 		}
 		msSingleton = dynamic_cast<CgFacade*>(pFacade);
 	}

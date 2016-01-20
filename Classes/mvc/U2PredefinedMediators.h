@@ -44,7 +44,7 @@ protected:
 
     void _destroyTransMediator();
     void _destroyFromContext();
-    void _startupToContext(u2::Context* context);
+    void _startupToContext(const u2::Context* context);
 
     TransStep* _createVoidStep(const TransStep::Key& key, VoidStep::CallbackFun func = nullptr);
     TransStep* _createParamStep(const TransStep::Key& key, ParamStep::CallbackFun func = nullptr);
@@ -53,8 +53,8 @@ protected:
 protected:
     ViewComponent*      m_pFrom;
     ViewComponent*      m_pTo;
-    u2::Context*        m_pFromContext;
-    u2::Context*        m_pToContext;
+    const u2::Context*  m_pFromContext;
+    const u2::Context*  m_pToContext;
     ContextQueue::eTransType           m_transType;
     void*               m_pParent;
     std::vector<TransStep*>      m_steps;

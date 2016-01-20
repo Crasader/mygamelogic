@@ -43,11 +43,18 @@ extern const char* OT_TabContext;
 extern const char* OT_DialogContext;
 extern const char* OT_CommonContext;
 
+// facade name
+const String ON_Facade_Application = "ON_Facade_Application";
+
 // context queue name
 const String ON_ContextQueue_Shade              = "ON_ContextQueue_Shade";
 const String ON_ContextQueue_Scene              = "ON_ContextQueue_Scene";
 const String ON_ContextQueue_Tab                = "ON_ContextQueue_Tab";
 const String ON_ContextQueue_Dialog             = "ON_ContextQueue_Dialog";
 const String ON_ContextQueue_Common             = "ON_ContextQueue_Common";
+
+// context name
+const String ON_Context_Root = "ON_Context_Root";
+const String ON_Context_LogoScene = "ON_Context_LogoScene";
 
 #endif /* defined(__ApplicationPrerequisites__) */

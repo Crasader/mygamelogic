@@ -12,6 +12,7 @@
 #include "U2PredefinedFacade.h"
 #include "U2PredefinedMediators.h"
 #include "U2PredefinedProxies.h"
+#include "U2Context.h"
 
 
 U2EG_NAMESPACE_USING
@@ -34,6 +35,52 @@ u2::Context* ContextQueue::top()
 {
     Queue::iterator it = m_queue.begin();
     return (it == m_queue.end()) ? nullptr : *it;
+}
+//-----------------------------------------------------------------------
+bool ContextQueue::hasContext(const u2::String& name)
+{
+    Context* pContext = ContextManager::getSingleton().retrieveObject(name);
+    return hasContext(pContext);
+}
+//-----------------------------------------------------------------------
+bool ContextQueue::hasContext(const u2::Context* context)
+{
+    if (context == nullptr)
+    {
+        return false;
+    }
+
+    for (Queue::iterator it = m_queue.begin(); it != m_queue.end(); it++)
+    {
+        if (*it == context)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+//-----------------------------------------------------------------------
+void ContextQueue::erase(const u2::String& name)
+{
+    Context* pContext = ContextManager::getSingleton().retrieveObject(name);
+    erase(pContext);
+}
+//-----------------------------------------------------------------------
+void ContextQueue::erase(const u2::Context* context)
+{
+    if (context == nullptr)
+    {
+        return;
+    }
+
+    for (Queue::iterator it = m_queue.begin(); it != m_queue.end(); it++)
+    {
+        if (*it == context)
+        {
+            m_queue.erase(it);
+            return;
+        }
+    }
 }
 //-----------------------------------------------------------------------
 void ContextQueue::_switch(u2::Context* from, eTransType transType, u2::Context* to)
@@ -65,27 +112,72 @@ void SingleContextQueue::initialize(eTransType defaultTransType, eBackKeyPriorit
 //-----------------------------------------------------------------------
 void SingleContextQueue::pushBack(u2::Context* context, eTransType transType)
 {
-    m_queue.push_back(context);
-    if (m_queue.size() > (size_t)m_eCapacity)
+    u2::Context* pFrom = nullptr;
+    u2::Context* pTo = nullptr;
+
+    size_t uSize = m_queue.size();
+    if (uSize > (size_t)m_eCapacity)
     {
-        pop(transType);
+        assert(0);
     }
+
+    if (uSize == (size_t)m_eCapacity)
+    {
+        pFrom = m_queue.front();
+        m_queue.pop_front();
+    }
+
+    m_queue.push_back(context);
+    pTo = m_queue.front();
+
+    _switch(nullptr, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
 void SingleContextQueue::pushFront(u2::Context* context, eTransType transType)
 {
-    u2::Context* pFrom = m_queue.front();
-    m_queue.pop_front();
+    u2::Context* pFrom = nullptr;
+
+    size_t uSize = m_queue.size();
+    if (uSize > (size_t)m_eCapacity)
+    {
+        assert(0);
+    }
+
+    if (uSize == (size_t)m_eCapacity)
+    {
+        pFrom = m_queue.front();
+        m_queue.pop_front();
+    }
+
     m_queue.push_front(context);
     u2::Context* pTo = m_queue.front();
+
     _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
 void SingleContextQueue::pop(eTransType transType)
 {
-    u2::Context* pFrom = m_queue.front();
-    m_queue.pop_front();
-    u2::Context* pTo = m_queue.front();
+    u2::Context* pFrom = nullptr;
+    u2::Context* pTo = nullptr;
+
+    size_t uSize = m_queue.size();
+    if (uSize > (size_t)m_eCapacity)
+    {
+        assert(0);
+    }
+
+    if (uSize == (size_t)m_eCapacity)
+    {
+        pFrom = m_queue.front();
+        m_queue.pop_front();
+    }
+
+    uSize = m_queue.size();
+    if (uSize > 0)
+    {
+        pTo = m_queue.front();
+    }
+    
     _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
@@ -123,22 +215,57 @@ void InfiniteContextQueue::initialize(eTransType defaultTransType, eBackKeyPrior
 //-----------------------------------------------------------------------
 void InfiniteContextQueue::pushBack(u2::Context* context, eTransType transType)
 {
-    m_queue.push_back(context);
+    u2::Context* pFrom = nullptr;
+    u2::Context* pTo = nullptr;
+
+    size_t uSize = m_queue.size();
+    if (uSize == 0)
+    {
+        m_queue.push_back(context);
+        pTo = m_queue.front();
+        _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
+    }
+    else
+    {
+        m_queue.push_back(context);
+    }
 }
 //-----------------------------------------------------------------------
 void InfiniteContextQueue::pushFront(u2::Context* context, eTransType transType)
 {
-    u2::Context* pFrom = m_queue.front();
+    u2::Context* pFrom = nullptr;
+    u2::Context* pTo = nullptr;
+
+    size_t uSize = m_queue.size();
+    if (uSize > 0)
+    {
+        pFrom = m_queue.front();
+    }
+
     m_queue.push_front(context);
-    u2::Context* pTo = m_queue.front();
+    pTo = m_queue.front();
+
     _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
 void InfiniteContextQueue::pop(eTransType transType)
 {
-    u2::Context* pFrom = m_queue.front();
-    m_queue.pop_front();
-    u2::Context* pTo = m_queue.front();
+    u2::Context* pFrom = nullptr;
+    u2::Context* pTo = nullptr;
+
+    size_t uSize = m_queue.size();
+    if (uSize > 0)
+    {
+        pFrom = m_queue.front();
+        m_queue.pop_front();
+    }
+
+    uSize = m_queue.size();
+    if (uSize > 0)
+    {
+        pTo = m_queue.front();
+    }
+    
     _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------

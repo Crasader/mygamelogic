@@ -35,4 +35,13 @@ extern const char* OT_StartPageViewComponent;
 const String NTF_Cg_Trans2Cg            = "NTF_Cg_Trans2Cg";
 const String NTF_Cg_Trans2StartPage     = "NTF_Cg_Trans2StartPage";
 
+
+// facade name
+const String ON_Facade_Cg = "ON_Facade_Cg";
+
+// context name
+const String ON_Context_CgScene = "ON_Context_CgScene";
+const String ON_Context_StartPageScene = "ON_Context_StartPageScene";
+
+
 #endif /* defined(__CgPrerequisites__) */

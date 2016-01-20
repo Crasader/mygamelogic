@@ -20,10 +20,15 @@ U2EG_NAMESPACE_USING
 //-----------------------------------------------------------------------
 ContextProxy::ContextProxy(const String& type, const String& name)
     : Proxy(type, name)
-{ }
+{
+    // context queue factory
+    CREATE_FACTORY(SingleContextQueue);
+    CREATE_FACTORY(InfiniteContextQueue);
+}
 //-----------------------------------------------------------------------
 ContextProxy::~ContextProxy(void)
-{ }
+{
+}
 //-----------------------------------------------------------------------
 void ContextProxy::pushBack(const String& name, u2::Context* context, ContextQueue::eTransType transType)
 {
@@ -71,9 +76,47 @@ ContextQueue* ContextProxy::_retrieveContextQueue(const String& name)
     return pQueue;
 }
 //-----------------------------------------------------------------------
+void ContextProxy::erase(const u2::String& name)
+{
+    for (ObjectMap::iterator it = mObjects.begin(); it != mObjects.end(); it++)
+    {
+        ContextQueue* pQueue = it->second;
+        if (pQueue == nullptr)
+        {
+            continue;
+        }
+        if (pQueue->hasContext(name))
+        {
+            pQueue->erase(name);
+            break;
+        }
+    }
+}
+//-----------------------------------------------------------------------
+void ContextProxy::erase(const u2::Context* context)
+{
+    if (context == nullptr)
+    {
+        return;
+    }
+    for (ObjectMap::iterator it = mObjects.begin(); it != mObjects.end(); it++)
+    {
+        ContextQueue* pQueue = it->second;
+        if (pQueue == nullptr)
+        {
+            continue;
+        }
+        if (pQueue->hasContext(context))
+        {
+            pQueue->erase(context);
+            break;
+        }
+    }
+}
+//-----------------------------------------------------------------------
 void ContextProxy::_switch(u2::Context* from, ContextQueue::eTransType transType, u2::Context* to)
 {
-    getFacade().sendNotification(NTF_Predefined_SceneTrans
+    getFacade().sendNotification(NTF_Predefined_Trans
         , &std::make_tuple(from, transType, to));
 }
 //-----------------------------------------------------------------------

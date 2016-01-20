@@ -66,6 +66,8 @@ protected:
     // Return the Multiton Facade instance
     Facade& getFacade();
 
+    Facade& getFacade(const String& facadeKey);
+
 protected:
     String          m_szFacadeKey;
 };

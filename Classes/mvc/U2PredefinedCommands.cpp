@@ -41,18 +41,29 @@ void DestoryContextCommand::_destroyContext(u2::Context* context)
         return;
     }
 
+    // destroy children
     u2::Context::ContextListIterator it = context->getContextIterator();
     while (it.hasMoreElements())
     {
         _destroyContext(it.getNext());
     }
 
+    // destroy mediator
     Mediator* pMediator = MediatorManager::getSingleton().retrieveObject(context->getMediatorName());
     if (pMediator != nullptr)
     {
         pMediator->end();
+        Facade* pFacade = FacadeManager::getSingleton().retrieveObject(context->getFacadeName());
+        if (pFacade != nullptr)
+        {
+            pFacade->removeMediator(context->getMediatorName());
+        }
         MediatorManager::getSingleton().destoryObject(pMediator);
     }
+
+    // destroy context
+    ContextProxy& contextProxy = getFacade().retrieveProxy<ContextProxy>(ON_Proxy_Context);
+    contextProxy.erase(context);
     ContextManager::getSingleton().destoryObject(context);
 }
 //-----------------------------------------------------------------------
@@ -68,7 +79,7 @@ TransCommand::~TransCommand()
 //-----------------------------------------------------------------------
 void TransCommand::go(const Notification& notification)
 {
-    if (NTF_Predefined_SceneTrans != notification.getName())
+    if (NTF_Predefined_Trans != notification.getName())
     {
         return;
     }

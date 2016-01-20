@@ -41,6 +41,7 @@ const char* OT_ContextProxy = GET_OBJECT_TYPE(ContextProxy);
 // command
 const char* OT_DestoryContextCommand = GET_OBJECT_TYPE(DestoryContextCommand);
 const char* OT_BackKeyCommand = GET_OBJECT_TYPE(BackKeyCommand);
+const char* OT_TransCommand = GET_OBJECT_TYPE(TransCommand);
 
 // mediator
 const char* OT_TransMediator = GET_OBJECT_TYPE(TransMediator);

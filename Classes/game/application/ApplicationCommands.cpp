@@ -47,12 +47,13 @@ void Trans2ShadeCommand::go(const Notification& notification)
 {
     // create context tree
     u2::Context* pTo = ContextManager::getSingleton().createObject(
-        OT_Context, "ShadeContext"
+        OT_Context, ON_Context_Root
+        , getFacade().getName(), BLANK
         , OT_ShadeMediator, "ShadeMediator"
         , OT_ShadeViewComponent, "ShadeViewComponent"
         );
-    ContextProxy& contextProxy = (ContextProxy&)PredefinedFacade::getSingleton().retrieveProxy(ON_Proxy_Context);
-    contextProxy.pushBack(ON_ContextQueue_Shade, pTo, ContextQueue::eTransType::TT_Overlay);
+    ContextProxy& contextProxy = getFacade(ON_Facade_Predefined).retrieveProxy<ContextProxy>(ON_Proxy_Context);
+    contextProxy.pushBack(ON_ContextQueue_Shade, pTo);
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -69,10 +70,11 @@ void Trans2LogoCommand::go(const Notification& notification)
 {
     // create context tree
     u2::Context* pLogo = ContextManager::getSingleton().createObject(
-        OT_Context, "LogoContext"
+        OT_Context, ON_Context_LogoScene
+        , getFacade().getName(), ON_Context_Root
         , OT_LogoMediator, "LogoMediator"
         , OT_LogoViewComponent, "LogoViewComponent"
         );
-    ContextProxy& contextProxy = (ContextProxy&)PredefinedFacade::getSingleton().retrieveProxy(ON_Proxy_Context);
+    ContextProxy& contextProxy = getFacade(ON_Facade_Predefined).retrieveProxy<ContextProxy>(ON_Proxy_Context);
     contextProxy.pushBack(ON_ContextQueue_Scene, pLogo, ContextQueue::eTransType::TT_Overlay);
 }

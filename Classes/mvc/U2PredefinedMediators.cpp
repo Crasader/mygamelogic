@@ -40,21 +40,53 @@ void TransMediator::startup(const u2::Context* context)
 //-----------------------------------------------------------------------
 void TransMediator::startup(const u2::Context* from, ContextQueue::eTransType type, const u2::Context* to)
 {
+    if (from == nullptr && to == nullptr)
+    {
+        assert(0);
+    }
+
+    m_pFromContext = from;
+    m_pToContext = to;
+
     ViewComponent* pFromViewComp = nullptr;
     if (from != nullptr)
     {
         pFromViewComp = ViewComponentManager::getSingleton().retrieveObject(from->getViewCompClass(), from->getViewCompName());
+        if (pFromViewComp == nullptr)
+        {
+            pFromViewComp = ViewComponentManager::getSingleton().createObject(from->getViewCompClass(), from->getViewCompName());
+        }
         pFromViewComp->addListener(this);
+    }
+    else
+    {
+        if (type == ContextQueue::eTransType::TT_Overlay)
+        {
+            if (m_pToContext->getParentContextName() != BLANK)
+            {
+                m_pFromContext = ContextManager::getSingleton().retrieveObject(m_pToContext->getParentContextName());
+                if (m_pFromContext)
+                {
+                    pFromViewComp = ViewComponentManager::getSingleton().retrieveObject(
+                        m_pFromContext->getViewCompClass(), m_pFromContext->getViewCompName());
+                    pFromViewComp->addListener(this);
+                }
+            }
+        }
     }
 
     ViewComponent* pToViewComp = nullptr;
-    if (to == nullptr)
+    if (to != nullptr)
     {
         pToViewComp = ViewComponentManager::getSingleton().retrieveObject(to->getViewCompClass(), to->getViewCompName());
+        if (pToViewComp == nullptr)
+        {
+            pToViewComp = ViewComponentManager::getSingleton().createObject(to->getViewCompClass(), to->getViewCompName());
+        }
         pToViewComp->addListener(this);
     }
     
-    _trans(pFromViewComp, type, m_pViewComp);
+    _trans(pFromViewComp, type, pToViewComp);
 }
 //-----------------------------------------------------------------------
 void TransMediator::end()
@@ -173,7 +205,7 @@ void TransMediator::_destroyFromContext()
     }
 }
 //-----------------------------------------------------------------------
-void TransMediator::_startupToContext(u2::Context* context)
+void TransMediator::_startupToContext(const u2::Context* context)
 {
     if (context == nullptr)
     {
@@ -186,7 +218,7 @@ void TransMediator::_startupToContext(u2::Context* context)
         pMediator->startup(m_pToContext);
     }
 
-    u2::Context::ContextListIterator it = context->getContextIterator();
+    u2::Context::ConstContextListIterator it = context->getConstContextIterator();
     while (it.hasMoreElements())
     {
         _startupToContext(it.getNext());

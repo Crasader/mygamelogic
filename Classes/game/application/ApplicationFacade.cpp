@@ -21,10 +21,10 @@ ApplicationFacade* ApplicationFacade::getSingletonPtr(void)
 {
 	if (msSingleton == nullptr)
 	{
-		Facade* pFacade = FacadeManager::getSingleton().retrieveObject("ApplicationFacade");
+        Facade* pFacade = FacadeManager::getSingleton().retrieveObject(ON_Facade_Application);
 		if (pFacade == nullptr)
 		{
-			pFacade = Facade::createFacade<ApplicationFacade>("ApplicationFacade");
+            pFacade = Facade::createFacade<ApplicationFacade>(ON_Facade_Application);
 		}
 		msSingleton = dynamic_cast<ApplicationFacade*>(pFacade);
 	}
@@ -44,6 +44,7 @@ ApplicationFacade::ApplicationFacade(const String& type, const String& name)
 
     // command factory
     CREATE_FACTORY(StartupCommand);
+    CREATE_FACTORY(Trans2ShadeCommand);
     CREATE_FACTORY(Trans2LogoCommand);
 
     // mediator factory
@@ -54,12 +55,18 @@ ApplicationFacade::ApplicationFacade(const String& type, const String& name)
     CREATE_FACTORY(ShadeViewComponent);
     CREATE_FACTORY(LogoViewComponent);
 
-    // context
-    initializeContextQueue();
 }
 //-----------------------------------------------------------------------
 ApplicationFacade::~ApplicationFacade(void)
 {
+}
+//-----------------------------------------------------------------------
+void ApplicationFacade::initializeFacade(void)
+{
+    Facade::initializeFacade();
+
+    // context
+    initializeContextQueue();
 }
 //-----------------------------------------------------------------------
 void ApplicationFacade::initializeController(void)
@@ -83,7 +90,7 @@ void ApplicationFacade::initializeView(void)
 //-----------------------------------------------------------------------
 void ApplicationFacade::initializeContextQueue(void)
 {
-    ContextProxy& contextProxy = (ContextProxy&)retrieveProxy(ON_Proxy_Context);
+    ContextProxy& contextProxy = getFacade(ON_Facade_Predefined).retrieveProxy<ContextProxy>(ON_Proxy_Context);
     contextProxy.createContextQueue(OT_SingleContextQueue, ON_ContextQueue_Shade
         , ContextQueue::eTransType::TT_Overlay, ContextQueue::eBackKeyPriority::Pri_0_Shade);
     contextProxy.createContextQueue(OT_SingleContextQueue, ON_ContextQueue_Scene
