@@ -159,6 +159,9 @@
     <ClCompile Include="..\Classes\mvc\U2PredefinedFacade.cpp">
       <Filter>src\mvc</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\gamebase\U2CocosTransMediator.cpp">
+      <Filter>src\gamebase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -306,6 +309,9 @@
       <Filter>src\mvc</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\gamebase\U2GameBase.h">
+      <Filter>src\gamebase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gamebase\U2CocosTransMediator.h">
       <Filter>src\gamebase</Filter>
     </ClInclude>
   </ItemGroup>
