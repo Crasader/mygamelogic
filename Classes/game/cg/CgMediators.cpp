@@ -46,8 +46,7 @@ void CgMediator::onCommonStateChanged(ViewComponent* viewComp, const String& obj
         if (msg == "ActionEnd")
         {
             // trans
-            Notification ntf(NTF_Cg_Trans2StartPage);
-            getFacade().broadcastNotification(ntf);
+            getFacade().broadcastNotification(NTF_Cg_Trans2StartPage);
         }
     }
 }

@@ -33,6 +33,7 @@ const char* OT_Controller = GET_OBJECT_TYPE(Controller);
 const char* OT_Notification = GET_OBJECT_TYPE(Notification);
 const char* OT_Context = GET_OBJECT_TYPE(u2::Context);
 
+
 // facade
 const char* OT_PredefinedFacade = GET_OBJECT_TYPE(PredefinedFacade);
 
@@ -45,7 +46,6 @@ const char* OT_BackKeyCommand = GET_OBJECT_TYPE(BackKeyCommand);
 const char* OT_TransCommand = GET_OBJECT_TYPE(TransCommand);
 
 // mediator
-//const char* OT_TransMediator = GET_OBJECT_TYPE(TransMediator);
 const char* OT_CocosTransMediator = GET_OBJECT_TYPE(CocosTransMediator);
 
 // context queue

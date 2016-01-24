@@ -12,7 +12,9 @@
 #include "U2Prerequisites.h"
 
 
+
 U2EG_NAMESPACE_USING
+
 
 
 extern const char* OT_Facade;
@@ -35,7 +37,6 @@ extern const char* OT_BackKeyCommand;
 extern const char* OT_TransCommand;
 
 // mediator
-//extern const char* OT_TransMediator;
 extern const char* OT_CocosTransMediator;
 
 // view
@@ -46,15 +47,15 @@ extern const char* OT_InfiniteContextQueue;
 
 
 // notification
-const String NTF_Predefined_DestroyContext = "NTF_Predefined_DestroyContext";
-const String NTF_Predefined_BackKey = "NTF_Predefined_BackKey";
-const String NTF_Predefined_Trans = "NTF_Predefined_Trans";
+static const char* NTF_Predefined_DestroyContext = "NTF_Predefined_DestroyContext";
+static const char* NTF_Predefined_BackKey = "NTF_Predefined_BackKey";
+static const char* NTF_Predefined_Trans = "NTF_Predefined_Trans";
 
 // facade name
-const String ON_Facade_Predefined = "ON_Facade_Predefined";
+static const char* ON_Facade_Predefined = "ON_Facade_Predefined";
 
 // proxy name
-const String ON_Proxy_Context = "ON_Proxy_Context";
+static const char* ON_Proxy_Context = "ON_Proxy_Context";
 
 
 

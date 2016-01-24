@@ -77,8 +77,7 @@ void LogoMediator::onCommonStateChanged(ViewComponent* viewComp, const String& o
         if (msg == "ActionEnd")
         {
             // trans
-            Notification ntf(NTF_Cg_Trans2Cg);
-            getFacade().broadcastNotification(ntf);
+            getFacade(ON_Facade_Cg).sendNotification(NTF_Cg_Trans2Cg);
         }
     }
 }

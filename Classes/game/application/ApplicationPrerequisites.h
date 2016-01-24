@@ -32,9 +32,9 @@ extern const char* OT_LogoMediator;
 extern const char* OT_LogoViewComponent;
 
 // notification
-const String NTF_Application_Startup            = "NTF_Application_Startup";
-const String NTF_Application_Trans2Shade        = "NTF_Application_Trans2Shade";
-const String NTF_Application_Trans2Logo         = "NTF_Application_Trans2Logo";
+static const char* NTF_Application_Startup = "NTF_Application_Startup";
+static const char* NTF_Application_Trans2Shade = "NTF_Application_Trans2Shade";
+static const char* NTF_Application_Trans2Logo = "NTF_Application_Trans2Logo";
 
 // context
 extern const char* OT_ShadeContext;
@@ -44,17 +44,17 @@ extern const char* OT_DialogContext;
 extern const char* OT_CommonContext;
 
 // facade name
-const String ON_Facade_Application = "ON_Facade_Application";
+static const char* ON_Facade_Application = "ON_Facade_Application";
 
 // context queue name
-const String ON_ContextQueue_Shade              = "ON_ContextQueue_Shade";
-const String ON_ContextQueue_Scene              = "ON_ContextQueue_Scene";
-const String ON_ContextQueue_Tab                = "ON_ContextQueue_Tab";
-const String ON_ContextQueue_Dialog             = "ON_ContextQueue_Dialog";
-const String ON_ContextQueue_Common             = "ON_ContextQueue_Common";
+static const char* ON_ContextQueue_Shade = "ON_ContextQueue_Shade";
+static const char* ON_ContextQueue_Scene = "ON_ContextQueue_Scene";
+static const char* ON_ContextQueue_Tab = "ON_ContextQueue_Tab";
+static const char* ON_ContextQueue_Dialog = "ON_ContextQueue_Dialog";
+static const char* ON_ContextQueue_Common = "ON_ContextQueue_Common";
 
 // context name
-const String ON_Context_Root = "ON_Context_Root";
-const String ON_Context_LogoScene = "ON_Context_LogoScene";
+static const char* ON_Context_Root = "ON_Context_Root";
+static const char* ON_Context_LogoScene = "ON_Context_LogoScene";
 
 #endif /* defined(__ApplicationPrerequisites__) */

@@ -12,6 +12,8 @@
 #include "U2GameBase.h"
 
 
+
+
 U2EG_NAMESPACE_USING
 
 
@@ -32,16 +34,16 @@ extern const char* OT_StartPageViewComponent;
 
 
 // notification
-const String NTF_Cg_Trans2Cg            = "NTF_Cg_Trans2Cg";
-const String NTF_Cg_Trans2StartPage     = "NTF_Cg_Trans2StartPage";
+static const char* NTF_Cg_Trans2Cg = "NTF_Cg_Trans2Cg";
+static const char* NTF_Cg_Trans2StartPage = "NTF_Cg_Trans2StartPage";
 
 
 // facade name
-const String ON_Facade_Cg = "ON_Facade_Cg";
+static const char* ON_Facade_Cg = "ON_Facade_Cg";
 
 // context name
-const String ON_Context_CgScene = "ON_Context_CgScene";
-const String ON_Context_StartPageScene = "ON_Context_StartPageScene";
+static const char* ON_Context_CgScene = "ON_Context_CgScene";
+static const char* ON_Context_StartPageScene = "ON_Context_StartPageScene";
 
 
 #endif /* defined(__CgPrerequisites__) */

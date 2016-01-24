@@ -130,7 +130,7 @@ void SingleContextQueue::pushBack(u2::Context* context, eTransType transType)
     m_queue.push_back(context);
     pTo = m_queue.front();
 
-    _switch(nullptr, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
+    _switch(pFrom, (transType == eTransType::TT_None) ? m_eDefaultTransType : transType, pTo);
 }
 //-----------------------------------------------------------------------
 void SingleContextQueue::pushFront(u2::Context* context, eTransType transType)

@@ -94,6 +94,17 @@ void TransMediator::startup(const u2::Context* from, ContextQueue::eTransType ty
 void TransMediator::end()
 {
 	Mediator::end();
+
+    if (m_pFrom != nullptr)
+    {
+        m_pFrom->removeListener(this);
+    }
+
+    if (m_pTo != nullptr)
+    {
+        m_pTo->removeListener(this);
+    }
+
     _unregisterFrameListener();
 }
 //-----------------------------------------------------------------------
@@ -180,11 +191,13 @@ void TransMediator::_onTransOver()
 {
     _destroyFromContext();
     _startupToContext(m_pToContext);
-    _destroyTransMediator();
+    //_destroyTransMediator();
 }
 //-----------------------------------------------------------------------
 void TransMediator::_destroyTransMediator()
 {
+    this->end();
+
     m_pFrom = nullptr;
     m_pTo = nullptr;
     m_pFromContext = nullptr;
@@ -192,7 +205,6 @@ void TransMediator::_destroyTransMediator()
     m_pParent = nullptr;
     m_curKey = TransStep::Key(nullptr, ViewComponent::ViewCompState::VCS_Unloaded);
 
-    this->end();
     MediatorManager::getSingleton().destoryObject(this);
 }
 //-----------------------------------------------------------------------
@@ -288,6 +300,10 @@ void TransMediator::onUpdate(float dt)
         }
     }
 
+    if (m_steps.size() == 0)
+    {
+        _destroyTransMediator();
+    }
 }
 //-----------------------------------------------------------------------
 void TransMediator::onViewCompStateChanged(ViewComponent* viewComp, ViewComponent::ViewCompState newState)
