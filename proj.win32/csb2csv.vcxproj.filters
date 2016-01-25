@@ -159,7 +159,10 @@
     <ClCompile Include="..\Classes\mvc\U2PredefinedFacade.cpp">
       <Filter>src\mvc</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\gamebase\U2CocosTransMediator.cpp">
+    <ClCompile Include="..\Classes\mvc\U2FrameListenerCollection.cpp">
+      <Filter>src\mvc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\gamebase\U2CocosFrameListenerCollection.cpp">
       <Filter>src\gamebase</Filter>
     </ClCompile>
   </ItemGroup>
@@ -311,7 +314,10 @@
     <ClInclude Include="..\Classes\gamebase\U2GameBase.h">
       <Filter>src\gamebase</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\gamebase\U2CocosTransMediator.h">
+    <ClInclude Include="..\Classes\mvc\U2FrameListenerCollection.h">
+      <Filter>src\mvc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gamebase\U2CocosFrameListenerCollection.h">
       <Filter>src\gamebase</Filter>
     </ClInclude>
   </ItemGroup>

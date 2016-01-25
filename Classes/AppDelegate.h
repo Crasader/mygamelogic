@@ -2,6 +2,14 @@
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
+#include "U2GameBase.h"
+
+
+U2EG_NAMESPACE_USING
+
+
+class FrameListenerCollection;
+
 
 /**
 @brief    The cocos2d Application.
@@ -34,6 +42,9 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+
+protected:
+    u2::FrameListenerCollection* m_pFrameListenerCollection;
 };
 
 #endif // _APP_DELEGATE_H_

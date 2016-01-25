@@ -16,6 +16,7 @@ U2EG_NAMESPACE_USING
 //-----------------------------------------------------------------------
 Context::Context(const String& type, const String& name)
     : Object(type, name)
+    , m_pParent(nullptr)
 {
 
 }
@@ -25,54 +26,88 @@ Context::~Context()
 }
 //-----------------------------------------------------------------------
 void Context::initialize(const u2::String& facadeName
-    , const u2::String& parentContextName
     , const u2::String& mediatorClass, const u2::String& mediatorName
     , const u2::String& viewCompClass, const u2::String& viewCompName)
 {
     m_szFacadeName = facadeName;
-    m_szParentContextName = parentContextName;
     m_szMediatorClass = mediatorClass;
     m_szMediatorName = mediatorName;
     m_szViewCompClass = viewCompClass;
     m_szViewCompName = viewCompName;
 }
 //-----------------------------------------------------------------------
+Context* Context::createChild(const String& type, const String& name
+    , const u2::String& facadeName
+    , const u2::String& mediatorClass, const u2::String& mediatorName
+    , const u2::String& viewCompClass, const u2::String& viewCompName)
+{
+    u2::Context* pChild = ContextManager::getSingleton().createObject(
+        type, name
+        , facadeName
+        , mediatorClass, mediatorName
+        , viewCompClass, viewCompName
+        );
+    this->addChild(pChild);
+    pChild->setParent(this);
+    return pChild;
+}
+//-----------------------------------------------------------------------
 void Context::addChild(Context* child)
 {
-    for (ContextList::const_iterator it = m_children.begin();
-        it != m_children.end(); 
-        it++)
+    if (child == nullptr)
     {
-        if (*it == child)
-        {
-            assert(0);
-        }
+        return;
     }
-    m_children.push_back(child);
+
+    ContextMap::const_iterator it = m_children.find(child->getName());
+    if (it == m_children.end())
+    {
+        m_children.insert(make_pair(child->getName(), child));
+    }
 }
 //-----------------------------------------------------------------------
 void Context::removeChild(Context* child)
 {
-    for (ContextList::const_iterator it = m_children.begin();
-        it != m_children.end();
-        it++)
+    if (child == nullptr)
     {
-        if (*it == child)
-        {
-            m_children.erase(it);
-            return;
-        }
+        return;
+    }
+
+    ContextMap::iterator it = m_children.find(child->getName());
+    if (it != m_children.end())
+    {
+        m_children.erase(it);
     }
 }
 //-----------------------------------------------------------------------
-Context::ConstContextListIterator Context::getConstContextIterator() const
+void Context::destroyChild(Context* child)
 {
-    return ConstContextListIterator(m_children.begin(), m_children.end());
+    if (child == nullptr)
+    {
+        return;
+    }
+
+    ContextMap::iterator it = m_children.find(child->getName());
+    if (it != m_children.end())
+    {
+        m_children.erase(it);
+        ContextManager::getSingleton().destoryObject(child);
+    }
 }
 //-----------------------------------------------------------------------
-Context::ContextListIterator Context::getContextIterator()
+Context::ConstContextMapIterator Context::getChildIterator() const
 {
-    return ContextListIterator(m_children.begin(), m_children.end());
+    return ConstContextMapIterator(m_children.begin(), m_children.end());
+}
+//-----------------------------------------------------------------------
+Context::ContextMapIterator Context::getChildIterator()
+{
+    return ContextMapIterator(m_children.begin(), m_children.end());
+}
+//-----------------------------------------------------------------------
+void Context::setParent(Context* parent)
+{
+    m_pParent = parent;
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -101,12 +136,11 @@ ContextManager::~ContextManager()
 //-----------------------------------------------------------------------
 Context* ContextManager::createObject(const String& type, const String& name
     , const u2::String& facadeName
-    , const u2::String& parentContextName
     , const u2::String& mediatorClass, const u2::String& mediatorName
     , const u2::String& viewCompClass, const u2::String& viewCompName)
 {
     Context* pContext = createObject(type, name);
-    pContext->initialize(facadeName, parentContextName
+    pContext->initialize(facadeName
         , mediatorClass, mediatorName, viewCompClass, viewCompName);
     return pContext;
 }

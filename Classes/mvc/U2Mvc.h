@@ -22,6 +22,7 @@
 #include "U2TransStep.h"
 #include "U2View.h"
 #include "U2ViewComponent.h"
+#include "U2FrameListenerCollection.h"
 
 
 #endif

@@ -50,8 +50,7 @@ PredefinedFacade::PredefinedFacade(const String& type, const String& name)
     CREATE_FACTORY(ContextProxy);
 
     // mediator factory
-    //CREATE_FACTORY(TransMediator);
-    CREATE_FACTORY(CocosTransMediator);
+    CREATE_FACTORY(TransMediator);
 
     // viewcomponent factory
 }

@@ -37,7 +37,7 @@ extern const char* OT_BackKeyCommand;
 extern const char* OT_TransCommand;
 
 // mediator
-extern const char* OT_CocosTransMediator;
+extern const char* OT_TransMediator;
 
 // view
 

@@ -42,7 +42,7 @@ void DestoryContextCommand::_destroyContext(u2::Context* context)
     }
 
     // destroy children
-    u2::Context::ContextListIterator it = context->getContextIterator();
+    u2::Context::ContextMapIterator it = context->getChildIterator();
     while (it.hasMoreElements())
     {
         _destroyContext(it.getNext());
@@ -62,6 +62,11 @@ void DestoryContextCommand::_destroyContext(u2::Context* context)
     }
 
     // destroy context
+    u2::Context* pParent = context->getParent();
+    if (pParent == nullptr)
+    {
+        pParent->removeChild(context);
+    }
     ContextProxy& contextProxy = getFacade().retrieveProxy<ContextProxy>(ON_Proxy_Context);
     contextProxy.erase(context);
     ContextManager::getSingleton().destoryObject(context);
@@ -106,7 +111,7 @@ void TransCommand::_createMediator(const u2::Context* from, ContextQueue::eTrans
 
     // trans mediator
     TransMediator* pTransMediator = dynamic_cast<TransMediator*>(
-        MediatorManager::getSingleton().createObject(OT_CocosTransMediator, szTransName));
+        MediatorManager::getSingleton().createObject(OT_TransMediator, szTransName));
     if (pTransMediator)
     {
         getFacade().registerMediator(pTransMediator);
@@ -114,7 +119,7 @@ void TransCommand::_createMediator(const u2::Context* from, ContextQueue::eTrans
     }
     
     // children
-    u2::Context::ConstContextListIterator it = to->getConstContextIterator();
+    u2::Context::ConstContextMapIterator it = to->getChildIterator();
     while (it.hasMoreElements())
     {
         _createMediator(to, ContextQueue::eTransType::TT_Overlay, it.getNext());
@@ -180,7 +185,7 @@ bool BackKeyCommand::_dispatchBack(u2::Context* context)
     }
     else
     {
-        u2::Context::ContextListIterator it = context->getContextIterator();
+        u2::Context::ContextMapIterator it = context->getChildIterator();
         while (it.hasMoreElements())
         {
             return _dispatchBack(it.getNext());

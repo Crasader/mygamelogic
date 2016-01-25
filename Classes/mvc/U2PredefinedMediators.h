@@ -51,6 +51,10 @@ protected:
     void _destroyTransStep(TransStep* step);
 
 protected:
+    virtual void _registerFrameListener() override;
+    virtual void _unregisterFrameListener() override;
+
+protected:
     ViewComponent*      m_pFrom;
     ViewComponent*      m_pTo;
     const u2::Context*  m_pFromContext;

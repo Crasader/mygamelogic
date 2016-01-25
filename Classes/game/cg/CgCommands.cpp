@@ -27,11 +27,13 @@ Trans2CgCommand::~Trans2CgCommand()
 void Trans2CgCommand::go(const Notification& notification)
 {
     // create context tree
-    u2::Context* pCg = ContextManager::getSingleton().createObject(
+    u2::Context* pRoot = ContextManager::getSingleton().retrieveObject(ON_Context_Root);
+    u2::Context* pCg = pRoot->createChild(
         OT_Context, ON_Context_CgScene
-        , getFacade().getName(), ON_Context_Root
+        , getFacade().getName()
         , OT_CgMediator, "CgMediator"
-        , OT_CgViewComponent, "CgViewComponent");
+        , OT_CgViewComponent, "CgViewComponent"
+        );
     ContextProxy& contextProxy = getFacade(ON_Facade_Predefined).retrieveProxy<ContextProxy>(ON_Proxy_Context);
     contextProxy.pushBack(ON_ContextQueue_Scene, pCg);
 }
@@ -49,11 +51,13 @@ Trans2StartPageCommand::~Trans2StartPageCommand()
 void Trans2StartPageCommand::go(const Notification& notification)
 {
     // create context tree
-    u2::Context* pCg = ContextManager::getSingleton().createObject(
+    u2::Context* pRoot = ContextManager::getSingleton().retrieveObject(ON_Context_Root);
+    u2::Context* pStartPage = pRoot->createChild(
         OT_Context, ON_Context_StartPageScene
-        , getFacade().getName(), ON_Context_Root
+        , getFacade().getName()
         , OT_StartPageMediator, "StartPageMediator"
-        , OT_StartPageViewComponent, "StartPageViewComponent");
+        , OT_StartPageViewComponent, "StartPageViewComponent"
+        );
     ContextProxy& contextProxy = getFacade(ON_Facade_Predefined).retrieveProxy<ContextProxy>(ON_Proxy_Context);
-    contextProxy.pushBack(ON_ContextQueue_Scene, pCg);
+    contextProxy.pushBack(ON_ContextQueue_Scene, pStartPage);
 }

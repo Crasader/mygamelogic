@@ -11,6 +11,7 @@
 #include "U2ViewComponent.h"
 #include "U2Facade.h"
 #include "U2Context.h"
+#include "U2FrameListenerCollection.h"
 #include "U2PredefinedPrerequisites.h"
 
 
@@ -62,9 +63,11 @@ void TransMediator::startup(const u2::Context* from, ContextQueue::eTransType ty
     {
         if (type == ContextQueue::eTransType::TT_Overlay)
         {
-            if (m_pToContext->getParentContextName() != BLANK)
+            const u2::Context* pParent = m_pToContext->getParent();
+
+            if (pParent && pParent->getName() != BLANK)
             {
-                m_pFromContext = ContextManager::getSingleton().retrieveObject(m_pToContext->getParentContextName());
+                m_pFromContext = ContextManager::getSingleton().retrieveObject(pParent->getName());
                 if (m_pFromContext)
                 {
                     pFromViewComp = ViewComponentManager::getSingleton().retrieveObject(
@@ -106,6 +109,16 @@ void TransMediator::end()
     }
 
     _unregisterFrameListener();
+}
+//-----------------------------------------------------------------------
+void TransMediator::_registerFrameListener()
+{
+    FrameListenerCollection::getSingleton().addFrameListener(this, std::bind(&TransMediator::onUpdate, this, std::placeholders::_1));
+}
+//-----------------------------------------------------------------------
+void TransMediator::_unregisterFrameListener()
+{
+    FrameListenerCollection::getSingleton().removeFrameListener(this);
 }
 //-----------------------------------------------------------------------
 void TransMediator::_trans(ViewComponent* from, ContextQueue::eTransType type, ViewComponent* to)
@@ -233,7 +246,7 @@ void TransMediator::_startupToContext(const u2::Context* context)
         pMediator->startup(m_pToContext);
     }
 
-    u2::Context::ConstContextListIterator it = context->getConstContextIterator();
+    u2::Context::ConstContextMapIterator it = context->getChildIterator();
     while (it.hasMoreElements())
     {
         _startupToContext(it.getNext());

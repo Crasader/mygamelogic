@@ -146,8 +146,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\core\U2Prerequisites.cpp" />
     <ClCompile Include="..\Classes\core\U2SimpleObjectManager.cpp" />
     <ClCompile Include="..\Classes\core\U2TypedObjectManager.cpp" />
+    <ClCompile Include="..\Classes\gamebase\U2CocosFrameListenerCollection.cpp" />
     <ClCompile Include="..\Classes\gamebase\U2CocosMediator.cpp" />
-    <ClCompile Include="..\Classes\gamebase\U2CocosTransMediator.cpp" />
     <ClCompile Include="..\Classes\gamebase\U2CocosViewComponent.cpp" />
     <ClCompile Include="..\Classes\game\application\ApplicationCommands.cpp" />
     <ClCompile Include="..\Classes\game\application\ApplicationFacade.cpp" />
@@ -166,6 +166,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\mvc\U2ContextQueue.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Controller.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Facade.cpp" />
+    <ClCompile Include="..\Classes\mvc\U2FrameListenerCollection.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Mediator.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Model.cpp" />
     <ClCompile Include="..\Classes\mvc\U2Notification.cpp" />
@@ -196,8 +197,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\core\U2SimpleObjectManager.h" />
     <ClInclude Include="..\Classes\core\U2Singleton.h" />
     <ClInclude Include="..\Classes\core\U2TypedObjectManager.h" />
+    <ClInclude Include="..\Classes\gamebase\U2CocosFrameListenerCollection.h" />
     <ClInclude Include="..\Classes\gamebase\U2CocosMediator.h" />
-    <ClInclude Include="..\Classes\gamebase\U2CocosTransMediator.h" />
     <ClInclude Include="..\Classes\gamebase\U2CocosViewComponent.h" />
     <ClInclude Include="..\Classes\gamebase\U2GameBase.h" />
     <ClInclude Include="..\Classes\game\application\ApplicationCommands.h" />
@@ -217,6 +218,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\mvc\U2ContextQueue.h" />
     <ClInclude Include="..\Classes\mvc\U2Controller.h" />
     <ClInclude Include="..\Classes\mvc\U2Facade.h" />
+    <ClInclude Include="..\Classes\mvc\U2FrameListenerCollection.h" />
     <ClInclude Include="..\Classes\mvc\U2Mediator.h" />
     <ClInclude Include="..\Classes\mvc\U2Model.h" />
     <ClInclude Include="..\Classes\mvc\U2Mvc.h" />

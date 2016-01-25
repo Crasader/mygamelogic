@@ -8,6 +8,7 @@
 #include "U2CocosMediator.h"
 #include "U2CocosTransMediator.h"
 #include "U2CocosViewComponent.h"
+#include "U2CocosFrameListenerCollection.h"
 
 
 #endif
