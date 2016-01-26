@@ -11,7 +11,6 @@
 #include "U2PredefinedCommands.h"
 #include "U2PredefinedProxies.h"
 #include "U2PredefinedPrerequisites.h"
-#include "U2CocosTransMediator.h"
 
 
 //-----------------------------------------------------------------------
