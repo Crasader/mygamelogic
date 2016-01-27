@@ -37,7 +37,7 @@ CgFacade& CgFacade::getSingleton(void)
 	return (*getSingletonPtr());
 }
 //-----------------------------------------------------------------------
-CgFacade::CgFacade(const String& type, const String& name)
+CgFacade::CgFacade(const u2::String& type, const u2::String& name)
     : Facade(type, name)
 {
     // command factory

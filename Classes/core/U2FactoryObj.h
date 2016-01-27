@@ -2,6 +2,10 @@
 #define __U2FactoryObj_H__
 
 
+#include "U2Prerequisites.h"
+#include "U2STLRedefined.h"
+
+
 U2EG_NAMESPACE_BEGIN
 
 

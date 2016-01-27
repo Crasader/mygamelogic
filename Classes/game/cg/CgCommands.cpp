@@ -15,7 +15,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Trans2CgCommand::Trans2CgCommand(const String& type, const String& name)
+Trans2CgCommand::Trans2CgCommand(const u2::String& type, const u2::String& name)
     : SimpleCommand(type, name)
 {
 }
@@ -39,7 +39,7 @@ void Trans2CgCommand::go(const Notification& notification)
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Trans2StartPageCommand::Trans2StartPageCommand(const String& type, const String& name)
+Trans2StartPageCommand::Trans2StartPageCommand(const u2::String& type, const u2::String& name)
     : SimpleCommand(type, name)
 {
 }

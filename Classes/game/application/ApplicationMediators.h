@@ -18,7 +18,7 @@ U2EG_NAMESPACE_USING
 class ShadeMediator : public CocosMediator
 {
 public:
-    ShadeMediator(const String& type, const String& name);
+    ShadeMediator(const u2::String& type, const u2::String& name);
 
     virtual ~ShadeMediator(void);
 
@@ -33,7 +33,7 @@ protected:
 class LogoMediator : public CocosMediator
 {
 public:
-	LogoMediator(const String& type, const String& name);
+	LogoMediator(const u2::String& type, const u2::String& name);
 
 	virtual ~LogoMediator(void);
 
@@ -50,7 +50,7 @@ public:
 	virtual void end() override;
 
 protected:
-    virtual void onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg) override;
+    virtual void onCommonStateChanged(ViewComponent* viewComp, const u2::String& objName, const u2::String& msg) override;
 };
 
 

@@ -15,7 +15,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-StartupCommand::StartupCommand(const String& type, const String& name)
+StartupCommand::StartupCommand(const u2::String& type, const u2::String& name)
     : SimpleCommand(type, name)
 {
 }
@@ -34,7 +34,7 @@ void StartupCommand::go(const Notification& notification)
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Trans2ShadeCommand::Trans2ShadeCommand(const String& type, const String& name)
+Trans2ShadeCommand::Trans2ShadeCommand(const u2::String& type, const u2::String& name)
     : SimpleCommand(type, name)
 {
 }
@@ -57,7 +57,7 @@ void Trans2ShadeCommand::go(const Notification& notification)
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-Trans2LogoCommand::Trans2LogoCommand(const String& type, const String& name)
+Trans2LogoCommand::Trans2LogoCommand(const u2::String& type, const u2::String& name)
     : TransCommand(type, name)
 {
 }

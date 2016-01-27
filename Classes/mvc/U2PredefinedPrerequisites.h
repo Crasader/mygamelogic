@@ -9,7 +9,7 @@
 #define __U2PredefinedPrerequisites__
 
 
-#include "U2Prerequisites.h"
+#include "U2Core.h"
 
 
 

@@ -1,9 +1,11 @@
 ﻿#ifndef __U2NameGenerator_H__
 #define __U2NameGenerator_H__
 
-#include "cocos2d.h"
+
 #include "U2Prerequisites.h"
+#include "U2STLRedefined.h"
 #include "U2Singleton.h"
+#include "U2ThreadHeaders.h"
 
 
 U2EG_NAMESPACE_BEGIN
@@ -15,7 +17,7 @@ class NameGenerator
 protected:
     String                  mPrefix;
     uint64_t                mNext;
-    std::mutex              m_mtx;
+    U2_AUTO_MUTEX;
 
 public:
     NameGenerator(const NameGenerator& rhs)
@@ -26,7 +28,7 @@ public:
     /// Generate a new name
     String generate()
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         u2::StringStream s;
         s << mPrefix << mNext++;
         return s.str();
@@ -35,14 +37,14 @@ public:
     /// Reset the internal counter
     void reset()
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         mNext = 1ULL;
     }
 
     /// Manually set the internal counter (use caution)
     void setNext(uint64_t val)
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         mNext = val;
     }
 
@@ -50,7 +52,7 @@ public:
     uint64_t getNext()
     {
         // lock even on get because 64-bit may not be atomic read
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         return mNext;
     }
 };

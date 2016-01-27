@@ -15,7 +15,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-CgMediator::CgMediator(const String& type, const String& name)
+CgMediator::CgMediator(const u2::String& type, const u2::String& name)
     : CocosMediator(type, name)
 {
 }
@@ -39,7 +39,7 @@ void CgMediator::handleNotification(const Notification& notification)
 
 }
 //-----------------------------------------------------------------------
-void CgMediator::onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg)
+void CgMediator::onCommonStateChanged(ViewComponent* viewComp, const u2::String& objName, const u2::String& msg)
 {
     if (objName == CgViewComponent::AN_CgAction)
     {
@@ -70,7 +70,7 @@ void CgMediator::end()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-StartPageMediator::StartPageMediator(const String& type, const String& name)
+StartPageMediator::StartPageMediator(const u2::String& type, const u2::String& name)
     : CocosMediator(type, name)
 {
 }

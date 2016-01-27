@@ -14,15 +14,17 @@
 #include "cocos2d.h"
 
 
-U2EG_NAMESPACE_USING
+USING_NS_CC;
 
 
-class CocosMediator : public Mediator
+class CocosMediator : public cocos2d::Ref, public u2::Mediator
 {
 public:
-    CocosMediator(const String& type, const String& name);
+    CocosMediator(const u2::String& type, const u2::String& name);
 
     virtual ~CocosMediator(void);
+
+    void _cocosOnUpdate(float dt);
 
 protected:
     virtual void _registerFrameListener() override;

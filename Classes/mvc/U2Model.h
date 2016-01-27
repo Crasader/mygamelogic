@@ -8,7 +8,6 @@
 #ifndef __U2Model__
 #define __U2Model__
 
-
 #include "U2Core.h"
 
 
@@ -28,7 +27,7 @@ protected:
     typedef std::map<String, Proxy*>				ProxyMap;
 	ProxyMap                    m_ProxyMap;
 	// Synchronous access
-	std::mutex                  m_mtx;
+	U2_AUTO_MUTEX;
 
 public:
 	/**

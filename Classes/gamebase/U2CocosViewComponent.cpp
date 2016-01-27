@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-CocosViewComponent::CocosViewComponent(const String& type, const String& name)
+CocosViewComponent::CocosViewComponent(const u2::String& type, const u2::String& name)
     : ViewComponent(type, name)
     , m_pRootNode(nullptr)
     , m_pParent(nullptr)
@@ -28,7 +28,7 @@ void CocosViewComponent::loadUi()
 {
     _changeViewCompState(ViewComponent::ViewCompState::VCS_Loading);
 
-    const String& szCsbName = getUiName();
+    const u2::String& szCsbName = getUiName();
     m_pRootNode = cocos2d::CSLoader::createNode(szCsbName);
     m_pRootNode->retain();
     if (nullptr == m_pRootNode)

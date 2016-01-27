@@ -13,5 +13,10 @@
 #include "U2TypedObjectManager.h"
 #include "U2PoolingObjectManager.h"
 
+#include "U2MemoryAllocatorConfig.h"
+#include "U2MemoryAllocatedObject.h"
+#include "U2STLRedefined.h"
+#include "U2ThreadHeaders.h"
+
 
 #endif

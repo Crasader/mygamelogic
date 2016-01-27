@@ -25,7 +25,7 @@ public:
     /**
     * Constructor.
     */
-    CocosViewComponent(const String& type, const String& name);
+    CocosViewComponent(const u2::String& type, const u2::String& name);
 
     /**
     * Virtual destructor.
@@ -45,17 +45,17 @@ public:
     virtual void detach(void* parent) override;
     virtual void* getParent() const override;
 
-    cocos2d::Node* seekNodeByName(const String& name);
-    cocos2d::Node* seekNodeByName(cocos2d::Node* root, const String& name);
+    cocos2d::Node* seekNodeByName(const u2::String& name);
+    cocos2d::Node* seekNodeByName(cocos2d::Node* root, const u2::String& name);
 
     bool isTransEnd() const;
 
 protected:
     cocos2d::Action* createEnterAction();
     cocos2d::Action* createExitAction();
-    void _runAction(cocos2d::FiniteTimeAction* action, const String& actionName);
-    cocostudio::timeline::ActionTimeline* _runTimeline(const u2::String csb, const String& timelineName);
-    cocostudio::timeline::ActionTimeline* _runTimeline(cocos2d::Node* pNode, const u2::String csb, const String& timelineName);
+    void _runAction(cocos2d::FiniteTimeAction* action, const u2::String& actionName);
+    cocostudio::timeline::ActionTimeline* _runTimeline(const u2::String csb, const u2::String& timelineName);
+    cocostudio::timeline::ActionTimeline* _runTimeline(cocos2d::Node* pNode, const u2::String csb, const u2::String& timelineName);
 
 protected:
     cocos2d::Node*      m_pRootNode;

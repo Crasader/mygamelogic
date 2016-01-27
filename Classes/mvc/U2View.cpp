@@ -27,7 +27,7 @@ inline void View::initializeView(void)
 
 inline void View::registerObserver(const String& notification_name, Observer* observer)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 
     ObserverMap::value_type item(notification_name, observer);
 
@@ -45,7 +45,7 @@ void View::notifyObservers(Notification const& notification)
     do
     {
         // Scope lock for safety
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
 
         // Find observer by name
         ObserverMap::iterator result = m_ObserverMap.find(name);
@@ -63,7 +63,7 @@ void View::notifyObservers(Notification const& notification)
 
 void View::removeObserver(const String& notification_name, const Object* const target)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 
     ObserverMap::iterator result = m_ObserverMap.find(notification_name);
 
@@ -94,7 +94,7 @@ void View::registerMediator(Mediator* mediator)
 {
     do
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
 
         // donot allow re-registration (you must to removeMediator fist)
         if (m_MediatorMap.find(mediator->getName()) != m_MediatorMap.end())
@@ -128,7 +128,7 @@ inline Mediator const& View::retrieveMediator(const String& mediator_name) const
 
 inline Mediator& View::retrieveMediator(const String& mediator_name)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 
     MediatorMap::const_iterator result = m_MediatorMap.find(mediator_name);
     if (result == m_MediatorMap.end())
@@ -146,7 +146,7 @@ Mediator* View::removeMediator(const String& mediator_name)
 
     do
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         // Retrieve the named mediator
         MediatorMap::iterator result = m_MediatorMap.find(mediator_name);
         if (result == m_MediatorMap.end())
@@ -176,7 +176,7 @@ Mediator* View::removeMediator(const String& mediator_name)
 
 inline bool View::hasMediator(const String& mediator_name)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
     return m_MediatorMap.find(mediator_name) != m_MediatorMap.end();
 }
 

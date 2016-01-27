@@ -19,7 +19,7 @@ U2EG_NAMESPACE_USING
 class CgMediator : public CocosMediator
 {
 public:
-	CgMediator(const String& type, const String& name);
+	CgMediator(const u2::String& type, const u2::String& name);
 
 	virtual ~CgMediator(void);
 
@@ -32,14 +32,14 @@ public:
     virtual void end() override;
 
 protected:
-    virtual void onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg) override;
+    virtual void onCommonStateChanged(ViewComponent* viewComp, const u2::String& objName, const u2::String& msg) override;
 };
 
 
 class StartPageMediator : public CocosMediator
 {
 public:
-    StartPageMediator(const String& type, const String& name);
+    StartPageMediator(const u2::String& type, const u2::String& name);
 
     virtual ~StartPageMediator(void);
 

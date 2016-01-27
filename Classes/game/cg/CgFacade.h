@@ -19,7 +19,7 @@ U2EG_NAMESPACE_USING
 class CgFacade : public Facade, public Singleton < CgFacade >
 {
 public:
-    CgFacade(const String& type, const String& name);
+    CgFacade(const u2::String& type, const u2::String& name);
 
     virtual ~CgFacade(void);
 

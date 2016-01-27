@@ -21,7 +21,7 @@ class Context;
 class StartupCommand : public SimpleCommand
 {
 public:
-    StartupCommand(const String& type, const String& name);
+    StartupCommand(const u2::String& type, const u2::String& name);
     virtual ~StartupCommand();
 
     virtual void go(const Notification& notification) override;
@@ -31,7 +31,7 @@ public:
 class Trans2ShadeCommand : public SimpleCommand
 {
 public:
-    Trans2ShadeCommand(const String& type, const String& name);
+    Trans2ShadeCommand(const u2::String& type, const u2::String& name);
     virtual ~Trans2ShadeCommand();
 
     virtual void go(const Notification& notification) override;
@@ -41,7 +41,7 @@ public:
 class Trans2LogoCommand : public TransCommand
 {
 public:
-    Trans2LogoCommand(const String& type, const String& name);
+    Trans2LogoCommand(const u2::String& type, const u2::String& name);
     virtual ~Trans2LogoCommand();
 
     virtual void go(const Notification& notification) override;

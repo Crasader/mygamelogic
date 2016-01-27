@@ -19,32 +19,32 @@ U2EG_NAMESPACE_USING
 class CgViewComponent : public CocosViewComponent
 {
 public:
-	CgViewComponent(const String& type, const String& name);
+	CgViewComponent(const u2::String& type, const u2::String& name);
 
 	virtual ~CgViewComponent(void);
 
-    virtual const String& getUiName() const override;
+    virtual const u2::String& getUiName() const override;
 
     void runCgAction();
 
 public:
-    static const String AN_CgAction;
+    static const u2::String AN_CgAction;
 };
 
 
 class StartPageViewComponent : public CocosViewComponent
 {
 public:
-    StartPageViewComponent(const String& type, const String& name);
+    StartPageViewComponent(const u2::String& type, const u2::String& name);
 
     virtual ~StartPageViewComponent(void);
 
-    virtual const String& getUiName() const override;
+    virtual const u2::String& getUiName() const override;
 
     void runStartAction();
 
 public:
-    static const String AN_StartAction;
+    static const u2::String AN_StartAction;
 };
 
 

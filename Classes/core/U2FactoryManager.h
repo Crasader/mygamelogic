@@ -1,8 +1,9 @@
 ﻿#ifndef __U2FactoryManager_H__
 #define __U2FactoryManager_H__
 
-#include "cocos2d.h"
+
 #include "U2Prerequisites.h"
+#include "U2STLRedefined.h"
 #include "U2Singleton.h"
 
 

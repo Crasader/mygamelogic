@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-ShadeMediator::ShadeMediator(const String& type, const String& name)
+ShadeMediator::ShadeMediator(const u2::String& type, const u2::String& name)
     : CocosMediator(type, name)
 {
 }
@@ -39,7 +39,7 @@ void ShadeMediator::handleNotification(const Notification& notification)
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-LogoMediator::LogoMediator(const String& type, const String& name)
+LogoMediator::LogoMediator(const u2::String& type, const u2::String& name)
     : CocosMediator(type, name)
 {
 }
@@ -70,7 +70,7 @@ void LogoMediator::handleNotification(const Notification& notification)
     const void* pData = notification.getData();
 }
 //-----------------------------------------------------------------------
-void LogoMediator::onCommonStateChanged(ViewComponent* viewComp, const String& objName, const String& msg)
+void LogoMediator::onCommonStateChanged(ViewComponent* viewComp, const u2::String& objName, const u2::String& msg)
 {
     if (objName == LogoViewComponent::AN_LogoAction)
     {

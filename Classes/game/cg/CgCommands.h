@@ -18,7 +18,7 @@ U2EG_NAMESPACE_USING
 class Trans2CgCommand : public SimpleCommand
 {
 public:
-    Trans2CgCommand(const String& type, const String& name);
+    Trans2CgCommand(const u2::String& type, const u2::String& name);
     virtual ~Trans2CgCommand();
 
     virtual void go(const Notification& notification) override;
@@ -28,7 +28,7 @@ public:
 class Trans2StartPageCommand : public SimpleCommand
 {
 public:
-    Trans2StartPageCommand(const String& type, const String& name);
+    Trans2StartPageCommand(const u2::String& type, const u2::String& name);
     virtual ~Trans2StartPageCommand();
 
     virtual void go(const Notification& notification) override;

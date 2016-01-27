@@ -28,6 +28,9 @@
     <Filter Include="src\game\cg">
       <UniqueIdentifier>{ab8b256b-729c-4bc6-9a49-0f424f0a50d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\core\threading">
+      <UniqueIdentifier>{e3b39631-26a4-4c02-8f93-2b35cfb17308}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,6 +167,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\gamebase\U2CocosFrameListenerCollection.cpp">
       <Filter>src\gamebase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2MemoryAllocatedObject.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2AlignedAllocator.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\U2MemoryTracker.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +331,54 @@
     </ClInclude>
     <ClInclude Include="..\Classes\gamebase\U2CocosFrameListenerCollection.h">
       <Filter>src\gamebase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2Config.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2Platform.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2StdHeader.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2HeaderPrefix.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2HeaderSuffix.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2MemoryAllocatedObject.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2AlignedAllocator.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2MemoryStdAlloc.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2MemoryTracker.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\U2ThreadHeaders.h">
+      <Filter>src\core\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\U2ThreadDefines.h">
+      <Filter>src\core\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\U2ThreadDefinesCpp11.h">
+      <Filter>src\core\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\U2ThreadDefinesNone.h">
+      <Filter>src\core\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2MemorySTLAllocator.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2STLRedefined.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\U2MemoryAllocatorConfig.h">
+      <Filter>src\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

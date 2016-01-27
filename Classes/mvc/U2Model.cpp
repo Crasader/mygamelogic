@@ -28,7 +28,7 @@ void Model::registerProxy(Proxy* proxy)
 	proxy->initializeNotifier(m_szName);
 	do
 	{
-		std::lock_guard<std::mutex> lck(m_mtx);
+		U2_LOCK_AUTO_MUTEX;
 		ProxyMap::iterator result = m_ProxyMap.find(proxy->getName());
 		m_ProxyMap.insert(std::make_pair(proxy->getName(), (proxy)));
 	} while (false);
@@ -42,7 +42,7 @@ Proxy const& Model::retrieveProxy(const String& proxy_name) const
 
 inline Proxy& Model::retrieveProxy(const String& proxy_name)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 
     ProxyMap::const_iterator result = m_ProxyMap.find(proxy_name);
     if (result == m_ProxyMap.end())
@@ -56,7 +56,7 @@ inline Proxy& Model::retrieveProxy(const String& proxy_name)
 
 inline bool Model::hasProxy(const String& proxy_name)
 {
-	std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 	return m_ProxyMap.find(proxy_name) != m_ProxyMap.end();
 }
 
@@ -66,7 +66,7 @@ Proxy* Model::removeProxy(const String& proxy_name)
 
 	do
 	{
-		std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
 		// Retrieve the named mediator
 		ProxyMap::iterator result = m_ProxyMap.find(proxy_name);
 

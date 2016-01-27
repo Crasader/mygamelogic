@@ -18,7 +18,7 @@ U2EG_NAMESPACE_USING
 class ShadeContext : public u2::Context
 {
 public:
-    ShadeContext(const String& type, const String& name);
+    ShadeContext(const u2::String& type, const u2::String& name);
     virtual ~ShadeContext();
 };
 
@@ -26,7 +26,7 @@ public:
 class SceneContext : public u2::Context
 {
 public:
-    SceneContext(const String& type, const String& name);
+    SceneContext(const u2::String& type, const u2::String& name);
     virtual ~SceneContext();
 };
 
@@ -34,7 +34,7 @@ public:
 class TabContext : public u2::Context
 {
 public:
-    TabContext(const String& type, const String& name);
+    TabContext(const u2::String& type, const u2::String& name);
     virtual ~TabContext();
 };
 
@@ -42,7 +42,7 @@ public:
 class CommonContext : public u2::Context
 {
 public:
-    CommonContext(const String& type, const String& name);
+    CommonContext(const u2::String& type, const u2::String& name);
     virtual ~CommonContext();
 };
 
@@ -50,7 +50,7 @@ public:
 class DialogContext : public u2::Context
 {
 public:
-    DialogContext(const String& type, const String& name);
+    DialogContext(const u2::String& type, const u2::String& name);
     virtual ~DialogContext();
 };
 

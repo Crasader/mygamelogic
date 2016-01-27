@@ -11,10 +11,10 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-const String CgViewComponent::AN_CgAction = "CgAction";
+const u2::String CgViewComponent::AN_CgAction = "CgAction";
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-CgViewComponent::CgViewComponent(const String& type, const String& name)
+CgViewComponent::CgViewComponent(const u2::String& type, const u2::String& name)
     : CocosViewComponent(type, name)
 {
 }
@@ -24,9 +24,9 @@ CgViewComponent::~CgViewComponent(void)
 
 }
 //-----------------------------------------------------------------------
-const String& CgViewComponent::getUiName() const
+const u2::String& CgViewComponent::getUiName() const
 {
-    static String name = "Layer_littlestar_movie.csb";
+    static u2::String name = "Layer_littlestar_movie.csb";
     return name;
 }
 //-----------------------------------------------------------------------
@@ -37,10 +37,10 @@ void CgViewComponent::runCgAction()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-const String StartPageViewComponent::AN_StartAction = "StartAction";
+const u2::String StartPageViewComponent::AN_StartAction = "StartAction";
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-StartPageViewComponent::StartPageViewComponent(const String& type, const String& name)
+StartPageViewComponent::StartPageViewComponent(const u2::String& type, const u2::String& name)
     : CocosViewComponent(type, name)
 {
 }
@@ -50,9 +50,9 @@ StartPageViewComponent::~StartPageViewComponent(void)
 
 }
 //-----------------------------------------------------------------------
-const String& StartPageViewComponent::getUiName() const
+const u2::String& StartPageViewComponent::getUiName() const
 {
-    static String name = "Layer_littlestar_movieclick.csb";
+    static u2::String name = "Layer_littlestar_movieclick.csb";
     return name;
 }
 //-----------------------------------------------------------------------

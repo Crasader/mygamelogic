@@ -12,7 +12,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-ShadeViewComponent::ShadeViewComponent(const String& type, const String& name)
+ShadeViewComponent::ShadeViewComponent(const u2::String& type, const u2::String& name)
     : CocosViewComponent(type, name)
 {
 }
@@ -22,9 +22,9 @@ ShadeViewComponent::~ShadeViewComponent(void)
 
 }
 //-----------------------------------------------------------------------
-const String& ShadeViewComponent::getUiName() const
+const u2::String& ShadeViewComponent::getUiName() const
 {
-    static String name = BLANK;
+    static u2::String name = BLANK;
     return name;
 }
 //-----------------------------------------------------------------------
@@ -68,10 +68,10 @@ void ShadeViewComponent::unloadUi()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-const String LogoViewComponent::AN_LogoAction = "LogoAction";
+const u2::String LogoViewComponent::AN_LogoAction = "LogoAction";
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-LogoViewComponent::LogoViewComponent(const String& type, const String& name)
+LogoViewComponent::LogoViewComponent(const u2::String& type, const u2::String& name)
     : CocosViewComponent(type, name)
 {
 }
@@ -81,9 +81,9 @@ LogoViewComponent::~LogoViewComponent(void)
 
 }
 //-----------------------------------------------------------------------
-const String& LogoViewComponent::getUiName() const
+const u2::String& LogoViewComponent::getUiName() const
 {
-    static String name = BLANK;
+    static u2::String name = BLANK;
     return name;
 }
 //-----------------------------------------------------------------------

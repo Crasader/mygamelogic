@@ -37,7 +37,7 @@ ApplicationFacade& ApplicationFacade::getSingleton(void)
 	return (*getSingletonPtr());
 }
 //-----------------------------------------------------------------------
-ApplicationFacade::ApplicationFacade(const String& type, const String& name)
+ApplicationFacade::ApplicationFacade(const u2::String& type, const u2::String& name)
     : Facade(type, name)
 {
     // proxy factory

@@ -19,11 +19,11 @@ U2EG_NAMESPACE_USING
 class ShadeViewComponent : public CocosViewComponent
 {
 public:
-    ShadeViewComponent(const String& type, const String& name);
+    ShadeViewComponent(const u2::String& type, const u2::String& name);
 
     virtual ~ShadeViewComponent(void);
 
-    virtual const String& getUiName() const override;
+    virtual const u2::String& getUiName() const override;
 
     virtual void loadUi() override;
 
@@ -36,18 +36,18 @@ protected:
 class LogoViewComponent : public CocosViewComponent
 {
 public:
-	LogoViewComponent(const String& type, const String& name);
+	LogoViewComponent(const u2::String& type, const u2::String& name);
 
 	virtual ~LogoViewComponent(void);
 
-    virtual const String& getUiName() const override;
+    virtual const u2::String& getUiName() const override;
 
     virtual void loadUi() override;
 
     void runLogoAction();
 
 public:
-    static const String AN_LogoAction;
+    static const u2::String AN_LogoAction;
 
 protected:
 };

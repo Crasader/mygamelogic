@@ -11,7 +11,7 @@
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-ShadeContext::ShadeContext(const String& type, const String& name)
+ShadeContext::ShadeContext(const u2::String& type, const u2::String& name)
     : u2::Context(type, name)
 {
 }
@@ -21,7 +21,7 @@ ShadeContext::~ShadeContext()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-SceneContext::SceneContext(const String& type, const String& name)
+SceneContext::SceneContext(const u2::String& type, const u2::String& name)
     : u2::Context(type, name)
 {
 }
@@ -31,7 +31,7 @@ SceneContext::~SceneContext()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-TabContext::TabContext(const String& type, const String& name)
+TabContext::TabContext(const u2::String& type, const u2::String& name)
     : u2::Context(type, name)
 {
 }
@@ -41,7 +41,7 @@ TabContext::~TabContext()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-CommonContext::CommonContext(const String& type, const String& name)
+CommonContext::CommonContext(const u2::String& type, const u2::String& name)
     : u2::Context(type, name)
 {
 }
@@ -51,7 +51,7 @@ CommonContext::~CommonContext()
 }
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-DialogContext::DialogContext(const String& type, const String& name)
+DialogContext::DialogContext(const u2::String& type, const u2::String& name)
     : u2::Context(type, name)
 {
 }

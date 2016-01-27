@@ -9,7 +9,6 @@
 #define __U2Object__
 
 
-#include "cocos2d.h"
 #include "U2Prerequisites.h"
 #include "U2FactoryObj.h"
 
@@ -17,7 +16,7 @@
 U2EG_NAMESPACE_BEGIN
 
 
-class Object : public cocos2d::Ref
+class Object
 {
 public:
     Object(const String& type, const String& name = BLANK);

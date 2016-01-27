@@ -31,7 +31,7 @@ protected:
     typedef std::map<String, Command*>          CommandMap;
     CommandMap                  m_CommandMap;
     // Synchronous access
-    std::mutex                  m_mtx;
+    U2_AUTO_MUTEX;
 
 private:
     Controller(Controller const&);

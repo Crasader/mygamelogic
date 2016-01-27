@@ -1,7 +1,7 @@
 ﻿#ifndef __U2TypedObjectManager_H__
 #define __U2TypedObjectManager_H__
 
-#include "cocos2d.h"
+
 #include "U2Prerequisites.h"
 #include "U2IteratorWrapper.h"
 #include "U2FactoryManager.h"

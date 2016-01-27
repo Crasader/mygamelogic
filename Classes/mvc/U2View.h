@@ -52,7 +52,7 @@ protected:
     // Mapping of Notification names to Observer lists
     ObserverMap                 m_ObserverMap;
     // Synchronous access
-    std::mutex                  m_mtx;
+    U2_AUTO_MUTEX;
 
 private:
     View(View const&);

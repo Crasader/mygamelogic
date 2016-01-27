@@ -39,7 +39,7 @@ void Controller::executeCommand(const Notification& notification)
     CommandMap::iterator result = m_CommandMap.end();
     do
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         result = m_CommandMap.find(notification.getName());
         if (result == m_CommandMap.end())
         {
@@ -51,7 +51,7 @@ void Controller::executeCommand(const Notification& notification)
 
 void Controller::registerCommand(const String& notification_name, Command* command)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 
     if (m_CommandMap.find(notification_name) == m_CommandMap.end())
     {
@@ -71,7 +71,7 @@ void Controller::registerCommand(const String& notification_name, Command* comma
 
 inline bool Controller::hasCommand(const String& notification_name)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
     return m_CommandMap.find(notification_name) != m_CommandMap.end();
 }
 
@@ -81,7 +81,7 @@ Command* Controller::removeCommand(const String& notification_name)
 
     do
     {
-        std::lock_guard<std::mutex> lck(m_mtx);
+        U2_LOCK_AUTO_MUTEX;
         // Retrieve the named mediator
         CommandMap::iterator result = m_CommandMap.find(notification_name);
 
@@ -115,7 +115,7 @@ const Command& Controller::retrieveCommand(const String& notification_name) cons
 
 inline Command& Controller::retrieveCommand(const String& notification)
 {
-    std::lock_guard<std::mutex> lck(m_mtx);
+    U2_LOCK_AUTO_MUTEX;
 
     CommandMap::const_iterator result = m_CommandMap.find(notification);
     if (result == m_CommandMap.end())
