@@ -10,6 +10,7 @@
 
 
 #include "U2Prerequisites.h"
+#include "U2STLRedefined.h"
 #include "U2FactoryObj.h"
 
 

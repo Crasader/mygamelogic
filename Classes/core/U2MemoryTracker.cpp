@@ -79,7 +79,8 @@ void MemoryTracker::reportLeaks()
 {   
     if (mRecordEnable)
     {
-        StringStream os;
+        u2::StringStream os;
+        //std::basic_stringstream<char, std::char_traits<char>, std::allocator<char> > os;
 
         if (mAllocations.empty())
         {

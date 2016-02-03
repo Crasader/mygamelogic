@@ -31,6 +31,9 @@
     <Filter Include="src\core\threading">
       <UniqueIdentifier>{e3b39631-26a4-4c02-8f93-2b35cfb17308}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\core\streams">
+      <UniqueIdentifier>{09f648d7-ef01-4af4-90b4-d5b409917170}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -176,6 +179,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\core\U2MemoryTracker.cpp">
       <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\streams\U2FilterStream.cpp">
+      <Filter>src\core\streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\streams\U2Stream.cpp">
+      <Filter>src\core\streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\streams\U2DataStream.cpp">
+      <Filter>src\core\streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\streams\U2CodeCvt.cpp">
+      <Filter>src\core\streams</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +394,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\core\U2MemoryAllocatorConfig.h">
       <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\streams\U2FilterStream.h">
+      <Filter>src\core\streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\streams\U2Stream.h">
+      <Filter>src\core\streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\streams\U2DataStream.h">
+      <Filter>src\core\streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\streams\U2CodeCvt.h">
+      <Filter>src\core\streams</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

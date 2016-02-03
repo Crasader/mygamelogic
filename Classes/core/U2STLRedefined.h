@@ -13,12 +13,14 @@ namespace U2EG_NAMESPACE_NAME
     
 #if U2_WCHAR_T_STRINGS
     typedef std::basic_string< wchar_t, std::char_traits<wchar_t>, STLAllocator<wchar_t, GeneralAllocPolicy> >    _StringBase;
+    //typedef std::basic_string< char32_t, std::char_traits<char32_t>, STLAllocator<char32_t, GeneralAllocPolicy> >    _StringBase;
 #else
     typedef std::basic_string< char, std::char_traits<char>, STLAllocator<char, GeneralAllocPolicy> >             _StringBase;
 #endif
     
 #if U2_WCHAR_T_STRINGS
     typedef std::basic_stringstream< wchar_t, std::char_traits<wchar_t>, STLAllocator<wchar_t, GeneralAllocPolicy> >  _StringStreamBase;
+    //typedef std::basic_stringstream< char32_t, std::char_traits<char32_t>, STLAllocator<char32_t, GeneralAllocPolicy> >  _StringStreamBase;
 #else
     typedef std::basic_stringstream< char, std::char_traits<char>, STLAllocator<char, GeneralAllocPolicy> >           _StringStreamBase;
 #endif
@@ -135,12 +137,14 @@ namespace U2EG_NAMESPACE_NAME
     
 #   if U2_WCHAR_T_STRINGS
     typedef std::wstring            _StringBase;
+    //typedef std::u32string            _StringBase;
 #   else
     typedef std::string             _StringBase;
 #   endif
     
 #   if U2_WCHAR_T_STRINGS
     typedef std::basic_stringstream<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >   _StringStreamBase;
+    //typedef std::basic_stringstream<char32_t, std::char_traits<char32_t>, std::allocator<char32_t> >   _StringStreamBase;
 #   else
     typedef std::basic_stringstream<char, std::char_traits<char>, std::allocator<char> >            _StringStreamBase;
 #   endif
@@ -149,6 +153,57 @@ namespace U2EG_NAMESPACE_NAME
     
     typedef _StringBase             String;
     typedef _StringStreamBase       StringStream;
+
+
+};
+
+
+// char_traits
+namespace U2EG_NAMESPACE_NAME
+{
+    const int WOULD_BLOCK = (int)(EOF - 1);
+
+#ifdef U2_WCHAR_T_STRINGS
+    const std::wint_t WWOULD_BLOCK = (std::wint_t) (WEOF - 1);
+#endif
+
+    template<typename Ch>
+    struct char_traits;
+
+    template<>
+    struct char_traits<char> : std::char_traits < char >
+    {
+        static char newline() { return '\n'; }
+        static int good() { return '\n'; }
+        static int would_block() { return WOULD_BLOCK; }
+        static bool is_good(int c) { return c != EOF && c != WOULD_BLOCK; }
+        static bool is_eof(int c) { return c == EOF; }
+        static bool would_block(int c) { return c == WOULD_BLOCK; }
+    };
+
+#ifdef U2_WCHAR_T_STRINGS
+    template<>
+    struct char_traits<wchar_t> : std::char_traits < wchar_t >
+    {
+        static wchar_t newline() { return L'\n'; }
+        static std::wint_t good() { return L'\n'; }
+        static std::wint_t would_block() { return WWOULD_BLOCK; }
+        static bool is_good(std::wint_t c) { return c != WEOF && c != WWOULD_BLOCK; }
+        static bool is_eof(std::wint_t c) { return c == WEOF; }
+        static bool would_block(std::wint_t c) { return c == WWOULD_BLOCK; }
+    };
+#endif
+
+#if U2_WCHAR_T_STRINGS
+    typedef wchar_t             Char;
+#   define _TT(x)               L ## x
+//#   define _TT(x)               U ## x
+#   define BLANK                L""
+#else
+    typedef char                Char;
+#   define _TT(x)               x
+#   define BLANK                ""
+#endif
 };
 
 

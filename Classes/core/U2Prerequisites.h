@@ -33,6 +33,8 @@
 
 
 // ////////////////////// data type begin ///////////////////////
+namespace U2EG_NAMESPACE_NAME 
+{
 #if U2_DOUBLE_PRECISION == 1
 /** Software floating point type.
 @note Not valid as a pointer to GPU buffers / parameters
@@ -46,10 +48,12 @@ typedef float                       u2real;
 #endif
 
 typedef signed char                 u2char;
+typedef signed char                 u2byte;
 typedef signed char                 u2int8;
 typedef signed short                u2int16;
 typedef signed int                  u2int32;
 typedef unsigned char               u2uchar;
+typedef unsigned char               u2ubyte;
 typedef unsigned char               u2uint8;
 typedef unsigned short              u2uint16;
 typedef unsigned int                u2uint32;
@@ -60,6 +64,7 @@ typedef __int64                     u2int64;
 typedef unsigned long long          u2uint64;
 typedef long long                   u2int64;
 #endif
+}
 // ////////////////////// data type end ///////////////////////
 
 
@@ -67,7 +72,7 @@ typedef long long                   u2int64;
 
 
 
-#define BLANK                       ""
+
 
 #define GET_OBJECT_TYPE(T)          typeid(T).name()
 
