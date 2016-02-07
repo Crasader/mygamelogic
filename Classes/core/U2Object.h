@@ -17,6 +17,9 @@
 U2EG_NAMESPACE_BEGIN
 
 
+#define GET_OBJECT_TYPE(T)          typeid(T).name()
+
+
 class Object
 {
 public:

@@ -48,6 +48,11 @@ typedef float                       u2real;
 #endif
 
 typedef signed char                 u2char;
+#if U2_COMPILER == U2_COMPILER_MSVC
+typedef wchar_t                     u2wchar;
+#else
+typedef wchar_t                     u2wchar;
+#endif
 typedef signed char                 u2byte;
 typedef signed char                 u2int8;
 typedef signed short                u2int16;
@@ -66,15 +71,6 @@ typedef long long                   u2int64;
 #endif
 }
 // ////////////////////// data type end ///////////////////////
-
-
-
-
-
-
-
-
-#define GET_OBJECT_TYPE(T)          typeid(T).name()
 
 
 

@@ -11,31 +11,25 @@
 
 #include "U2Prerequisites.h"
 #include "U2STLRedefined.h"
+#include "U2Object.h"
 
 
 U2EG_NAMESPACE_BEGIN
 
 
-class InStream
+class InStream : public Object
 {
 public:
-    InStream();
+    InStream(const String& type, const String& name);
+    InStream(const String& type, const String& name, va_list argp);
     virtual ~InStream();
-
-    //virtual std::streamsize read(u2::Char* s, std::streamsize n) = 0;
-
-    /** Reads a single byte from this stream and returns it as an integer in the
-        range from 0 to 255. Returns EOF if the end of the stream has been
-        reached.
-        */
-    virtual u2int32 read() { return 0; };
 
     /** Reads up to {@code n} bytes from this stream and stores them in
         the byte array {@code s}.
         Returns the number of bytes actually read or EOF if the end of the stream
         has been reached.
     */
-    virtual u2int32 read(u2byte* s, std::streamsize n);
+    virtual u2int32 read(u2byte* s, std::streamsize n) { return 0; };
 
     /** Skips at most {@code off} bytes in this stream. The number of actual
         bytes skipped may be anywhere between 0 and {@code off}. If
@@ -51,14 +45,41 @@ public:
         
         @return the number of bytes actually skipped.
     */
-    virtual std::streamoff skip(std::streamoff off);
+    virtual std::streamoff skip(std::streamoff count);
 
     //virtual stream_offset skip(stream_offset off, std::ios_base::seekdir way) = 0;
 
     //virtual std::streamsize readline(u2::Char* s, std::streamsize maxCount, const u2::Char* delim = _TT("\n")) = 0;
 
+    virtual bool eof() const { return false; };
+
     virtual void close() {};
 
+};
+
+
+class OutStream : public Object
+{
+public:
+    OutStream(const String& type, const String& name);
+    OutStream(const String& type, const String& name, va_list argp);
+    virtual ~OutStream();
+
+    /** Writes {@code n} bytes from the byte array {@code s} to this stream.
+    @param s the buffer to be written.
+    @param n the number of bytes from {@code buffer} to write to this stream.
+    */
+    virtual void write(const u2byte* s, std::streamsize n) {};
+
+    /** Flushes this stream. Implementations of this method should ensure that
+        any buffered data is written out. This implementation does nothing.
+    */
+    virtual void flush() {};
+
+    /** Closes this stream. Implementations of this method should free any
+        resources used by the stream. This implementation does nothing.
+    */
+    virtual void close() {};
 };
 
 

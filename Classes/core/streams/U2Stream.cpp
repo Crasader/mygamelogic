@@ -8,6 +8,7 @@
 
 #include "U2Stream.h"
 
+#include "U2MemoryAllocatorConfig.h"
 
 
 U2EG_NAMESPACE_USING
@@ -15,38 +16,41 @@ U2EG_NAMESPACE_USING
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
-InStream::InStream()
+InStream::InStream(const String& type, const String& name)
+: Object(type, name)
 {
+}
+//-----------------------------------------------------------------------
+InStream::InStream(const String& type, const String& name, va_list argp)
+    : Object(type, name)
+{
+
 }
 //-----------------------------------------------------------------------
 InStream::~InStream()
 {
 }
 //-----------------------------------------------------------------------
-u2int32 InStream::read(u2byte* s, std::streamsize n)
+std::streamoff InStream::skip(std::streamoff count)
 {
-    for (std::streamoff i = 0; i < n; ++i)
-    {
-        u2int32 c = read();
-        if (c == EOF)
-        {
-            return i == 0 ? EOF : i;
-        }
-        
-        s[i] = (u2byte)c;
-    }
-    return n;
+    u2byte* s = static_cast<u2byte*>(U2_MALLOC(count, MEMCATEGORY_GENERAL));
+    u2int32 actually = read(s, count);
+    U2_FREE(s, MEMCATEGORY_GENERAL);
+    return actually;
 }
 //-----------------------------------------------------------------------
-std::streamoff InStream::skip(std::streamoff off)
+//-----------------------------------------------------------------------
+OutStream::OutStream(const String& type, const String& name)
+    : Object(type, name)
 {
-    for (std::streamoff i = 0; i < off; ++i)
-    {
-        u2int32 c = read();
-        if (c == EOF)
-        {
-            return i == 0 ? EOF : i;
-        }
-    }
-    return off;
+}
+//-----------------------------------------------------------------------
+OutStream::OutStream(const String& type, const String& name, va_list argp)
+    : Object(type, name)
+{
+
+}
+//-----------------------------------------------------------------------
+OutStream::~OutStream()
+{
 }

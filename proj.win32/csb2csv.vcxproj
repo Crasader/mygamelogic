@@ -141,7 +141,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\core\streams\U2CodeCvt.cpp" />
-    <ClCompile Include="..\Classes\core\streams\U2DataStream.cpp" />
+    <ClCompile Include="..\Classes\core\streams\U2DataFilterStream.cpp" />
+    <ClCompile Include="..\Classes\core\streams\U2FileStream.cpp" />
     <ClCompile Include="..\Classes\core\streams\U2FilterStream.cpp" />
     <ClCompile Include="..\Classes\core\streams\U2Stream.cpp" />
     <ClCompile Include="..\Classes\core\U2AlignedAllocator.cpp" />
@@ -195,7 +196,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\core\streams\U2CodeCvt.h" />
-    <ClInclude Include="..\Classes\core\streams\U2DataStream.h" />
+    <ClInclude Include="..\Classes\core\streams\U2DataFilterStream.h" />
+    <ClInclude Include="..\Classes\core\streams\U2FileStream.h" />
     <ClInclude Include="..\Classes\core\streams\U2FilterStream.h" />
     <ClInclude Include="..\Classes\core\streams\U2Stream.h" />
     <ClInclude Include="..\Classes\core\threading\U2ThreadDefines.h" />

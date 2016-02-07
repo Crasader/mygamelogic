@@ -163,7 +163,7 @@ namespace U2EG_NAMESPACE_NAME
 {
     const int WOULD_BLOCK = (int)(EOF - 1);
 
-#ifdef U2_WCHAR_T_STRINGS
+#if U2_WCHAR_T_STRINGS
     const std::wint_t WWOULD_BLOCK = (std::wint_t) (WEOF - 1);
 #endif
 
@@ -181,7 +181,7 @@ namespace U2EG_NAMESPACE_NAME
         static bool would_block(int c) { return c == WOULD_BLOCK; }
     };
 
-#ifdef U2_WCHAR_T_STRINGS
+#if U2_WCHAR_T_STRINGS
     template<>
     struct char_traits<wchar_t> : std::char_traits < wchar_t >
     {

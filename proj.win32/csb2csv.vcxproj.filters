@@ -186,10 +186,13 @@
     <ClCompile Include="..\Classes\core\streams\U2Stream.cpp">
       <Filter>src\core\streams</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\core\streams\U2DataStream.cpp">
+    <ClCompile Include="..\Classes\core\streams\U2CodeCvt.cpp">
       <Filter>src\core\streams</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\core\streams\U2CodeCvt.cpp">
+    <ClCompile Include="..\Classes\core\streams\U2DataFilterStream.cpp">
+      <Filter>src\core\streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\streams\U2FileStream.cpp">
       <Filter>src\core\streams</Filter>
     </ClCompile>
   </ItemGroup>
@@ -401,10 +404,13 @@
     <ClInclude Include="..\Classes\core\streams\U2Stream.h">
       <Filter>src\core\streams</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\core\streams\U2DataStream.h">
+    <ClInclude Include="..\Classes\core\streams\U2CodeCvt.h">
       <Filter>src\core\streams</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\core\streams\U2CodeCvt.h">
+    <ClInclude Include="..\Classes\core\streams\U2DataFilterStream.h">
+      <Filter>src\core\streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\streams\U2FileStream.h">
       <Filter>src\core\streams</Filter>
     </ClInclude>
   </ItemGroup>
