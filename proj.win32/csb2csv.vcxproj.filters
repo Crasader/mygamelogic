@@ -34,6 +34,15 @@
     <Filter Include="src\core\streams">
       <UniqueIdentifier>{09f648d7-ef01-4af4-90b4-d5b409917170}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\core\threading\threadpool">
+      <UniqueIdentifier>{dbd179e2-b5fb-4cc5-9346-593864dce54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\threading\threadpool\singlethreaded">
+      <UniqueIdentifier>{d1513389-0aff-4830-9171-a51f0e4d2b84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core\threading\threadpool\impl">
+      <UniqueIdentifier>{948ba544-eb41-477a-ab11-4e1570658de6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -194,6 +203,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\core\streams\U2FileStream.cpp">
       <Filter>src\core\streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\streams\U2PipedStream.cpp">
+      <Filter>src\core\streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\threading\U2TaskQueue.cpp">
+      <Filter>src\core\threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\threading\threadpool\threadpool.cpp">
+      <Filter>src\core\threading\threadpool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\core\threading\threadpool\threadpool_generic.cpp">
+      <Filter>src\core\threading\threadpool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +433,66 @@
     </ClInclude>
     <ClInclude Include="..\Classes\core\streams\U2FileStream.h">
       <Filter>src\core\streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\streams\U2PipedStream.h">
+      <Filter>src\core\streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\U2ThreadHeadersCpp11.h">
+      <Filter>src\core\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\U2TaskQueue.h">
+      <Filter>src\core\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\make_iterator.h">
+      <Filter>src\core\threading\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\parallel_for_each.h">
+      <Filter>src\core\threading\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\parallel_transform.h">
+      <Filter>src\core\threading\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\threadpool.h">
+      <Filter>src\core\threading\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\threadpool_config.h">
+      <Filter>src\core\threading\threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_generic.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_generic_impl.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_generic_inst.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_impl.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_impl_homogenous.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_impl_util.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_inst.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_interface_generic.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\impl\threadpool_interface_virtual.h">
+      <Filter>src\core\threading\threadpool\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\singlethreaded\parallel_for_each.h">
+      <Filter>src\core\threading\threadpool\singlethreaded</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\singlethreaded\parallel_transform.h">
+      <Filter>src\core\threading\threadpool\singlethreaded</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\core\threading\threadpool\singlethreaded\threadpool.h">
+      <Filter>src\core\threading\threadpool\singlethreaded</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

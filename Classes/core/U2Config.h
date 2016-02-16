@@ -62,6 +62,21 @@
 #   define U2_NO_ZIP_ARCHIVE            U2_ON
 #endif
 
+// ////////////////////////// thread //////////////////////////////
+/** Provider for threading functionality, there are 4 options.
+U2_THREAD_PROVIDER = 0
+No support for threading.
+U2_THREAD_PROVIDER = 1
+Boost libraries provide threading functionality.
+U2_THREAD_PROVIDER = 2
+C++11 libraries provide threading functionality.
+U2_THREAD_PROVIDER = 3
+TBB library provides threading functionality.
+*/
+#ifndef U2_THREAD_PROVIDER
+#   define U2_THREAD_PROVIDER           2
+#endif
+
 
 
 #endif

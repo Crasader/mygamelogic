@@ -242,6 +242,20 @@ namespace std
 namespace U2EG_NAMESPACE_NAME
 {
     template <typename T, typename A = STLAllocator<T, GeneralAllocPolicy> >
+    struct queue
+    {
+#if U2_CONTAINERS_USE_CUSTOM_MEMORY_ALLOCATOR == U2_ON
+        typedef typename std::queue<T, A>                       type;
+        typedef typename std::queue<T, A>::iterator             iterator;
+        typedef typename std::queue<T, A>::const_iterator       const_iterator;
+#else
+        typedef typename std::queue<T>                          type;
+        typedef typename std::queue<T>::iterator                iterator;
+        typedef typename std::queue<T>::const_iterator          const_iterator;
+#endif
+    };
+
+    template <typename T, typename A = STLAllocator<T, GeneralAllocPolicy> >
     struct deque
     {
 #if U2_CONTAINERS_USE_CUSTOM_MEMORY_ALLOCATOR == U2_ON

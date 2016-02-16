@@ -5,7 +5,7 @@
 #   define NOMINMAX // required to stop windows.h messing up std::min
 #endif
 
-#if U2_THREAD_PROVIDER == 4
+#if U2_THREAD_PROVIDER == 2
     #include "U2ThreadHeadersCpp11.h"
 #endif
 

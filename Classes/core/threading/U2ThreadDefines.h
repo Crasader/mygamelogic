@@ -7,7 +7,7 @@
 
 #if U2_THREAD_PROVIDER == 0
 #   include "U2ThreadDefinesNone.h"
-#elif U2_THREAD_PROVIDER == 4
+#elif U2_THREAD_PROVIDER == 2
 #   include "U2ThreadDefinesCpp11.h"
 #endif
 
